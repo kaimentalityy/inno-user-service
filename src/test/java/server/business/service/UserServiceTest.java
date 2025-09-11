@@ -13,9 +13,11 @@ import server.presentation.dto.request.UpdateCardInfoDto;
 import server.presentation.dto.request.UpdateUserDto;
 import server.presentation.dto.request.UpdateUserWithCardsDto;
 import server.presentation.dto.response.UserDto;
+import server.util.exceptions.notfound.EntityNotFoundException;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
@@ -72,6 +74,108 @@ class UserServiceTest {
         assertNotNull(result);
         assertEquals("John Updated", result.name());
         verify(userRepository).save(existingUser);
+    }
+
+    @Test
+    void testGetUserById() {
+        User user = new User();
+        user.setId(1L);
+        user.setName("John");
+
+        UserDto userDto = new UserDto(1L, "John", "Doe", LocalDate.now(), "john@example.com", null);
+
+        when(userRepository.findById(1L)).thenReturn(Optional.of(user));
+        when(userMapper.toUserDto(user)).thenReturn(userDto);
+
+        UserDto result = userService.getUserById(1L);
+
+        assertNotNull(result);
+        assertEquals(1L, result.id());
+        assertEquals("John", result.name());
+    }
+
+    @Test
+    void testGetUserByIdNotFound() {
+        when(userRepository.findById(999L)).thenReturn(Optional.empty());
+
+        assertThrows(EntityNotFoundException.class, () ->
+                userService.getUserById(999L)
+        );
+    }
+
+    @Test
+    void testFindByEmail() {
+        User user = new User();
+        user.setId(1L);
+        user.setEmail("john@example.com");
+
+        UserDto userDto = new UserDto(1L, "John", "Doe", LocalDate.now(), "john@example.com", null);
+
+        when(userRepository.findByEmail("john@example.com")).thenReturn(Optional.of(user));
+        when(userMapper.toUserDto(user)).thenReturn(userDto);
+
+        UserDto result = userService.findByEmail("john@example.com");
+
+        assertNotNull(result);
+        assertEquals("john@example.com", result.email());
+    }
+
+    @Test
+    void testFindByEmailNotFound() {
+        when(userRepository.findByEmail("missing@example.com")).thenReturn(Optional.empty());
+
+        assertThrows(EntityNotFoundException.class, () ->
+                userService.findByEmail("missing@example.com")
+        );
+    }
+
+    @Test
+    void testFindByEmailNative() {
+        User user = new User();
+        user.setId(1L);
+        user.setEmail("john@example.com");
+
+        UserDto userDto = new UserDto(1L, "John", "Doe", LocalDate.now(), "john@example.com", null);
+
+        when(userRepository.findUserByEmailNative("john@example.com")).thenReturn(Optional.of(user));
+        when(userMapper.toUserDto(user)).thenReturn(userDto);
+
+        UserDto result = userService.findByEmailNative("john@example.com");
+
+        assertNotNull(result);
+        assertEquals("john@example.com", result.email());
+    }
+
+    @Test
+    void testFindByEmailNativeNotFound() {
+        when(userRepository.findUserByEmailNative("missing@example.com")).thenReturn(Optional.empty());
+
+        assertThrows(EntityNotFoundException.class, () ->
+                userService.findByEmailNative("missing@example.com")
+        );
+    }
+
+    @Test
+    void testFindUsersByIds() {
+        User user1 = new User();
+        user1.setId(1L);
+        User user2 = new User();
+        user2.setId(2L);
+
+        List<User> users = Arrays.asList(user1, user2);
+
+        UserDto dto1 = new UserDto(1L, "John", "Doe", LocalDate.now(), "john@example.com", null);
+        UserDto dto2 = new UserDto(2L, "Jane", "Doe", LocalDate.now(), "jane@example.com", null);
+
+        when(userRepository.findUsersByIds(Arrays.asList(1L, 2L))).thenReturn(users);
+        when(userMapper.toUserDto(user1)).thenReturn(dto1);
+        when(userMapper.toUserDto(user2)).thenReturn(dto2);
+
+        List<UserDto> result = userService.findUsersByIds(Arrays.asList(1L, 2L));
+
+        assertEquals(2, result.size());
+        assertEquals("John", result.get(0).name());
+        assertEquals("Jane", result.get(1).name());
     }
 
     @Test

@@ -10,6 +10,8 @@ import server.presentation.dto.request.CreateCardInfoDto;
 import server.presentation.dto.request.UpdateCardInfoDto;
 import server.presentation.dto.response.CardInfoDto;
 
+import java.util.List;
+
 /**
  * REST controller for managing card information.
  * <p>
@@ -58,5 +60,53 @@ public class CardInfoController {
     public ResponseEntity<Void> deleteCard(@PathVariable Long id) {
         cardInfoService.deleteCardInfo(id);
         return ResponseEntity.noContent().build();
+    }
+
+    /**
+     * Retrieves a card information entry by ID.
+     *
+     * @param id the ID of the card to retrieve
+     * @return ResponseEntity with the card DTO and HTTP 200 OK
+     */
+    @GetMapping("/{id}")
+    public ResponseEntity<CardInfoDto> getCardById(@PathVariable Long id) {
+        CardInfoDto cardDto = cardInfoService.getCardInfo(id);
+        return ResponseEntity.ok(cardDto);
+    }
+
+    /**
+     * Retrieves all cards associated with a specific user by user ID.
+     *
+     * @param userId the ID of the user
+     * @return ResponseEntity with a list of card DTOs and HTTP 200 OK
+     */
+    @GetMapping("/user/{userId}")
+    public ResponseEntity<List<CardInfoDto>> getCardsByUser(@PathVariable Long userId) {
+        List<CardInfoDto> cards = cardInfoService.getCardsByUserId(userId);
+        return ResponseEntity.ok(cards);
+    }
+
+    /**
+     * Retrieves multiple cards by their IDs.
+     *
+     * @param ids list of card IDs
+     * @return ResponseEntity with a list of card DTOs and HTTP 200 OK
+     */
+    @PostMapping("/ids")
+    public ResponseEntity<List<CardInfoDto>> getCardsByIds(@RequestBody List<Long> ids) {
+        List<CardInfoDto> cards = cardInfoService.getCardsByIds(ids);
+        return ResponseEntity.ok(cards);
+    }
+
+    /**
+     * Retrieves a card by its card number.
+     *
+     * @param cardNumber the card number to search for
+     * @return ResponseEntity with the card DTO and HTTP 200 OK
+     */
+    @GetMapping("/number/{cardNumber}")
+    public ResponseEntity<CardInfoDto> getCardByNumber(@PathVariable String cardNumber) {
+        CardInfoDto cardDto = cardInfoService.getCardByNumber(cardNumber);
+        return ResponseEntity.ok(cardDto);
     }
 }
