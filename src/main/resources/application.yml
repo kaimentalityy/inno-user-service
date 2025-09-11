@@ -21,3 +21,10 @@ spring:
     change-log: classpath:/db/changelog/changelog-master.xml
     enabled: true
     contexts: dev
+
+  data:
+    redis:
+     host: localhost
+     port: 6379
+  cache:
+     type: redis
