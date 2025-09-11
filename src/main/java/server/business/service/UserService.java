@@ -12,6 +12,8 @@ import server.presentation.dto.request.UpdateCardInfoDto;
 import server.presentation.dto.request.UpdateUserDto;
 import server.presentation.dto.request.UpdateUserWithCardsDto;
 import server.presentation.dto.response.UserDto;
+import server.util.exceptions.badrequest.CustomConstraintViolationException;
+import server.util.exceptions.notfound.EntityNotFoundException;
 
 /**
  * Service class for managing {@link User} entities.
@@ -55,7 +57,7 @@ public class UserService {
     @Transactional
     public UserDto updateUser(Long id, UpdateUserDto dto) {
         User existing = userRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("User not found"));
+                .orElseThrow(() -> new EntityNotFoundException("User", id));
 
         userMapper.updateUserFromDto(dto, existing);
 
@@ -78,7 +80,7 @@ public class UserService {
     @Transactional
     public UserDto updateUserWithCards(Long id, UpdateUserWithCardsDto dto) {
         User user = userRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("User not found"));
+                .orElseThrow(() -> new EntityNotFoundException("User", id));
 
         user.setName(dto.name());
         user.setSurname(dto.surname());
@@ -118,7 +120,7 @@ public class UserService {
     @Transactional
     public void deleteUser(Long id) {
         if (id == null) {
-            throw new IllegalArgumentException("id cannot be null");
+            throw new CustomConstraintViolationException("id cannot be null");
         }
         userRepository.deleteById(id);
     }
