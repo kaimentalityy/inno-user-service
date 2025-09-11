@@ -9,6 +9,7 @@ import server.data.repository.CardInfoRepository;
 import server.presentation.dto.request.CreateCardInfoDto;
 import server.presentation.dto.request.UpdateCardInfoDto;
 import server.presentation.dto.response.CardInfoDto;
+import server.util.exceptions.notfound.EntityNotFoundException;
 
 /**
  * Service class for managing {@link CardInfo} entities.
@@ -47,7 +48,7 @@ public class CardInfoService {
     @Transactional
     public CardInfoDto updateCardInfo(Long id, UpdateCardInfoDto updateCardInfoDto) {
         CardInfo cardInfo = cardInfoRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Card info not found"));
+                .orElseThrow(() -> new EntityNotFoundException("Card", id));
 
         cardInfoMapper.updateEntity(updateCardInfoDto, cardInfo);
 
