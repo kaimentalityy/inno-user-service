@@ -13,6 +13,7 @@ public interface UserMapper {
 
     @Mapping(target = "id", ignore = true)
     @Mapping(target = "cards", source = "cards")
+    @Mapping(target = "birthDate", source = "birthdate")
     User toUser(CreateUserDto dto);
 
     @Mapping(target = "birthdate", source = "birthDate")

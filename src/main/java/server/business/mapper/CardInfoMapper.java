@@ -13,6 +13,7 @@ public interface CardInfoMapper {
 
     @Mapping(target = "id", ignore = true)
     @Mapping(target = "user", ignore = true)
+    @Mapping(target = "cardHolder", source = "cardHolderName")
     CardInfo toEntity(CreateCardInfoDto dto);
 
     CardInfoDto toDto(CardInfo entity);

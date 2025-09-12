@@ -5,7 +5,10 @@ import jakarta.validation.constraints.NotNull;
 
 import java.time.LocalDate;
 
-public record CreateCardInfoDto (
+public record CreateCardInfoDto(
+
+        @NotNull
+        Long userId,
 
         @NotNull
         String cardNumber,
@@ -15,5 +18,5 @@ public record CreateCardInfoDto (
 
         @NotNull
         @FutureOrPresent
-        LocalDate cardExpiryDate) {
-}
+        LocalDate cardExpiryDate
+) {}
