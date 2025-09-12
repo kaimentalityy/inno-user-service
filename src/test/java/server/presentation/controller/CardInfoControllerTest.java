@@ -35,6 +35,7 @@ class CardInfoControllerTest {
     @Test
     void testCreateCard() throws Exception {
         CreateCardInfoDto createDto = new CreateCardInfoDto(
+                1L,
                 "1234567890123456",
                 "John Doe",
                 LocalDate.of(2030, 12, 31)

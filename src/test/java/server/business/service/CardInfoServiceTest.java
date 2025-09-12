@@ -6,7 +6,9 @@ import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import server.business.mapper.CardInfoMapper;
 import server.data.entity.CardInfo;
+import server.data.entity.User;
 import server.data.repository.CardInfoRepository;
+import server.data.repository.UserRepository;
 import server.presentation.dto.request.CreateCardInfoDto;
 import server.presentation.dto.request.UpdateCardInfoDto;
 import server.presentation.dto.response.CardInfoDto;
@@ -26,6 +28,9 @@ class CardInfoServiceTest {
     private CardInfoRepository cardInfoRepository;
 
     @Mock
+    private UserRepository userRepository;
+
+    @Mock
     private CardInfoMapper cardInfoMapper;
 
     @InjectMocks
@@ -37,7 +42,15 @@ class CardInfoServiceTest {
 
     @Test
     void testCreateCardInfo() {
-        CreateCardInfoDto dto = new CreateCardInfoDto("1234", "John Doe", LocalDate.now());
+        // Mock the user returned by userRepository
+        User mockUser = new User();
+        mockUser.setId(1L);
+        mockUser.setName("John");
+        mockUser.setSurname("Doe");
+
+        when(userRepository.findById(1L)).thenReturn(Optional.of(mockUser));
+
+        CreateCardInfoDto dto = new CreateCardInfoDto(1L, "1234", "John Doe", LocalDate.now());
         CardInfo cardEntity = new CardInfo();
         CardInfoDto cardDto = new CardInfoDto(1L, "1234", "John Doe", LocalDate.now());
 
@@ -51,6 +64,7 @@ class CardInfoServiceTest {
         assertEquals("1234", result.cardNumber());
         verify(cardInfoRepository).save(cardEntity);
     }
+
 
     @Test
     void testUpdateCardInfo() {
@@ -72,7 +86,7 @@ class CardInfoServiceTest {
     void testGetCardInfo() {
         CardInfoRepository cardInfoRepository = mock(CardInfoRepository.class);
         CardInfoMapper cardInfoMapper = mock(CardInfoMapper.class);
-        CardInfoService cardInfoService = new CardInfoService(cardInfoRepository, cardInfoMapper);
+        CardInfoService cardInfoService = new CardInfoService(cardInfoRepository, cardInfoMapper, userRepository);
 
         CardInfo card = new CardInfo();
         card.setId(1L);
@@ -93,7 +107,7 @@ class CardInfoServiceTest {
     void testGetCardInfoNotFound() {
         CardInfoRepository cardInfoRepository = mock(CardInfoRepository.class);
         CardInfoMapper cardInfoMapper = mock(CardInfoMapper.class);
-        CardInfoService cardInfoService = new CardInfoService(cardInfoRepository, cardInfoMapper);
+        CardInfoService cardInfoService = new CardInfoService(cardInfoRepository, cardInfoMapper,  userRepository);
 
         when(cardInfoRepository.findById(999L)).thenReturn(Optional.empty());
 
@@ -106,7 +120,7 @@ class CardInfoServiceTest {
     void testGetCardsByUserId() {
         CardInfoRepository cardInfoRepository = mock(CardInfoRepository.class);
         CardInfoMapper cardInfoMapper = mock(CardInfoMapper.class);
-        CardInfoService cardInfoService = new CardInfoService(cardInfoRepository, cardInfoMapper);
+        CardInfoService cardInfoService = new CardInfoService(cardInfoRepository, cardInfoMapper,  userRepository);
 
         CardInfo card1 = new CardInfo();
         card1.setId(1L);
@@ -134,7 +148,7 @@ class CardInfoServiceTest {
     void testGetCardsByIds() {
         CardInfoRepository cardInfoRepository = mock(CardInfoRepository.class);
         CardInfoMapper cardInfoMapper = mock(CardInfoMapper.class);
-        CardInfoService cardInfoService = new CardInfoService(cardInfoRepository, cardInfoMapper);
+        CardInfoService cardInfoService = new CardInfoService(cardInfoRepository, cardInfoMapper, userRepository);
 
         CardInfo card1 = new CardInfo();
         card1.setId(1L);
@@ -164,7 +178,7 @@ class CardInfoServiceTest {
     void testGetCardByNumber() {
         CardInfoRepository cardInfoRepository = mock(CardInfoRepository.class);
         CardInfoMapper cardInfoMapper = mock(CardInfoMapper.class);
-        CardInfoService cardInfoService = new CardInfoService(cardInfoRepository, cardInfoMapper);
+        CardInfoService cardInfoService = new CardInfoService(cardInfoRepository, cardInfoMapper, userRepository);
 
         CardInfo card = new CardInfo();
         card.setId(1L);

@@ -9,7 +9,9 @@ import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 import server.business.mapper.CardInfoMapper;
 import server.data.entity.CardInfo;
+import server.data.entity.User;
 import server.data.repository.CardInfoRepository;
+import server.data.repository.UserRepository;
 import server.presentation.dto.request.CreateCardInfoDto;
 import server.presentation.dto.request.UpdateCardInfoDto;
 import server.presentation.dto.response.CardInfoDto;
@@ -32,6 +34,7 @@ public class CardInfoService {
 
     private final CardInfoRepository cardInfoRepository;
     private final CardInfoMapper cardInfoMapper;
+    private final UserRepository userRepository;
 
     /**
      * Creates a new card information entry.
@@ -39,11 +42,18 @@ public class CardInfoService {
      * @param createCardInfoDto DTO containing details for the new card
      * @return a DTO representing the created card
      */
+    @Transactional
     public CardInfoDto createCardInfo(CreateCardInfoDto createCardInfoDto) {
-        CardInfo cardInfo = cardInfoMapper.toEntity(createCardInfoDto);
-        cardInfo = save(cardInfo);
-        return cardInfoMapper.toDto(cardInfo);
+        User user = userRepository.findById(createCardInfoDto.userId())
+                .orElseThrow(() -> new EntityNotFoundException("User", "id", createCardInfoDto.userId()));
+
+        CardInfo card = cardInfoMapper.toEntity(createCardInfoDto);
+        card.setUser(user);
+
+        CardInfo saved = cardInfoRepository.save(card);
+        return cardInfoMapper.toDto(saved);
     }
+
 
     /**
      * Updates an existing card information entry.
@@ -64,7 +74,7 @@ public class CardInfoService {
 
         cardInfoMapper.updateEntity(updateCardInfoDto, cardInfo);
 
-        CardInfo savedCardInfo = cardInfoRepository.save(cardInfo);
+        CardInfo savedCardInfo = save(cardInfo);
         return cardInfoMapper.toDto(savedCardInfo);
     }
 

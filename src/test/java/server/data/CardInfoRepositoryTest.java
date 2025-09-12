@@ -4,7 +4,7 @@ import jakarta.transaction.Transactional;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.ActiveProfiles;
+import server.BaseIntegrationTest;
 import server.data.entity.CardInfo;
 import server.data.entity.User;
 import server.data.repository.CardInfoRepository;
@@ -17,9 +17,8 @@ import java.util.Optional;
 import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
-@ActiveProfiles("test")
 @Transactional
-class CardInfoRepositoryTest {
+class CardInfoRepositoryTest extends BaseIntegrationTest {
 
     @Autowired
     private CardInfoRepository cardInfoRepository;

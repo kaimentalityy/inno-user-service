@@ -1,16 +1,13 @@
-server:
-  port: 8080
-
 spring:
   datasource:
-    url: jdbc:postgresql://localhost:5432/UserService
-    username: postgres
-    password: postgres
+    url: ${SPRING_DATASOURCE_URL:jdbc:postgresql://postgres:5432/UserService}
+    username: ${SPRING_DATASOURCE_USERNAME:postgres}
+    password: ${SPRING_DATASOURCE_PASSWORD:postgres}
     driver-class-name: org.postgresql.Driver
 
   jpa:
     hibernate:
-      ddl-auto: none
+      ddl-auto: update
     show-sql: true
     properties:
       hibernate:
@@ -18,13 +15,12 @@ spring:
     database-platform: org.hibernate.dialect.PostgreSQLDialect
 
   liquibase:
-    change-log: classpath:/db/changelog/changelog-master.xml
+    change-log: classpath:db/changelog/changelog-master.xml
     enabled: true
-    contexts: dev
 
   data:
     redis:
-     host: localhost
-     port: 6379
+      host: ${SPRING_REDIS_HOST:redis}
+      port: ${SPRING_REDIS_PORT:6379}
   cache:
-     type: redis
+    type: redis
