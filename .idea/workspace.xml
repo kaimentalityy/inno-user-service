@@ -4,8 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ad2c5a7c-644f-4864-a037-866b2e4f05c9" name="Changes" comment="added integration testing for service layer, added RedisConfig, fix mappers for correct work, added Dockerfile and docker-compose.yaml, removed hardcode for application.yml">
+    <list default="true" id="ad2c5a7c-644f-4864-a037-866b2e4f05c9" name="Changes" comment="fixed localhost and ci">
+      <change afterPath="$PROJECT_DIR$/.github/workflows/ci.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.github/workflows/ci.yml " beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docker-compose.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/docker-compose.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.yml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -115,11 +119,11 @@
 }</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/.github/workflows" />
       <recent name="$PROJECT_DIR$" />
       <recent name="$PROJECT_DIR$/src/main/resources" />
       <recent name="$PROJECT_DIR$/src/main/resources/db/changelog/changes" />
       <recent name="$PROJECT_DIR$/src/main/java" />
-      <recent name="$PROJECT_DIR$/src/main" />
     </key>
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
       <recent name="servertest" />
@@ -185,7 +189,7 @@
       <workItem from="1757592001144" duration="19394000" />
       <workItem from="1757674457399" duration="7111000" />
       <workItem from="1757703628505" duration="2361000" />
-      <workItem from="1757766045606" duration="1302000" />
+      <workItem from="1757766045606" duration="5198000" />
     </task>
     <task id="LOCAL-00001" summary="added caching with redis, added repo annotations, added missing methods and tests for them, corrected the EntityNotFoundException">
       <option name="closed" value="true" />
@@ -203,7 +207,15 @@
       <option name="project" value="LOCAL" />
       <updated>1757705521215</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="added ci">
+      <option name="closed" value="true" />
+      <created>1757767492956</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1757767492956</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -213,7 +225,9 @@
     <MESSAGE value="added db schema with liqubase, added dao layer with use of jpa repos, jpql and native sql, created entities. added unit tests for the repos" />
     <MESSAGE value="added caching with redis, added repo annotations, added missing methods and tests for them, corrected the EntityNotFoundException" />
     <MESSAGE value="added integration testing for service layer, added RedisConfig, fix mappers for correct work, added Dockerfile and docker-compose.yaml, removed hardcode for application.yml" />
-    <option name="LAST_COMMIT_MESSAGE" value="added integration testing for service layer, added RedisConfig, fix mappers for correct work, added Dockerfile and docker-compose.yaml, removed hardcode for application.yml" />
+    <MESSAGE value="added ci" />
+    <MESSAGE value="fixed localhost and ci" />
+    <option name="LAST_COMMIT_MESSAGE" value="fixed localhost and ci" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
