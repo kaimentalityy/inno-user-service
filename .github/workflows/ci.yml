@@ -79,7 +79,8 @@ jobs:
             -Dspring.datasource.username=postgres \
             -Dspring.datasource.password=postgres \
             -Dspring.data.redis.host=localhost \
-            -Dspring.data.redis.port=6379
+            -Dspring.data.redis.port=6379 \
+            -Djacoco.skip=true
 
       - name: Build Docker Image
         run: docker build -t user-service:latest .
