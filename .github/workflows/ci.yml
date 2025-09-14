@@ -96,6 +96,11 @@ jobs:
             -Dspring.data.redis.host=localhost \
             -Dspring.data.redis.port=6379 \
             -Djacoco.skip=true \
+            -Dsonar.host.url=https://sonarcloud.io \
+            -Dsonar.login=$SONAR_TOKEN \
+            -Dsonar.organization=kaimentalityy \
+            -Dsonar.projectKey=kaimentalityy_inno-user-service \
+            -Dsonar.coverage.jacoco.xmlReportPaths=target/site/jacoco/jacoco.xml \
             org.sonarsource.scanner.maven:sonar-maven-plugin:sonar
 
       - name: Upload Test Results
