@@ -1,14 +1,14 @@
 spring:
   datasource:
-    url: ${SPRING_DATASOURCE_URL:jdbc:postgresql://localhost:5432/UserService}
-    username: ${SPRING_DATASOURCE_USERNAME:postgres}
-    password: ${SPRING_DATASOURCE_PASSWORD:17052007}
+    url: jdbc:postgresql://${DB_HOST:localhost}:${DB_PORT:5432}/${DB_NAME:UserService}
+    username: ${DB_USERNAME:postgres}
+    password: ${DB_PASSWORD:postgres}
     driver-class-name: org.postgresql.Driver
 
   jpa:
     hibernate:
-      ddl-auto: update
-    show-sql: true
+      ddl-auto: validate
+    show-sql: ${SHOW_SQL:false}
     properties:
       hibernate:
         format_sql: true
@@ -16,11 +16,23 @@ spring:
 
   liquibase:
     change-log: classpath:db/changelog/changelog-master.xml
-    enabled: true
+    enabled: ${LIQUIBASE_ENABLED:true}
 
   data:
     redis:
-      host: ${SPRING_REDIS_HOST:redis}
-      port: ${SPRING_REDIS_PORT:6379}
+      host: ${REDIS_HOST:localhost}
+      port: ${REDIS_PORT:6379}
+
   cache:
     type: redis
+
+  profiles:
+    active: ${SPRING_PROFILES_ACTIVE:ci}
+
+---
+spring:
+  config:
+    activate:
+      on-profile: ci
+  jpa:
+    show-sql: false
