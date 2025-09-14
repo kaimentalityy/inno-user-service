@@ -88,16 +88,15 @@ jobs:
       - name: SonarQube Scan
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-          SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
         run: |
-          mvn sonar:sonar -B \
-            -Dsonar.projectKey=InnoUserService \
-            -Dsonar.organization=kaimentalityy \
-            -Dsonar.host.url=$SONAR_HOST_URL \
-            -Dsonar.login=$SONAR_TOKEN \
-            -Dsonar.coverage.jacoco.xmlReportPaths=target/site/jacoco/jacoco.xml \
-            -Dsonar.java.binaries=target/classes \
-            -Dsonar.sourceEncoding=UTF-8
+          mvn -B verify \
+            -Dspring.datasource.url=jdbc:postgresql://localhost:5432/UserService \
+            -Dspring.datasource.username=postgres \
+            -Dspring.datasource.password=postgres \
+            -Dspring.data.redis.host=localhost \
+            -Dspring.data.redis.port=6379 \
+            -Djacoco.skip=true \
+            org.sonarsource.scanner.maven:sonar-maven-plugin:sonar
 
       - name: Upload Test Results
         if: always()
