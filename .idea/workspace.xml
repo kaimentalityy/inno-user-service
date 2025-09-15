@@ -4,49 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ad2c5a7c-644f-4864-a037-866b2e4f05c9" name="Changes" comment="fixed localhost and ci">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/innowise/userservice/config/ValidationConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/Dockerfile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/server/UserServiceApp.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/innowise/userservice/UserServiceApp.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/server/business/mapper/CardInfoMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/innowise/userservice/business/mapper/CardInfoMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/server/business/mapper/UserMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/innowise/userservice/business/mapper/UserMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/server/business/service/CardInfoService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/innowise/userservice/business/service/CardInfoService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/server/business/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/innowise/userservice/business/service/UserService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/server/config/RedisConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/innowise/userservice/config/RedisConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/server/config/ValidationConfig.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/server/data/entity/CardInfo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/innowise/userservice/data/entity/CardInfo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/server/data/entity/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/innowise/userservice/data/entity/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/server/data/repository/CardInfoRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/innowise/userservice/data/repository/CardInfoRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/server/data/repository/UserRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/innowise/userservice/data/repository/UserRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/server/handler/GlobalExceptionHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/innowise/userservice/handler/GlobalExceptionHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/server/presentation/controller/CardInfoController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/innowise/userservice/presentation/controller/CardInfoController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/server/presentation/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/innowise/userservice/presentation/controller/UserController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/server/presentation/dto/request/CreateCardInfoDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/innowise/userservice/presentation/dto/request/CreateCardInfoDto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/server/presentation/dto/request/CreateUserDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/innowise/userservice/presentation/dto/request/CreateUserDto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/server/presentation/dto/request/UpdateCardInfoDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/innowise/userservice/presentation/dto/request/UpdateCardInfoDto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/server/presentation/dto/request/UpdateUserDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/innowise/userservice/presentation/dto/request/UpdateUserDto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/server/presentation/dto/request/UpdateUserWithCardsDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/innowise/userservice/presentation/dto/request/UpdateUserWithCardsDto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/server/presentation/dto/response/CardInfoDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/innowise/userservice/presentation/dto/response/CardInfoDto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/server/presentation/dto/response/ErrorDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/innowise/userservice/presentation/dto/response/ErrorDto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/server/presentation/dto/response/UserDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/innowise/userservice/presentation/dto/response/UserDto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/server/util/exceptions/badrequest/CustomBadRequestException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/innowise/userservice/util/exceptions/badrequest/CustomBadRequestException.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/server/util/exceptions/badrequest/CustomConstraintViolationException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/innowise/userservice/util/exceptions/badrequest/CustomConstraintViolationException.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/server/util/exceptions/conflict/CustomConflictException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/innowise/userservice/util/exceptions/conflict/CustomConflictException.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/server/util/exceptions/conflict/EntityAlreadyExistsException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/innowise/userservice/util/exceptions/conflict/EntityAlreadyExistsException.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/server/util/exceptions/notfound/CustomNotFoundException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/innowise/userservice/util/exceptions/notfound/CustomNotFoundException.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/server/util/exceptions/notfound/EntityNotFoundException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/innowise/userservice/util/exceptions/notfound/EntityNotFoundException.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/server/BaseIntegrationTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/innowise/userservice/BaseIntegrationTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/server/business/service/CardInfoServiceIntegrationTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/innowise/userservice/business/service/CardInfoServiceIntegrationTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/server/business/service/CardInfoServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/innowise/userservice/business/service/CardInfoServiceTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/server/business/service/UserServiceIntegrationTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/innowise/userservice/business/service/UserServiceIntegrationTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/server/business/service/UserServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/innowise/userservice/business/service/UserServiceTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/server/data/CardInfoRepositoryTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/innowise/userservice/data/CardInfoRepositoryTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/server/data/UserRepositoryTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/innowise/userservice/data/UserRepositoryTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/server/presentation/controller/CardInfoControllerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/innowise/userservice/presentation/controller/CardInfoControllerTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/server/presentation/controller/UserControllerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/innowise/userservice/presentation/controller/UserControllerTest.java" afterDir="false" />
-    </list>
+    <list default="true" id="ad2c5a7c-644f-4864-a037-866b2e4f05c9" name="Changes" comment="fixed localhost and ci" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -608,7 +566,9 @@
     <MESSAGE value="added integration testing for service layer, added RedisConfig, fix mappers for correct work, added Dockerfile and docker-compose.yaml, removed hardcode for application.yml" />
     <MESSAGE value="added ci" />
     <MESSAGE value="fixed localhost and ci" />
-    <option name="LAST_COMMIT_MESSAGE" value="fixed localhost and ci" />
+    <MESSAGE value="changed package naming. fixed ci, Dockerfile, docker compose and application.yml" />
+    <MESSAGE value="changed package naming. fixed ci, Dockerfile, docker compose and application.yml, fixed password for postgres" />
+    <option name="LAST_COMMIT_MESSAGE" value="changed package naming. fixed ci, Dockerfile, docker compose and application.yml, fixed password for postgres" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
