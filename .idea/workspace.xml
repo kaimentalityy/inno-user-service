@@ -4,7 +4,29 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ad2c5a7c-644f-4864-a037-866b2e4f05c9" name="Changes" comment="clear" />
+    <list default="true" id="ad2c5a7c-644f-4864-a037-866b2e4f05c9" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/innowise/SpringSecurityApp.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/innowise/config/SecurityConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/innowise/controller/AuthController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/innowise/controller/TestController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/innowise/data/entity/AuthUser.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/innowise/data/entity/RefreshToken.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/innowise/data/repository/RefreshTokenRepo.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/innowise/data/repository/UserRepo.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/innowise/security/JwtAuthFilter.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/innowise/service/CustomUserDetailsService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/innowise/service/RefreshTokenService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/innowise/util/JwtUtil.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/application.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/db/changelog/001-create-auth-users.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/db/changelog/002-create-refresh-token.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/db/changelog/db.changelog-master.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/liquibase.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -13,9 +35,9 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Interface" />
-        <option value="Class" />
         <option value="Dockerfile" />
+        <option value="Class" />
+        <option value="Interface" />
       </list>
     </option>
   </component>
@@ -99,6 +121,10 @@
     "Maven.InnoUserService [liquibase:update].executor": "Run",
     "Maven.InnoUserService [org.sonarsource.scanner.maven:sonar-maven-plugin:4.1.0.2302:help...].executor": "Run",
     "Maven.InnoUserService [test...].executor": "Run",
+    "Maven.inno-user-service [clean].executor": "Run",
+    "Maven.inno-user-service [install].executor": "Run",
+    "Maven.inno-user-service [liquibase:dropAll].executor": "Run",
+    "Maven.inno-user-service [liquibase:update].executor": "Run",
     "ModuleVcsDetector.initialDetectionPerformed": "true",
     "RequestMappingsPanelOrder0": "0",
     "RequestMappingsPanelOrder1": "1",
@@ -107,9 +133,10 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
     "RunOnceActivity.git.unshallow": "true",
+    "Spring Boot.SpringSecurityApp.executor": "Run",
     "Spring Boot.UserServiceApp (1).executor": "Run",
     "Spring Boot.UserServiceApp.executor": "Run",
-    "git-widget-placeholder": "master",
+    "git-widget-placeholder": "tasks/AUTH-1",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "/home/kai/IdeaProjects/InnoUserService",
     "node.js.detected.package.eslint": "true",
@@ -118,10 +145,12 @@
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
     "onboarding.tips.debug.path": "/home/kai/IdeaProjects/InnoUserService/src/main/java/org/example/Main.java",
-    "project.structure.last.edited": "Modules",
+    "project.structure.last.edited": "Project",
     "project.structure.proportion": "0.0",
-    "project.structure.side.proportion": "0.0",
-    "settings.editor.selected.configurable": "reference.projectsettings.compiler.annotationProcessors",
+    "project.structure.side.proportion": "0.2",
+    "run.code.analysis.last.selected.profile": "pProject Default",
+    "run.configurations.included.in.services": "true",
+    "settings.editor.selected.configurable": "coverage",
     "vue.rearranger.settings.migration": "true"
   },
   "keyToStringList": {
@@ -165,17 +194,45 @@
       <command value="mvn -Dtest=CardInfoServiceTest test" />
       <command value="mvn -Dtest=CardInfoControllerTest test" />
       <command value="mvn -Dtest=UserServiceIntegrationTest test " />
-      <command value="mvn clean" />
       <command value="mvn org.sonarsource.scanner.maven:sonar-maven-plugin:4.1.0.2302:help -U " />
-      <command value="mvn liquibase:dropAll" />
       <command value="mvn clean verify -U " />
       <command value="mvn liquibase:update -Pci " />
       <command value="mvn clean test" />
+      <command value="mvn clean" />
       <command value="mvn install" />
       <command value="mvn liquibase:update" />
+      <command value="mvn liquibase:dropAll" />
     </option>
   </component>
-  <component name="RunManager" selected="Spring Boot.UserServiceApp (1)">
+  <component name="RunDashboard">
+    <option name="configurationTypes">
+      <set>
+        <option value="KtorApplicationConfigurationType" />
+        <option value="MicronautRunConfigurationType" />
+        <option value="QuarkusRunConfigurationType" />
+        <option value="SpringBootApplicationConfigurationType" />
+      </set>
+    </option>
+    <option name="configurationStatuses">
+      <map>
+        <entry key="SpringBootApplicationConfigurationType">
+          <value>
+            <map>
+              <entry key="SpringSecurityApp" value="STOPPED" />
+            </map>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="RunManager" selected="Spring Boot.SpringSecurityApp">
+    <configuration name="SpringSecurityApp" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <module name="inno-user-service" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.innowise.SpringSecurityApp" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="UserServiceApp (1)" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
       <module name="InnoUserService" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="com.innowise.userservice.UserServiceApp" />
@@ -208,12 +265,6 @@
       </deployment>
       <method v="2" />
     </configuration>
-    <recent_temporary>
-      <list>
-        <item itemvalue="Spring Boot.UserServiceApp (1)" />
-        <item itemvalue="Spring Boot.UserServiceApp (1)" />
-      </list>
-    </recent_temporary>
   </component>
   <component name="SharedIndexes">
     <attachedChunks>
@@ -241,6 +292,14 @@
       <workItem from="1757859696546" duration="2619000" />
       <workItem from="1757878029747" duration="331000" />
       <workItem from="1757944277510" duration="654000" />
+      <workItem from="1758104617032" duration="13028000" />
+      <workItem from="1758239042071" duration="44000" />
+      <workItem from="1758401042952" duration="2235000" />
+      <workItem from="1758466295928" duration="8491000" />
+      <workItem from="1758480043293" duration="4054000" />
+      <workItem from="1758484390730" duration="2486000" />
+      <workItem from="1758536540111" duration="4443000" />
+      <workItem from="1758558320130" duration="5579000" />
     </task>
     <task id="LOCAL-00001" summary="added caching with redis, added repo annotations, added missing methods and tests for them, corrected the EntityNotFoundException">
       <option name="closed" value="true" />
