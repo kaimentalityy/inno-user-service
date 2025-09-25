@@ -7,4 +7,5 @@
 
     <include file="db/changelog/001-create-auth-users.xml"/>
     <include file="db/changelog/002-create-refresh-token.xml"/>
+    <include file="db/changelog/003-create-roles.xml"/>
 </databaseChangeLog>
