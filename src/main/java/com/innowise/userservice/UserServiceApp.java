@@ -13,12 +13,6 @@ import org.springframework.cache.annotation.EnableCaching;
 @SpringBootApplication
 @EnableCaching
 public class UserServiceApp {
-
-    /**
-     * Application entry point.
-     *
-     * @param args command-line arguments (optional)
-     */
     public static void main(String[] args) {
         SpringApplication.run(UserServiceApp.class, args);
     }

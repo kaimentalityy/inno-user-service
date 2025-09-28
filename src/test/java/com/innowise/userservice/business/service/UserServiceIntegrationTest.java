@@ -1,19 +1,18 @@
 package com.innowise.userservice.business.service;
 
-import org.junit.jupiter.api.Test;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.transaction.annotation.Transactional;
 import com.innowise.userservice.BaseIntegrationTest;
+import com.innowise.userservice.business.service.impl.UserService;
 import com.innowise.userservice.data.entity.User;
 import com.innowise.userservice.data.repository.UserRepository;
-import com.innowise.userservice.presentation.dto.request.CreateUserDto;
-import com.innowise.userservice.presentation.dto.request.UpdateCardInfoDto;
-import com.innowise.userservice.presentation.dto.request.UpdateUserDto;
-import com.innowise.userservice.presentation.dto.request.UpdateUserWithCardsDto;
-import com.innowise.userservice.presentation.dto.response.UserDto;
+import com.innowise.userservice.presentation.dto.UserDto;
+import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDate;
-import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -29,8 +28,8 @@ class UserServiceIntegrationTest extends BaseIntegrationTest {
 
     @Test
     void testCreateUser() {
-        CreateUserDto dto = new CreateUserDto("John", "Doe",LocalDate.of(1990, 1, 1) ,"john@example.com",null);
-        UserDto created = userService.createUser(dto);
+        UserDto dto = new UserDto(null, "John", "Doe", LocalDate.of(1990, 1, 1), "john@example.com", null);
+        UserDto created = userService.create(dto);
 
         assertThat(created).isNotNull();
         assertThat(created.email()).isEqualTo("john@example.com");
@@ -40,78 +39,56 @@ class UserServiceIntegrationTest extends BaseIntegrationTest {
     @Test
     void testGetUserById() {
         User user = createTestUser("Jane", "Smith", "jane@example.com");
-        UserDto found = userService.getUserById(user.getId());
+        UserDto found = userService.findById(user.getId());
 
         assertThat(found.name()).isEqualTo("Jane");
         assertThat(found.email()).isEqualTo("jane@example.com");
     }
 
     @Test
-    void testFindByEmail() {
+    void testSearchUsersByEmail() {
+        Pageable pageable = PageRequest.of(0, 10);
         createTestUser("Mike", "Brown", "mike@example.com");
-        UserDto found = userService.findByEmail("mike@example.com");
+        Page<UserDto> found = userService.searchUsers(null, null, "mike@example.com", pageable);
 
-        assertThat(found.name()).isEqualTo("Mike");
+        assertThat(found).hasSize(1);
+        assertThat(found.getContent().getFirst().name()).isEqualTo("Mike");
     }
 
     @Test
-    void testFindByEmailNative() {
-        createTestUser("Anna", "Taylor", "anna@example.com");
-        UserDto found = userService.findByEmailNative("anna@example.com");
+    void testSearchUsersByMultiple() {
+        Pageable pageable = PageRequest.of(0, 10);
+        createTestUser("User1", "Last1", "u1@example.com");
+        createTestUser("User2", "Last2", "u2@example.com");
 
-        assertThat(found.email()).isEqualTo("anna@example.com");
-    }
+        Page<UserDto> users = userService.searchUsers(null, null, null, pageable);
 
-    @Test
-    void testFindUsersByIds() {
-        User user1 = createTestUser("User1", "Last1", "u1@example.com");
-        User user2 = createTestUser("User2", "Last2", "u2@example.com");
-
-        List<UserDto> users = userService.findUsersByIds(List.of(user1.getId(), user2.getId()));
-
-        assertThat(users).hasSize(2);
-        assertThat(users.stream().map(UserDto::email)).contains("u1@example.com", "u2@example.com");
+        assertThat(users.stream().map(UserDto::email))
+                .contains("u1@example.com", "u2@example.com");
     }
 
     @Test
     void testUpdateUser() {
         User user = createTestUser("Old", "Name", "old@example.com");
 
-        UpdateUserDto dto = new UpdateUserDto("New", "Name", LocalDate.of(1995, 5, 5), "new@example.com");
-        UserDto updated = userService.updateUser(user.getId(), dto);
+        UserDto dto = new UserDto(user.getId(), "New", "Name", LocalDate.of(1995, 5, 5), "new@example.com", null);
+        UserDto updated = userService.update(user.getId(), dto);
 
         assertThat(updated.name()).isEqualTo("New");
         assertThat(updated.email()).isEqualTo("new@example.com");
     }
 
     @Test
-    void testUpdateUserWithCards() {
-        User user = createTestUser("Card", "User", "card@example.com");
-
-        UpdateCardInfoDto card1 = new UpdateCardInfoDto(null, "1234", "Card Holder 1", LocalDate.of(2030, 12, 31));
-        UpdateCardInfoDto card2 = new UpdateCardInfoDto(null, "5678", "Card Holder 2", LocalDate.of(2031, 11, 30));
-
-        UpdateUserWithCardsDto dto = new UpdateUserWithCardsDto(
-                "Card", "User",  LocalDate.of(1990, 1, 1),"card@example.com", List.of(card1, card2)
-        );
-
-        UserDto updated = userService.updateUserWithCards(user.getId(), dto);
-
-        assertThat(updated.cards()).hasSize(2);
-        assertThat(updated.cards().getFirst().cardNumber()).isEqualTo("1234");
-    }
-
-    @Test
     void testDeleteUser() {
         User user = createTestUser("Delete", "Me", "delete@example.com");
-        userService.deleteUser(user.getId());
+        userService.delete(user.getId());
 
         assertThat(userRepository.findById(user.getId())).isEmpty();
     }
 
     @Test
     void testDeleteUserWithNullIdThrows() {
-        assertThrows(RuntimeException.class, () -> userService.deleteUser(null));
+        assertThrows(RuntimeException.class, () -> userService.delete(null));
     }
 
     private User createTestUser(String name, String surname, String email) {

@@ -1,19 +1,20 @@
 package com.innowise.userservice.business.service;
 
-import org.junit.jupiter.api.Test;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.transaction.annotation.Transactional;
 import com.innowise.userservice.BaseIntegrationTest;
+import com.innowise.userservice.business.service.impl.CardInfoService;
 import com.innowise.userservice.data.entity.CardInfo;
 import com.innowise.userservice.data.entity.User;
 import com.innowise.userservice.data.repository.CardInfoRepository;
 import com.innowise.userservice.data.repository.UserRepository;
-import com.innowise.userservice.presentation.dto.request.CreateCardInfoDto;
-import com.innowise.userservice.presentation.dto.request.UpdateCardInfoDto;
-import com.innowise.userservice.presentation.dto.response.CardInfoDto;
+import com.innowise.userservice.presentation.dto.CardInfoDto;
+import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDate;
-import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -31,16 +32,22 @@ class CardInfoServiceIntegrationTest extends BaseIntegrationTest {
 
     @Test
     void testCreateCardInfo() {
-        User user = createTestUser("John", "Doe", "john@example.com");
+        User user = new User();
+        user.setName("John");
+        user.setSurname("Doe");
+        user.setEmail("john@example.com");
+        user.setBirthDate(LocalDate.of(1990, 1, 1));
+        userRepository.save(user);
 
-        CreateCardInfoDto dto = new CreateCardInfoDto(
+        CardInfoDto dto = new CardInfoDto(
+                null,
                 user.getId(),
                 "1234567890123456",
                 "John Doe",
                 LocalDate.of(2030, 12, 31)
         );
 
-        CardInfoDto created = cardInfoService.createCardInfo(dto);
+        CardInfoDto created = cardInfoService.create(dto);
 
         assertThat(created).isNotNull();
         assertThat(created.cardNumber()).isEqualTo("1234567890123456");
@@ -48,42 +55,25 @@ class CardInfoServiceIntegrationTest extends BaseIntegrationTest {
         assertThat(cardInfoRepository.count()).isEqualTo(1);
     }
 
+
     @Test
     void testGetCardInfo() {
         CardInfo card = createTestCard("1111222233334444");
 
-        CardInfoDto dto = cardInfoService.getCardInfo(card.getId());
+        CardInfoDto dto = cardInfoService.findById(card.getId());
 
         assertThat(dto.cardNumber()).isEqualTo("1111222233334444");
     }
 
     @Test
-    void testGetCardByNumber() {
-        CardInfo card = createTestCard("5555666677778888");
-
-        CardInfoDto dto = cardInfoService.getCardByNumber("5555666677778888");
-
-        assertThat(dto.cardHolder()).isEqualTo(card.getCardHolder());
-    }
-
-    @Test
-    void testGetCardsByUserId() {
+    void testSearchCards() {
         User user = createTestUser("Alice", "Smith", "alice@example.com");
 
         createTestCard("1111000011110001", user);
         createTestCard("2222000022220002", user);
+        Pageable pageable = PageRequest.of(0, 10);
 
-        List<CardInfoDto> cards = cardInfoService.getCardsByUserId(user.getId());
-
-        assertThat(cards).hasSize(2);
-    }
-
-    @Test
-    void testGetCardsByIds() {
-        CardInfo card1 = createTestCard("3333000033330003");
-        CardInfo card2 = createTestCard("4444000044440004");
-
-        List<CardInfoDto> cards = cardInfoService.getCardsByIds(List.of(card1.getId(), card2.getId()));
+        Page<CardInfoDto> cards = cardInfoService.searchCards(user.getId(), null, null, pageable);
 
         assertThat(cards).hasSize(2);
     }
@@ -92,13 +82,15 @@ class CardInfoServiceIntegrationTest extends BaseIntegrationTest {
     void testUpdateCardInfo() {
         CardInfo card = createTestCard("9999888877776666");
 
-        UpdateCardInfoDto dto = new UpdateCardInfoDto(
+        CardInfoDto dto = new CardInfoDto(
                 card.getId(),
+                card.getUser().getId(),
                 "1111222233334444",
                 "Updated Holder",
                 LocalDate.of(2035, 1, 1)
         );
-        CardInfoDto updated = cardInfoService.updateCardInfo(card.getId(), dto);
+
+        CardInfoDto updated = cardInfoService.update(card.getId(), dto);
 
         assertThat(updated.cardNumber()).isEqualTo("1111222233334444");
         assertThat(updated.cardHolder()).isEqualTo("Updated Holder");
@@ -108,7 +100,7 @@ class CardInfoServiceIntegrationTest extends BaseIntegrationTest {
     void testDeleteCardInfo() {
         CardInfo card = createTestCard("5555444433332222");
 
-        cardInfoService.deleteCardInfo(card.getId());
+        cardInfoService.delete(card.getId());
 
         assertThat(cardInfoRepository.findById(card.getId())).isEmpty();
     }

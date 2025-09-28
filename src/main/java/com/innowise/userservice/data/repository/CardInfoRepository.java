@@ -1,6 +1,7 @@
 package com.innowise.userservice.data.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
@@ -16,7 +17,7 @@ import java.util.List;
  * </p>
  */
 @Repository
-public interface CardInfoRepository extends JpaRepository<CardInfo, Long> {
+public interface CardInfoRepository extends JpaRepository<CardInfo, Long> , JpaSpecificationExecutor<CardInfo> {
 
     /**
      * Finds all cards associated with a specific user by their user ID.

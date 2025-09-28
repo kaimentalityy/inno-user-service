@@ -1,11 +1,13 @@
-package com.innowise.userservice.presentation.dto.request;
+package com.innowise.userservice.presentation.dto;
 
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Past;
 
 import java.time.LocalDate;
+import java.util.List;
 
-public record UpdateUserDto(
+public record UserDto(
+        Long id,
 
         @NotNull
         String name,
@@ -18,4 +20,7 @@ public record UpdateUserDto(
         LocalDate birthDate,
 
         @NotNull
-        String email) {}
+        String email,
+
+        List<CardInfoDto> cards
+) {}
