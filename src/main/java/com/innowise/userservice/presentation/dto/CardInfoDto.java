@@ -1,11 +1,12 @@
-package com.innowise.userservice.presentation.dto.request;
+package com.innowise.userservice.presentation.dto;
 
 import jakarta.validation.constraints.FutureOrPresent;
 import jakarta.validation.constraints.NotNull;
 
 import java.time.LocalDate;
 
-public record CreateCardInfoDto(
+public record CardInfoDto(
+        Long id,
 
         @NotNull
         Long userId,
@@ -14,9 +15,8 @@ public record CreateCardInfoDto(
         String cardNumber,
 
         @NotNull
-        String cardHolderName,
+        String cardHolder,
 
-        @NotNull
         @FutureOrPresent
         LocalDate cardExpiryDate
 ) {}

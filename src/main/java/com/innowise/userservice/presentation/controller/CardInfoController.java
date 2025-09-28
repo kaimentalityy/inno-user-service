@@ -1,16 +1,22 @@
 package com.innowise.userservice.presentation.controller;
 
+import com.innowise.userservice.business.service.impl.CardInfoService;
+import com.innowise.userservice.presentation.dto.CardInfoDto;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
-import com.innowise.userservice.business.service.CardInfoService;
-import com.innowise.userservice.presentation.dto.request.CreateCardInfoDto;
-import com.innowise.userservice.presentation.dto.request.UpdateCardInfoDto;
-import com.innowise.userservice.presentation.dto.response.CardInfoDto;
-
-import java.util.List;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.GetMapping;
 
 /**
  * REST controller for managing card information.
@@ -31,9 +37,9 @@ public class CardInfoController {
      * @param createCardInfoDto DTO containing card details
      * @return ResponseEntity with the created card and HTTP 201 status
      */
-    @PostMapping("/create")
-    public ResponseEntity<CardInfoDto> createCard(@Valid @RequestBody CreateCardInfoDto createCardInfoDto) {
-        CardInfoDto createdCard = cardInfoService.createCardInfo(createCardInfoDto);
+    @PostMapping
+    public ResponseEntity<CardInfoDto> createCard(@Valid @RequestBody CardInfoDto createCardInfoDto) {
+        CardInfoDto createdCard = cardInfoService.create(createCardInfoDto);
         return ResponseEntity.status(HttpStatus.CREATED).body(createdCard);
     }
 
@@ -45,8 +51,8 @@ public class CardInfoController {
      * @return ResponseEntity with the updated card and HTTP 200 status
      */
     @PutMapping("/{id}")
-    public ResponseEntity<CardInfoDto> updateCard(@PathVariable Long id, @Valid @RequestBody UpdateCardInfoDto updateCardInfoDto) {
-        CardInfoDto updatedCard = cardInfoService.updateCardInfo(id, updateCardInfoDto);
+    public ResponseEntity<CardInfoDto> updateCard(@PathVariable Long id, @Valid @RequestBody CardInfoDto updateCardInfoDto) {
+        CardInfoDto updatedCard = cardInfoService.update(id, updateCardInfoDto);
         return ResponseEntity.ok(updatedCard);
     }
 
@@ -58,7 +64,7 @@ public class CardInfoController {
      */
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteCard(@PathVariable Long id) {
-        cardInfoService.deleteCardInfo(id);
+        cardInfoService.delete(id);
         return ResponseEntity.noContent().build();
     }
 
@@ -70,43 +76,28 @@ public class CardInfoController {
      */
     @GetMapping("/{id}")
     public ResponseEntity<CardInfoDto> getCardById(@PathVariable Long id) {
-        CardInfoDto cardDto = cardInfoService.getCardInfo(id);
+        CardInfoDto cardDto = cardInfoService.findById(id);
         return ResponseEntity.ok(cardDto);
     }
 
     /**
-     * Retrieves all cards associated with a specific user by user ID.
+     * Searches cards by optional filters: user ID, card number, and cardholder name.
      *
-     * @param userId the ID of the user
-     * @return ResponseEntity with a list of card DTOs and HTTP 200 OK
+     * @param userId     optional user ID filter
+     * @param cardNumber optional card number filter
+     * @param cardHolder optional card holder name filter
+     * @param pageable pagination info
+     * @return list of matching {@link CardInfoDto} objects
      */
-    @GetMapping("/user/{userId}")
-    public ResponseEntity<List<CardInfoDto>> getCardsByUser(@PathVariable Long userId) {
-        List<CardInfoDto> cards = cardInfoService.getCardsByUserId(userId);
+    @GetMapping
+    public ResponseEntity<Page<CardInfoDto>> searchCards(
+            @RequestParam(required = false) Long userId,
+            @RequestParam(required = false) String cardNumber,
+            @RequestParam(required = false) String cardHolder,
+            Pageable pageable) {
+
+        Page<CardInfoDto> cards = cardInfoService.searchCards(userId, cardNumber, cardHolder, pageable);
         return ResponseEntity.ok(cards);
     }
 
-    /**
-     * Retrieves multiple cards by their IDs.
-     *
-     * @param ids list of card IDs
-     * @return ResponseEntity with a list of card DTOs and HTTP 200 OK
-     */
-    @PostMapping("/ids")
-    public ResponseEntity<List<CardInfoDto>> getCardsByIds(@RequestBody List<Long> ids) {
-        List<CardInfoDto> cards = cardInfoService.getCardsByIds(ids);
-        return ResponseEntity.ok(cards);
-    }
-
-    /**
-     * Retrieves a card by its card number.
-     *
-     * @param cardNumber the card number to search for
-     * @return ResponseEntity with the card DTO and HTTP 200 OK
-     */
-    @GetMapping("/number/{cardNumber}")
-    public ResponseEntity<CardInfoDto> getCardByNumber(@PathVariable String cardNumber) {
-        CardInfoDto cardDto = cardInfoService.getCardByNumber(cardNumber);
-        return ResponseEntity.ok(cardDto);
-    }
 }

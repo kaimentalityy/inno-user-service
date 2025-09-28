@@ -1,6 +1,8 @@
 package com.innowise.userservice.presentation.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.innowise.userservice.business.service.impl.CardInfoService;
+import com.innowise.userservice.presentation.dto.CardInfoDto;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,17 +10,14 @@ import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
-import com.innowise.userservice.business.service.CardInfoService;
-import com.innowise.userservice.presentation.dto.request.CreateCardInfoDto;
-import com.innowise.userservice.presentation.dto.request.UpdateCardInfoDto;
-import com.innowise.userservice.presentation.dto.response.CardInfoDto;
 
 import java.time.LocalDate;
 
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.eq;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @WebMvcTest(CardInfoController.class)
 class CardInfoControllerTest {
@@ -34,7 +33,8 @@ class CardInfoControllerTest {
 
     @Test
     void testCreateCard() throws Exception {
-        CreateCardInfoDto createDto = new CreateCardInfoDto(
+        CardInfoDto createDto = new CardInfoDto(
+                null,
                 1L,
                 "1234567890123456",
                 "John Doe",
@@ -43,15 +43,16 @@ class CardInfoControllerTest {
 
         CardInfoDto responseDto = new CardInfoDto(
                 1L,
+                1L,
                 "1234567890123456",
                 "John Doe",
                 LocalDate.of(2030, 12, 31)
         );
 
-        Mockito.when(cardInfoService.createCardInfo(any(CreateCardInfoDto.class)))
+        Mockito.when(cardInfoService.create(any(CardInfoDto.class)))
                 .thenReturn(responseDto);
 
-        mockMvc.perform(post("/api/cards/create")
+        mockMvc.perform(post("/api/cards")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(objectMapper.writeValueAsString(createDto)))
                 .andExpect(status().isCreated())
@@ -63,7 +64,8 @@ class CardInfoControllerTest {
 
     @Test
     void testUpdateCard() throws Exception {
-        UpdateCardInfoDto updateDto = new UpdateCardInfoDto(
+        CardInfoDto updateDto = new CardInfoDto(
+                1L,
                 1L,
                 "9876543210987654",
                 "Jane Doe",
@@ -72,12 +74,13 @@ class CardInfoControllerTest {
 
         CardInfoDto updatedDto = new CardInfoDto(
                 1L,
+                1L,
                 "9876543210987654",
                 "Jane Doe",
                 LocalDate.of(2031, 1, 1)
         );
 
-        Mockito.when(cardInfoService.updateCardInfo(eq(1L), any(UpdateCardInfoDto.class)))
+        Mockito.when(cardInfoService.update(eq(1L), any(CardInfoDto.class)))
                 .thenReturn(updatedDto);
 
         mockMvc.perform(put("/api/cards/1")
@@ -89,12 +92,11 @@ class CardInfoControllerTest {
                 .andExpect(jsonPath("$.cardExpiryDate").value("2031-01-01"));
     }
 
-
     @Test
     void testDeleteCard() throws Exception {
         mockMvc.perform(delete("/api/cards/1"))
                 .andExpect(status().isNoContent());
 
-        Mockito.verify(cardInfoService).deleteCardInfo(1L);
+        Mockito.verify(cardInfoService).delete(1L);
     }
 }

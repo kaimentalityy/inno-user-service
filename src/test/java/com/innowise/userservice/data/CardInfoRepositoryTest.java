@@ -1,14 +1,14 @@
 package com.innowise.userservice.data;
 
-import jakarta.transaction.Transactional;
-import org.junit.jupiter.api.Test;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
 import com.innowise.userservice.BaseIntegrationTest;
 import com.innowise.userservice.data.entity.CardInfo;
 import com.innowise.userservice.data.entity.User;
 import com.innowise.userservice.data.repository.CardInfoRepository;
 import com.innowise.userservice.data.repository.UserRepository;
+import jakarta.transaction.Transactional;
+import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
 
 import java.time.LocalDate;
 import java.util.List;

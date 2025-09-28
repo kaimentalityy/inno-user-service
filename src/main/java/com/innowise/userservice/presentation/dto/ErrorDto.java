@@ -1,4 +1,4 @@
-package com.innowise.userservice.presentation.dto.response;
+package com.innowise.userservice.presentation.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

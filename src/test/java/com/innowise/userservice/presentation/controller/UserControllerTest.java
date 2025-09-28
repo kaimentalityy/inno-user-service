@@ -1,21 +1,23 @@
 package com.innowise.userservice.presentation.controller;
 
+import com.innowise.userservice.business.service.impl.UserService;
+import com.innowise.userservice.presentation.dto.UserDto;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
-import com.innowise.userservice.business.service.UserService;
-import com.innowise.userservice.presentation.dto.request.CreateUserDto;
-import com.innowise.userservice.presentation.dto.request.UpdateUserDto;
-import com.innowise.userservice.presentation.dto.request.UpdateUserWithCardsDto;
-import com.innowise.userservice.presentation.dto.response.UserDto;
 
 import java.time.LocalDate;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.mockito.Mockito.*;
 
 class UserControllerTest {
@@ -33,10 +35,10 @@ class UserControllerTest {
 
     @Test
     void testCreateAccount() {
-        CreateUserDto createUserDto = new CreateUserDto("John", "Doe", LocalDate.now(), "john@example.com", null);
+        UserDto createUserDto = new UserDto(null, "John", "Doe", LocalDate.now(), "john@example.com", null);
         UserDto userDto = new UserDto(1L, "John", "Doe", LocalDate.now(), "john@example.com", null);
 
-        when(userService.createUser(createUserDto)).thenReturn(userDto);
+        when(userService.create(createUserDto)).thenReturn(userDto);
 
         ResponseEntity<UserDto> response = userController.createAccount(createUserDto);
 
@@ -44,7 +46,7 @@ class UserControllerTest {
         assertEquals(201, response.getStatusCodeValue());
         assertEquals(userDto, response.getBody());
 
-        verify(userService, times(1)).createUser(createUserDto);
+        verify(userService, times(1)).create(createUserDto);
     }
 
     @Test
@@ -53,15 +55,15 @@ class UserControllerTest {
 
         assertNotNull(response);
         assertEquals(204, response.getStatusCodeValue());
-        verify(userService, times(1)).deleteUser(1L);
+        verify(userService, times(1)).delete(1L);
     }
 
     @Test
     void testUpdateAccount() {
-        UpdateUserDto updateUserDto = new UpdateUserDto("John Updated", "Doe", LocalDate.now(), "john@example.com");
+        UserDto updateUserDto = new UserDto(null, "John Updated", "Doe", LocalDate.now(), "john@example.com", null);
         UserDto updatedUser = new UserDto(1L, "John Updated", "Doe", LocalDate.now(), "john@example.com", null);
 
-        when(userService.updateUser(1L, updateUserDto)).thenReturn(updatedUser);
+        when(userService.update(1L, updateUserDto)).thenReturn(updatedUser);
 
         ResponseEntity<UserDto> response = userController.updateAccount(1L, updateUserDto);
 
@@ -69,28 +71,41 @@ class UserControllerTest {
         assertEquals(200, response.getStatusCodeValue());
         assertEquals(updatedUser, response.getBody());
 
-        verify(userService, times(1)).updateUser(1L, updateUserDto);
+        verify(userService, times(1)).update(1L, updateUserDto);
     }
 
     @Test
-    void testUpdateUserWithCards() {
-        UpdateUserWithCardsDto updateUserWithCardsDto = new UpdateUserWithCardsDto(
-                "John Updated",
-                "Doe",
-                LocalDate.now(),
-                "john@example.com",
-                List.of()
-        );
-        UserDto updatedUser = new UserDto(1L, "John Updated", "Doe", LocalDate.now(), "john@example.com", List.of());
+    void testFindById() {
+        UserDto userDto = new UserDto(1L, "John", "Doe", LocalDate.now(), "john@example.com", null);
 
-        when(userService.updateUserWithCards(1L, updateUserWithCardsDto)).thenReturn(updatedUser);
+        when(userService.findById(1L)).thenReturn(userDto);
 
-        ResponseEntity<UserDto> response = userController.updateUserWithCards(1L, updateUserWithCardsDto);
+        ResponseEntity<UserDto> response = userController.findById(1L);
 
         assertNotNull(response);
         assertEquals(200, response.getStatusCodeValue());
-        assertEquals(updatedUser, response.getBody());
+        assertEquals(userDto, response.getBody());
 
-        verify(userService, times(1)).updateUserWithCards(1L, updateUserWithCardsDto);
+        verify(userService, times(1)).findById(1L);
+    }
+
+    @Test
+    void testSearchUsers() {
+
+        Pageable pageable = PageRequest.of(0, 10);
+        UserDto userDto = new UserDto(1L, "John", "Doe", LocalDate.now(), "john@example.com", null);
+        Page<UserDto> userPage = new PageImpl<>(List.of(userDto), pageable, 1);
+
+        when(userService.searchUsers("John", "Doe", "john@example.com", pageable))
+                .thenReturn(userPage);
+
+        ResponseEntity<Page<UserDto>> response = userController.searchUsers("John", "Doe", "john@example.com", pageable);
+
+        assertNotNull(response);
+        assertEquals(200, response.getStatusCodeValue());
+        assertEquals(1, response.getBody().getContent().size());
+        assertEquals(userDto, response.getBody().getContent().getFirst());
+
+        verify(userService, times(1)).searchUsers("John", "Doe", "john@example.com", pageable);
     }
 }

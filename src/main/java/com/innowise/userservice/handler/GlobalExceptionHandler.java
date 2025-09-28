@@ -1,11 +1,12 @@
 package com.innowise.userservice.handler;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
-import com.innowise.userservice.presentation.dto.response.ErrorDto;
+import com.innowise.userservice.presentation.dto.ErrorDto;
 import com.innowise.userservice.util.exceptions.badrequest.CustomBadRequestException;
 import com.innowise.userservice.util.exceptions.conflict.CustomConflictException;
 import com.innowise.userservice.util.exceptions.notfound.CustomNotFoundException;
@@ -19,6 +20,7 @@ import com.innowise.userservice.util.exceptions.notfound.CustomNotFoundException
  * </p>
  */
 @RestControllerAdvice
+@Slf4j
 public class GlobalExceptionHandler {
 
     /**
@@ -30,7 +32,8 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(CustomBadRequestException.class)
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     public ErrorDto handleBadRequestException(CustomBadRequestException e) {
-        return new ErrorDto("Bad request: " + e.getMessage());
+        log.error("Bad request error occurred: {}", e.getMessage(), e);
+        return buildErrorDto("Bad request: " + e.getMessage());
     }
 
     /**
@@ -42,7 +45,8 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(CustomConflictException.class)
     @ResponseStatus(HttpStatus.CONFLICT)
     public ErrorDto handleConflictException(CustomConflictException e) {
-        return new ErrorDto("Conflict: " + e.getMessage());
+        log.error("Conflict error occurred: {}", e.getMessage(), e);
+        return buildErrorDto("Conflict: " + e.getMessage());
     }
 
     /**
@@ -54,7 +58,8 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(CustomNotFoundException.class)
     @ResponseStatus(HttpStatus.NOT_FOUND)
     public ErrorDto handleNotFoundException(CustomNotFoundException e) {
-        return new ErrorDto("Not found: " + e.getMessage());
+        log.error("Not found error occurred: {}", e.getMessage(), e);
+        return buildErrorDto("Not found: " + e.getMessage());
     }
 
     /**
@@ -75,6 +80,10 @@ public class GlobalExceptionHandler {
                 .reduce((m1, m2) -> m1 + "; " + m2)
                 .orElse("Validation failed");
 
+        return new ErrorDto(message);
+    }
+
+    public ErrorDto buildErrorDto(String message) {
         return new ErrorDto(message);
     }
 }
