@@ -1,0 +1,95 @@
+name: CI Pipeline with Docker & SonarQube
+
+on:
+  push:
+    branches: [main, master, develop, tasks/**]
+  pull_request:
+    branches: [main, master, develop, tasks/**]
+
+jobs:
+  build-test-sonar:
+    runs-on: ubuntu-latest
+
+    services:
+      postgres:
+        image: postgres:16
+        env:
+          POSTGRES_DB: UserService
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: postgres
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+        ports:
+          - 5432:5432
+
+      redis:
+        image: redis:8-alpine
+        options: >-
+          --health-cmd "redis-cli ping"
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+        ports:
+          - 6379:6379
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Set up JDK 21
+        uses: actions/setup-java@v4
+        with:
+          java-version: '21'
+          distribution: 'temurin'
+          cache: maven
+
+      - name: Install dependencies
+        run: sudo apt-get update && sudo apt-get install -y redis-tools postgresql-client
+
+      - name: Wait for services
+        run: |
+          until pg_isready -h localhost -p 5432 -U postgres; do sleep 2; done
+          until redis-cli -h localhost -p 6379 ping | grep -q PONG; do sleep 2; done
+
+      - name: Run Liquibase migrations
+        run: |
+          mvn liquibase:update -B \
+            -Dspring.datasource.url=jdbc:postgresql://localhost:5432/UserService \
+            -Dspring.datasource.username=postgres \
+            -Dspring.datasource.password=postgres
+
+      - name: Run Tests with Coverage
+        run: |
+          mvn clean verify -B \
+            -Dspring.datasource.url=jdbc:postgresql://localhost:5432/UserService \
+            -Dspring.datasource.username=postgres \
+            -Dspring.datasource.password=postgres \
+            -Dspring.data.redis.host=localhost \
+            -Dspring.data.redis.port=6379
+          
+          # Show JaCoCo reports for debugging
+          ls -la target/site/jacoco || echo "JaCoCo folder not found"
+
+      - name: SonarQube Scan
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+        run: |
+          mvn sonar:sonar \
+            -Dsonar.host.url=https://sonarcloud.io \
+            -Dsonar.login=$SONAR_TOKEN \
+            -Dsonar.organization=kaimentalityy \
+            -Dsonar.projectKey=kaimentalityy_inno-user-service \
+            -Dsonar.coverage.jacoco.xmlReportPaths=target/site/jacoco/jacoco.xml
+
+      - name: Upload Test Results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: test-results
+          path: |
+            target/surefire-reports/
+            target/failsafe-reports/
+            target/site/jacoco/
