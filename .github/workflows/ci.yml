@@ -51,19 +51,8 @@ jobs:
 
       - name: Wait for services
         run: |
-          # Wait for PostgreSQL
-          until pg_isready -h localhost -p 5432 -U postgres; do
-            echo "Waiting for PostgreSQL..."
-            sleep 2
-          done
-          echo "PostgreSQL is ready!"
-          
-          # Wait for Redis
-          until redis-cli -h localhost -p 6379 ping | grep -q PONG; do
-            echo "Waiting for Redis..."
-            sleep 2
-          done
-          echo "Redis is ready!"
+          until pg_isready -h localhost -p 5432 -U postgres; do sleep 2; done
+          until redis-cli -h localhost -p 6379 ping | grep -q PONG; do sleep 2; done
 
       - name: Run Liquibase migrations
         run: |
@@ -79,29 +68,21 @@ jobs:
             -Dspring.datasource.username=postgres \
             -Dspring.datasource.password=postgres \
             -Dspring.data.redis.host=localhost \
-            -Dspring.data.redis.port=6379 \
-            -Djacoco.skip=true
-
-      - name: Build Docker Image
-        run: docker build -t user-service:latest .
+            -Dspring.data.redis.port=6379
+          
+          # Show JaCoCo reports for debugging
+          ls -la target/site/jacoco || echo "JaCoCo folder not found"
 
       - name: SonarQube Scan
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         run: |
-          mvn -B verify \
-            -Dspring.datasource.url=jdbc:postgresql://localhost:5432/UserService \
-            -Dspring.datasource.username=postgres \
-            -Dspring.datasource.password=postgres \
-            -Dspring.data.redis.host=localhost \
-            -Dspring.data.redis.port=6379 \
-            -Djacoco.skip=true \
+          mvn sonar:sonar \
             -Dsonar.host.url=https://sonarcloud.io \
             -Dsonar.login=$SONAR_TOKEN \
             -Dsonar.organization=kaimentalityy \
             -Dsonar.projectKey=kaimentalityy_inno-user-service \
-            -Dsonar.coverage.jacoco.xmlReportPaths=target/site/jacoco/jacoco.xml \
-            org.sonarsource.scanner.maven:sonar-maven-plugin:sonar
+            -Dsonar.coverage.jacoco.xmlReportPaths=target/site/jacoco/jacoco.xml
 
       - name: Upload Test Results
         if: always()
@@ -112,19 +93,3 @@ jobs:
             target/surefire-reports/
             target/failsafe-reports/
             target/site/jacoco/
-
-      - name: Show Test Summary
-        if: always()
-        run: |
-          echo "=== Test Results Summary ==="
-          if [ -f target/surefire-reports/TEST-*.xml ]; then
-            echo "Unit tests completed"
-          else
-            echo "No unit test results found"
-          fi
-          
-          if [ -d target/site/jacoco ]; then
-            echo "Coverage report generated"
-          else
-            echo "No coverage report found"
-          fi
