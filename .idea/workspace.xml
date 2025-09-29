@@ -5,46 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ad2c5a7c-644f-4864-a037-866b2e4f05c9" name="Changes" comment="refactor backend: DTOs, REST, exceptions, logging, pagination, services, specification,">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/innowise/userservice/business/service/CrudService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/innowise/userservice/business/service/impl/CardInfoService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/innowise/userservice/business/service/impl/UserService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/innowise/userservice/data/specification/CardInfoSpecifications.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/innowise/userservice/data/specification/UserSpecifications.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/innowise/userservice/UserServiceApp.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/innowise/userservice/UserServiceApp.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/innowise/userservice/business/mapper/CardInfoMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/innowise/userservice/business/mapper/CardInfoMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/innowise/userservice/business/mapper/UserMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/innowise/userservice/business/mapper/UserMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/innowise/userservice/business/service/CardInfoService.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/innowise/userservice/business/service/UserService.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/innowise/userservice/data/entity/CardInfo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/innowise/userservice/data/entity/CardInfo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/innowise/userservice/data/entity/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/innowise/userservice/data/entity/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/innowise/userservice/data/repository/CardInfoRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/innowise/userservice/data/repository/CardInfoRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/innowise/userservice/data/repository/UserRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/innowise/userservice/data/repository/UserRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/innowise/userservice/handler/GlobalExceptionHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/innowise/userservice/handler/GlobalExceptionHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/innowise/userservice/presentation/controller/CardInfoController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/innowise/userservice/presentation/controller/CardInfoController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/innowise/userservice/presentation/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/innowise/userservice/presentation/controller/UserController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/innowise/userservice/presentation/dto/request/CreateCardInfoDto.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/innowise/userservice/presentation/dto/request/CreateUserDto.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/innowise/userservice/presentation/dto/request/UpdateCardInfoDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/innowise/userservice/presentation/dto/CardInfoDto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/innowise/userservice/presentation/dto/request/UpdateUserDto.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/innowise/userservice/presentation/dto/request/UpdateUserWithCardsDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/innowise/userservice/presentation/dto/UserDto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/innowise/userservice/presentation/dto/response/CardInfoDto.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/innowise/userservice/presentation/dto/response/ErrorDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/innowise/userservice/presentation/dto/ErrorDto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/innowise/userservice/presentation/dto/response/UserDto.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/innowise/userservice/util/exceptions/badrequest/CustomBadRequestException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/innowise/userservice/util/exceptions/badrequest/CustomBadRequestException.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/innowise/userservice/util/exceptions/badrequest/CustomConstraintViolationException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/innowise/userservice/util/exceptions/badrequest/CustomConstraintViolationException.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/innowise/userservice/util/exceptions/conflict/CustomConflictException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/innowise/userservice/util/exceptions/conflict/CustomConflictException.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/innowise/userservice/util/exceptions/conflict/EntityAlreadyExistsException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/innowise/userservice/util/exceptions/conflict/EntityAlreadyExistsException.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/innowise/userservice/util/exceptions/notfound/CustomNotFoundException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/innowise/userservice/util/exceptions/notfound/CustomNotFoundException.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/innowise/userservice/util/exceptions/notfound/EntityNotFoundException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/innowise/userservice/util/exceptions/notfound/EntityNotFoundException.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/innowise/userservice/business/service/CardInfoServiceIntegrationTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/innowise/userservice/business/service/CardInfoServiceIntegrationTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/innowise/userservice/business/service/CardInfoServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/innowise/userservice/business/service/CardInfoServiceTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/innowise/userservice/business/service/UserServiceIntegrationTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/innowise/userservice/business/service/UserServiceIntegrationTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/innowise/userservice/business/service/UserServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/innowise/userservice/business/service/UserServiceTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/innowise/userservice/data/CardInfoRepositoryTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/innowise/userservice/data/CardInfoRepositoryTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/innowise/userservice/data/UserRepositoryTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/innowise/userservice/data/UserRepositoryTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/innowise/userservice/presentation/controller/CardInfoControllerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/innowise/userservice/presentation/controller/CardInfoControllerTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/innowise/userservice/presentation/controller/UserControllerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/innowise/userservice/presentation/controller/UserControllerTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.github/workflows/ci.yml" beforeDir="false" afterPath="$PROJECT_DIR$/.github/workflows/ci.yml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -63,7 +24,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="master" />
+        <entry key="$PROJECT_DIR$" value="tasks/AUTH-1" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -98,65 +59,66 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Application.UserServiceApp.executor&quot;: &quot;Run&quot;,
-    &quot;Maven.InnoUserService [-Dtest=CardInfoControllerTest...].executor&quot;: &quot;Run&quot;,
-    &quot;Maven.InnoUserService [-Dtest=CardInfoRepositoryTest...].executor&quot;: &quot;Run&quot;,
-    &quot;Maven.InnoUserService [-Dtest=CardInfoServiceIntegrationTest...].executor&quot;: &quot;Run&quot;,
-    &quot;Maven.InnoUserService [-Dtest=CardInfoServiceTest...].executor&quot;: &quot;Run&quot;,
-    &quot;Maven.InnoUserService [-Dtest=UserControllerTest...].executor&quot;: &quot;Run&quot;,
-    &quot;Maven.InnoUserService [-Dtest=UserServiceIntegrationTest#testCreateUser...].executor&quot;: &quot;Run&quot;,
-    &quot;Maven.InnoUserService [-Dtest=UserServiceIntegrationTest...].executor&quot;: &quot;Run&quot;,
-    &quot;Maven.InnoUserService [-Dtest=UserServiceTest...].executor&quot;: &quot;Run&quot;,
-    &quot;Maven.InnoUserService [clean,install,-U].executor&quot;: &quot;Run&quot;,
-    &quot;Maven.InnoUserService [clean,install].executor&quot;: &quot;Run&quot;,
-    &quot;Maven.InnoUserService [clean,package...].executor&quot;: &quot;Run&quot;,
-    &quot;Maven.InnoUserService [clean,test].executor&quot;: &quot;Run&quot;,
-    &quot;Maven.InnoUserService [clean,verify,-U].executor&quot;: &quot;Run&quot;,
-    &quot;Maven.InnoUserService [clean].executor&quot;: &quot;Run&quot;,
-    &quot;Maven.InnoUserService [install].executor&quot;: &quot;Run&quot;,
-    &quot;Maven.InnoUserService [liquibase...].executor&quot;: &quot;Run&quot;,
-    &quot;Maven.InnoUserService [liquibase:clearCheckSums].executor&quot;: &quot;Run&quot;,
-    &quot;Maven.InnoUserService [liquibase:dropAll...].executor&quot;: &quot;Run&quot;,
-    &quot;Maven.InnoUserService [liquibase:dropAll].executor&quot;: &quot;Run&quot;,
-    &quot;Maven.InnoUserService [liquibase:update,-Pci].executor&quot;: &quot;Run&quot;,
-    &quot;Maven.InnoUserService [liquibase:update...].executor&quot;: &quot;Run&quot;,
-    &quot;Maven.InnoUserService [liquibase:update].executor&quot;: &quot;Run&quot;,
-    &quot;Maven.InnoUserService [org.sonarsource.scanner.maven:sonar-maven-plugin:4.1.0.2302:help...].executor&quot;: &quot;Run&quot;,
-    &quot;Maven.InnoUserService [test...].executor&quot;: &quot;Run&quot;,
-    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
-    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
-    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
-    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
-    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;Spring Boot.UserServiceApp (1).executor&quot;: &quot;Run&quot;,
-    &quot;Spring Boot.UserServiceApp.executor&quot;: &quot;Run&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;tasks/USR-1&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/home/kai/IdeaProjects/InnoUserService&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;onboarding.tips.debug.path&quot;: &quot;/home/kai/IdeaProjects/InnoUserService/src/main/java/org/example/Main.java&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.UserServiceApp.executor": "Run",
+    "Maven.InnoUserService [-Dtest=CardInfoControllerTest...].executor": "Run",
+    "Maven.InnoUserService [-Dtest=CardInfoRepositoryTest...].executor": "Run",
+    "Maven.InnoUserService [-Dtest=CardInfoServiceIntegrationTest...].executor": "Run",
+    "Maven.InnoUserService [-Dtest=CardInfoServiceTest...].executor": "Run",
+    "Maven.InnoUserService [-Dtest=UserControllerTest...].executor": "Run",
+    "Maven.InnoUserService [-Dtest=UserServiceIntegrationTest#testCreateUser...].executor": "Run",
+    "Maven.InnoUserService [-Dtest=UserServiceIntegrationTest...].executor": "Run",
+    "Maven.InnoUserService [-Dtest=UserServiceTest...].executor": "Run",
+    "Maven.InnoUserService [clean,install,-U].executor": "Run",
+    "Maven.InnoUserService [clean,install].executor": "Run",
+    "Maven.InnoUserService [clean,package...].executor": "Run",
+    "Maven.InnoUserService [clean,test].executor": "Run",
+    "Maven.InnoUserService [clean,verify,-U].executor": "Run",
+    "Maven.InnoUserService [clean].executor": "Run",
+    "Maven.InnoUserService [install].executor": "Run",
+    "Maven.InnoUserService [liquibase...].executor": "Run",
+    "Maven.InnoUserService [liquibase:clearCheckSums].executor": "Run",
+    "Maven.InnoUserService [liquibase:dropAll...].executor": "Run",
+    "Maven.InnoUserService [liquibase:dropAll].executor": "Run",
+    "Maven.InnoUserService [liquibase:update,-Pci].executor": "Run",
+    "Maven.InnoUserService [liquibase:update...].executor": "Run",
+    "Maven.InnoUserService [liquibase:update].executor": "Run",
+    "Maven.InnoUserService [org.sonarsource.scanner.maven:sonar-maven-plugin:4.1.0.2302:help...].executor": "Run",
+    "Maven.InnoUserService [test...].executor": "Run",
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "RequestMappingsPanelOrder0": "0",
+    "RequestMappingsPanelOrder1": "1",
+    "RequestMappingsPanelWidth0": "75",
+    "RequestMappingsPanelWidth1": "75",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "Spring Boot.UserServiceApp (1).executor": "Run",
+    "Spring Boot.UserServiceApp.executor": "Run",
+    "git-widget-placeholder": "tasks/USR-1",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "/home/kai/IdeaProjects/InnoUserService",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "onboarding.tips.debug.path": "/home/kai/IdeaProjects/InnoUserService/src/main/java/org/example/Main.java",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.0",
+    "run.configurations.included.in.services": "true",
+    "settings.editor.selected.configurable": "preferences.pluginManager",
+    "vue.rearranger.settings.migration": "true"
   },
-  &quot;keyToStringList&quot;: {
-    &quot;DatabaseDriversLRU&quot;: [
-      &quot;postgresql&quot;
+  "keyToStringList": {
+    "DatabaseDriversLRU": [
+      "postgresql"
     ]
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/.github/workflows" />
@@ -201,6 +163,16 @@
       <command value="mvn clean install" />
       <command value="mvn clean package -DskipTests " />
       <command value="mvn clean test" />
+    </option>
+  </component>
+  <component name="RunDashboard">
+    <option name="configurationTypes">
+      <set>
+        <option value="KtorApplicationConfigurationType" />
+        <option value="MicronautRunConfigurationType" />
+        <option value="QuarkusRunConfigurationType" />
+        <option value="SpringBootApplicationConfigurationType" />
+      </set>
     </option>
   </component>
   <component name="RunManager" selected="Spring Boot.UserServiceApp (1)">
@@ -261,6 +233,7 @@
       <workItem from="1759061469668" duration="6224000" />
       <workItem from="1759068015578" duration="1534000" />
       <workItem from="1759083298645" duration="8806000" />
+      <workItem from="1759129404680" duration="273000" />
     </task>
     <task id="LOCAL-00001" summary="added caching with redis, added repo annotations, added missing methods and tests for them, corrected the EntityNotFoundException">
       <option name="closed" value="true" />
