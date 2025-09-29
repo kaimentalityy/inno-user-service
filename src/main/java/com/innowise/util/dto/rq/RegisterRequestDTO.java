@@ -1,4 +1,5 @@
-package com.innowise.util.dto.rq;// RegisterRequestDTO.java
+package com.innowise.util.dto.rq;
+
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 

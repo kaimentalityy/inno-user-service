@@ -17,7 +17,6 @@ import org.springframework.web.filter.OncePerRequestFilter;
 import java.io.IOException;
 import java.util.stream.Collectors;
 
-
 /**
  * Filter that intercepts HTTP requests to extract JWT tokens from Authorization headers,
  * validates them, and sets the Spring Security context with authenticated user and roles.
@@ -66,8 +65,6 @@ public class JwtAuthFilter extends OncePerRequestFilter {
                 SecurityContextHolder.getContext().setAuthentication(authToken);
             }
         }
-
-
         chain.doFilter(request, response);
     }
 }

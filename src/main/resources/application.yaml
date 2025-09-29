@@ -16,7 +16,6 @@ spring:
     properties:
       hibernate.format_sql: true
 
-
 jwt:
   secret: MySuperSecretKeyForJWTMySuperSecretKeyForJWT
   expiration: 3600000
