@@ -283,7 +283,7 @@
             <properties>
                 <spring.datasource.url>jdbc:postgresql://postgres:5434/UserService</spring.datasource.url>
                 <spring.datasource.username>postgres</spring.datasource.username>
-                <spring.datasource.password>postgres</spring.datasource.password>
+                <spring.datasource.password>17052007</spring.datasource.password>
                 <spring.data.redis.host>redis</spring.data.redis.host>
                 <spring.data.redis.port>6379</spring.data.redis.port>
             </properties>
@@ -293,7 +293,7 @@
             <properties>
                 <spring.datasource.url>jdbc:postgresql://postgres:5434/UserService</spring.datasource.url>
                 <spring.datasource.username>postgres</spring.datasource.username>
-                <spring.datasource.password>postgres</spring.datasource.password>
+                <spring.datasource.password>17052007</spring.datasource.password>
                 <spring.data.redis.host>redis</spring.data.redis.host>
                 <spring.data.redis.port>6379</spring.data.redis.port>
             </properties>
