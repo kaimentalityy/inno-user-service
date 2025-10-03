@@ -1,6 +1,6 @@
 spring:
   datasource:
-    url: jdbc:postgresql://postgres:5432/UserService
+    url: jdbc:postgresql://localhost:5432/UserService
     username: postgres
     password: 17052007
     driver-class-name: org.postgresql.Driver
@@ -18,16 +18,11 @@ spring:
     change-log: classpath:db/changelog/changelog-master.xml
     enabled: true
 
-  data:
-    redis:
-      host: redis
-      port: 6379
-
-  cache:
-    type: redis
-
   profiles:
     active: ci
+
+server:
+  port: 8080
 
 ---
 spring:
