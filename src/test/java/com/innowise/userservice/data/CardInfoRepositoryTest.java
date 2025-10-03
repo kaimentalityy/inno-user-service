@@ -1,10 +1,10 @@
 package com.innowise.userservice.data;
 
 import com.innowise.userservice.BaseIntegrationTest;
-import com.innowise.userservice.data.entity.CardInfo;
-import com.innowise.userservice.data.entity.User;
-import com.innowise.userservice.data.repository.CardInfoRepository;
-import com.innowise.userservice.data.repository.UserRepository;
+import com.innowise.userservice.model.entity.CardInfo;
+import com.innowise.userservice.model.entity.User;
+import com.innowise.userservice.repository.dao.CardInfoRepository;
+import com.innowise.userservice.repository.dao.UserRepository;
 import jakarta.transaction.Transactional;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,15 +32,15 @@ class CardInfoRepositoryTest extends BaseIntegrationTest {
 
         CardInfo card = new CardInfo();
         card.setUser(user);
-        card.setCardNumber("1234567890123456");
-        card.setCardHolder("Kiryl Savenka");
-        card.setCardExpiryDate(LocalDate.of(2030, 12, 31));
+        card.setNumber("1234567890123456");
+        card.setHolder("Kiryl Savenka");
+        card.setExpirationDate(LocalDate.of(2030, 12, 31));
 
         CardInfo saved = cardInfoRepository.save(card);
         Optional<CardInfo> retrieved = cardInfoRepository.findById(saved.getId());
 
         assertTrue(retrieved.isPresent());
-        assertEquals("1234567890123456", retrieved.get().getCardNumber());
+        assertEquals("1234567890123456", retrieved.get().getNumber());
     }
 
     @Test
@@ -73,7 +73,7 @@ class CardInfoRepositoryTest extends BaseIntegrationTest {
 
         CardInfo found = cardInfoRepository.findByCardNumberNative("9999000011112222");
         assertNotNull(found);
-        assertEquals("Ivan Petrov", found.getCardHolder());
+        assertEquals("Ivan Petrov", found.getHolder());
     }
 
     @Test
@@ -103,9 +103,9 @@ class CardInfoRepositoryTest extends BaseIntegrationTest {
     private CardInfo createCard(User user, String number) {
         CardInfo card = new CardInfo();
         card.setUser(user);
-        card.setCardNumber(number);
-        card.setCardHolder(user.getName() + " " + user.getSurname());
-        card.setCardExpiryDate(LocalDate.of(2030, 12, 31));
+        card.setNumber(number);
+        card.setHolder(user.getName() + " " + user.getSurname());
+        card.setExpirationDate(LocalDate.of(2030, 12, 31));
         return card;
     }
 }

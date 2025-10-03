@@ -4,8 +4,50 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ad2c5a7c-644f-4864-a037-866b2e4f05c9" name="Changes" comment="refactor backend: DTOs, REST, exceptions, logging, pagination, services, specification,">
-      <change beforePath="$PROJECT_DIR$/.github/workflows/ci.yml" beforeDir="false" afterPath="$PROJECT_DIR$/.github/workflows/ci.yml" afterDir="false" />
+    <list default="true" id="ad2c5a7c-644f-4864-a037-866b2e4f05c9" name="Changes" comment="fixed issues">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/innowise/userservice/controller/CardInfoController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/innowise/userservice/controller/UserController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/innowise/userservice/service/CrudService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/innowise/userservice/service/impl/CardInfoServiceInterface.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/innowise/userservice/service/impl/UserServiceInterface.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/data_source_mapping.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docker-compose.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/docker-compose.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/innowise/userservice/business/mapper/CardInfoMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/innowise/userservice/mapper/CardInfoMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/innowise/userservice/business/mapper/UserMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/innowise/userservice/mapper/UserMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/innowise/userservice/business/service/CrudService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/innowise/userservice/business/service/impl/CardInfoService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/innowise/userservice/service/impl/CardInfoService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/innowise/userservice/business/service/impl/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/innowise/userservice/service/impl/UserService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/innowise/userservice/data/entity/CardInfo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/innowise/userservice/model/entity/CardInfo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/innowise/userservice/data/entity/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/innowise/userservice/model/entity/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/innowise/userservice/data/repository/CardInfoRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/innowise/userservice/repository/dao/CardInfoRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/innowise/userservice/data/repository/UserRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/innowise/userservice/repository/dao/UserRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/innowise/userservice/data/specification/CardInfoSpecifications.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/innowise/userservice/repository/specification/CardInfoSpecifications.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/innowise/userservice/data/specification/UserSpecifications.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/innowise/userservice/repository/specification/UserSpecifications.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/innowise/userservice/handler/GlobalExceptionHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/innowise/userservice/handler/GlobalExceptionHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/innowise/userservice/presentation/controller/CardInfoController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/innowise/userservice/presentation/controller/UserController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/innowise/userservice/presentation/dto/CardInfoDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/innowise/userservice/model/dto/CardInfoDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/innowise/userservice/presentation/dto/ErrorDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/innowise/userservice/model/dto/ErrorDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/innowise/userservice/presentation/dto/UserDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/innowise/userservice/model/dto/UserDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/innowise/userservice/util/exceptions/badrequest/CustomBadRequestException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/innowise/userservice/exceptions/badrequest/CustomBadRequestException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/innowise/userservice/util/exceptions/badrequest/CustomConstraintViolationException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/innowise/userservice/exceptions/badrequest/CustomConstraintViolationException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/innowise/userservice/util/exceptions/conflict/CustomConflictException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/innowise/userservice/exceptions/conflict/CustomConflictException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/innowise/userservice/util/exceptions/conflict/EntityAlreadyExistsException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/innowise/userservice/exceptions/conflict/EntityAlreadyExistsException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/innowise/userservice/util/exceptions/notfound/CustomNotFoundException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/innowise/userservice/exceptions/notfound/CustomNotFoundException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/innowise/userservice/util/exceptions/notfound/EntityNotFoundException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/innowise/userservice/exceptions/notfound/EntityNotFoundException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/db/changelog/changes/01-create-users.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/db/changelog/changes/01-create-users.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/db/changelog/changes/02-create-card-info.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/db/changelog/changes/02-create-card-info.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/innowise/userservice/business/service/CardInfoServiceIntegrationTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/innowise/userservice/service/CardInfoServiceIntegrationTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/innowise/userservice/business/service/CardInfoServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/innowise/userservice/service/CardInfoServiceTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/innowise/userservice/business/service/UserServiceIntegrationTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/innowise/userservice/service/UserServiceIntegrationTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/innowise/userservice/business/service/UserServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/innowise/userservice/service/UserServiceTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/innowise/userservice/data/CardInfoRepositoryTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/innowise/userservice/data/CardInfoRepositoryTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/innowise/userservice/data/UserRepositoryTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/innowise/userservice/data/UserRepositoryTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/innowise/userservice/presentation/controller/CardInfoControllerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/innowise/userservice/controller/CardInfoControllerTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/innowise/userservice/presentation/controller/UserControllerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/innowise/userservice/controller/UserControllerTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -24,7 +66,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="tasks/AUTH-1" />
+        <entry key="$PROJECT_DIR$" value="usr1-pr" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -62,6 +104,8 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "Application.UserServiceApp.executor": "Run",
+    "Docker.Unnamed.executor": "Run",
+    "JUnit.CardInfoServiceIntegrationTest.executor": "Coverage",
     "Maven.InnoUserService [-Dtest=CardInfoControllerTest...].executor": "Run",
     "Maven.InnoUserService [-Dtest=CardInfoRepositoryTest...].executor": "Run",
     "Maven.InnoUserService [-Dtest=CardInfoServiceIntegrationTest...].executor": "Run",
@@ -75,8 +119,11 @@
     "Maven.InnoUserService [clean,package...].executor": "Run",
     "Maven.InnoUserService [clean,test].executor": "Run",
     "Maven.InnoUserService [clean,verify,-U].executor": "Run",
+    "Maven.InnoUserService [clean,verify...].executor": "Run",
+    "Maven.InnoUserService [clean,verify].executor": "Run",
     "Maven.InnoUserService [clean].executor": "Run",
     "Maven.InnoUserService [install].executor": "Run",
+    "Maven.InnoUserService [jacoco:report].executor": "Run",
     "Maven.InnoUserService [liquibase...].executor": "Run",
     "Maven.InnoUserService [liquibase:clearCheckSums].executor": "Run",
     "Maven.InnoUserService [liquibase:dropAll...].executor": "Run",
@@ -85,6 +132,7 @@
     "Maven.InnoUserService [liquibase:update...].executor": "Run",
     "Maven.InnoUserService [liquibase:update].executor": "Run",
     "Maven.InnoUserService [org.sonarsource.scanner.maven:sonar-maven-plugin:4.1.0.2302:help...].executor": "Run",
+    "Maven.InnoUserService [sonar:sonar].executor": "Run",
     "Maven.InnoUserService [test...].executor": "Run",
     "ModuleVcsDetector.initialDetectionPerformed": "true",
     "RequestMappingsPanelOrder0": "0",
@@ -97,7 +145,7 @@
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "Spring Boot.UserServiceApp (1).executor": "Run",
     "Spring Boot.UserServiceApp.executor": "Run",
-    "git-widget-placeholder": "tasks/USR-1",
+    "git-widget-placeholder": "tasks/USR-0",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "/home/kai/IdeaProjects/InnoUserService",
     "node.js.detected.package.eslint": "true",
@@ -143,7 +191,6 @@
       <command value="mvn liquibase:clearCheckSums" />
       <command value="mvn liquibase:dropAll -Dliquibase.propertyFile=liquibase.properties " />
       <command value="mvn liquibase:update -Dliquibase.propertyFile=liquibase.properties " />
-      <command value="mvn liquibase:update" />
       <command value="mvn test -Dspring.profiles.active=test " />
       <command value="mvn -Dtest=UserServiceIntegrationTest#testCreateUser test " />
       <command value="mvn -Dtest=CardInfoServiceIntegrationTest test" />
@@ -156,13 +203,25 @@
       <command value="mvn -Dtest=UserServiceIntegrationTest test " />
       <command value="mvn clean" />
       <command value="mvn org.sonarsource.scanner.maven:sonar-maven-plugin:4.1.0.2302:help -U " />
-      <command value="mvn liquibase:dropAll" />
       <command value="mvn clean verify -U " />
       <command value="mvn liquibase:update -Pci " />
       <command value="mvn install" />
       <command value="mvn clean install" />
       <command value="mvn clean package -DskipTests " />
       <command value="mvn clean test" />
+      <command value="mvn jacoco:report " />
+      <command value="mvn liquibase:clearCheckSums " />
+      <command value="mvn liquibase:update" />
+      <command value="mvn liquibase:dropAll" />
+      <command value="mvn sonar:sonar " />
+      <command value="mvn clean verify sonar:sonar \     -Dsonar.projectKey=InnoUserService \     -Dsonar.host.url=http://localhost:9000 \     -Dsonar.token=squ_f4e5dd6952dbea4f72bbe872638f0631bb22b6d7" />
+      <command value="mvn clean verify sonar:sonar \   -Dsonar.projectKey=InnoUserService \   -Dsonar.host.url=http://localhost:9000 \   -Dsonar.token=squ_f4e5dd6952dbea4f72bbe872638f0631bb22b6d7 \   -Dsonar.java.coveragePlugin=jacoco \   -Dsonar.coverage.jacoco.xmlReportPaths=target/jacoco-report/jacoco.xml " />
+      <command value="mvn clean verify sonar:sonar \   -Dsonar.projectKey=InnoUserService \   -Dsonar.host.url=http://localhost:9000 \   -Dsonar.token=squ_f4e5dd6952dbea4f72bbe872638f0631bb22b6d7 " />
+      <command value="mvn clean verify sonar:sonar -Dsonar.projectKey=InnoUserService -Dsonar.host.url=http://localhost:9000 -Dsonar.token=squ_f4e5dd6952dbea4f72bbe872638f0631bb22b6d7 " />
+      <command value="mvn clean verify sonar:sonar \   -Dsonar.projectKey=InnoUserService \   -Dsonar.host.url=http://localhost:9000 \   -Dsonar.token=squ_f4e5dd6952dbea4f72bbe872638f0631bb22b6d7 \   -Dsonar.branch.name=tasks/USR-0 " />
+      <command value="git checkout tasks/USR-0 mvn clean verify sonar:sonar \   -Dsonar.projectKey=InnoUserService \   -Dsonar.host.url=http://localhost:9000 \   -Dsonar.token=squ_f4e5dd6952dbea4f72bbe872638f0631bb22b6d7 " />
+      <command value="mvn clean verify sonar:sonar \   -Dsonar.projectKey=InnoUserService \   -Dsonar.host.url=http://localhost:9000 \   -Dsonar.token=squ_f4e5dd6952dbea4f72bbe872638f0631bb22b6d7" />
+      <command value="mvn clean verify " />
     </option>
   </component>
   <component name="RunDashboard">
@@ -174,8 +233,45 @@
         <option value="SpringBootApplicationConfigurationType" />
       </set>
     </option>
+    <option name="configurationStatuses">
+      <map>
+        <entry key="SpringBootApplicationConfigurationType">
+          <value>
+            <map>
+              <entry key="UserServiceApp (1)" value="STOPPED" />
+            </map>
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
-  <component name="RunManager" selected="Spring Boot.UserServiceApp (1)">
+  <component name="RunManager" selected="Docker.Unnamed">
+    <configuration name="CardInfoServiceIntegrationTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="InnoUserService" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.innowise.userservice.service.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <extension name="net.ashald.envfile">
+        <option name="IS_ENABLED" value="false" />
+        <option name="IS_SUBST" value="false" />
+        <option name="IS_PATH_MACRO_SUPPORTED" value="false" />
+        <option name="IS_IGNORE_MISSING_FILES" value="false" />
+        <option name="IS_ENABLE_EXPERIMENTAL_INTEGRATIONS" value="false" />
+        <ENTRIES>
+          <ENTRY IS_ENABLED="true" PARSER="runconfig" IS_EXECUTABLE="false" />
+        </ENTRIES>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.innowise.userservice.service" />
+      <option name="MAIN_CLASS_NAME" value="com.innowise.userservice.service.CardInfoServiceIntegrationTest" />
+      <option name="METHOD_NAME" value="" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="UserServiceApp (1)" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
       <module name="InnoUserService" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="com.innowise.userservice.UserServiceApp" />
@@ -190,6 +286,23 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="Unnamed" type="docker-deploy" factoryName="dockerfile" server-name="Docker">
+      <deployment type="dockerfile">
+        <settings>
+          <option name="containerName" value="user_service_app" />
+          <option name="sourceFilePath" value="Dockerfile" />
+        </settings>
+      </deployment>
+      <method v="2" />
+    </configuration>
+    <configuration name="UserDocker" type="docker-deploy" factoryName="docker-compose.yml" server-name="Docker">
+      <deployment type="docker-compose.yml">
+        <settings>
+          <option name="sourceFilePath" value="docker-compose.yaml" />
+        </settings>
+      </deployment>
+      <method v="2" />
+    </configuration>
     <configuration default="true" type="docker-deploy" factoryName="docker-compose.yml" temporary="true">
       <deployment type="docker-compose.yml">
         <settings />
@@ -202,6 +315,18 @@
       </deployment>
       <method v="2" />
     </configuration>
+    <list>
+      <item itemvalue="Docker.UserDocker" />
+      <item itemvalue="Docker.Unnamed" />
+      <item itemvalue="JUnit.CardInfoServiceIntegrationTest" />
+      <item itemvalue="Spring Boot.UserServiceApp" />
+      <item itemvalue="Spring Boot.UserServiceApp (1)" />
+    </list>
+    <recent_temporary>
+      <list>
+        <item itemvalue="JUnit.CardInfoServiceIntegrationTest" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SharedIndexes">
     <attachedChunks>
@@ -234,6 +359,10 @@
       <workItem from="1759068015578" duration="1534000" />
       <workItem from="1759083298645" duration="8806000" />
       <workItem from="1759129404680" duration="273000" />
+      <workItem from="1759394532644" duration="2335000" />
+      <workItem from="1759413946404" duration="3984000" />
+      <workItem from="1759420183071" duration="9575000" />
+      <workItem from="1759494702955" duration="7971000" />
     </task>
     <task id="LOCAL-00001" summary="added caching with redis, added repo annotations, added missing methods and tests for them, corrected the EntityNotFoundException">
       <option name="closed" value="true" />
@@ -597,10 +726,16 @@
     <MESSAGE value="changed package naming. fixed ci, Dockerfile, docker compose and application.yml" />
     <MESSAGE value="changed package naming. fixed ci, Dockerfile, docker compose and application.yml, fixed password for postgres" />
     <MESSAGE value="refactor backend: DTOs, REST, exceptions, logging, pagination, services, specification," />
-    <option name="LAST_COMMIT_MESSAGE" value="refactor backend: DTOs, REST, exceptions, logging, pagination, services, specification," />
+    <MESSAGE value="fixed issues" />
+    <option name="LAST_COMMIT_MESSAGE" value="fixed issues" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
     <select />
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/InnoUserService$CardInfoServiceIntegrationTest.ic" NAME="CardInfoServiceIntegrationTest Coverage Results" MODIFIED="1759415863334" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true">
+      <FILTER>com.innowise.userservice.service.*</FILTER>
+    </SUITE>
   </component>
 </project>

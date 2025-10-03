@@ -27,5 +27,8 @@
         <createIndex indexName="idx_users_surname" tableName="users">
             <column name="surname"/>
         </createIndex>
+        <createIndex indexName="idx_users_email" tableName="users">
+            <column name="email"/>
+        </createIndex>
     </changeSet>
 </databaseChangeLog>

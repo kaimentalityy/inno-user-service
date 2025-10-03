@@ -1,8 +1,8 @@
 package com.innowise.userservice.data;
 
 import com.innowise.userservice.BaseIntegrationTest;
-import com.innowise.userservice.data.entity.User;
-import com.innowise.userservice.data.repository.UserRepository;
+import com.innowise.userservice.model.entity.User;
+import com.innowise.userservice.repository.dao.UserRepository;
 import jakarta.transaction.Transactional;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

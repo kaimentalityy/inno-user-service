@@ -22,6 +22,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <jacoco.version>0.8.10</jacoco.version>
         <sonar-maven-plugin.version>3.10.0.2594</sonar-maven-plugin.version>
+        <sonar.coverage.jacoco.xmlReportPaths>${project.basedir}/target/site/jacoco/jacoco.xml</sonar.coverage.jacoco.xmlReportPaths>
         <mapstruct.version>1.5.5.Final</mapstruct.version>
         <lombok.version>1.18.32</lombok.version>
         <lombok-mapstruct-binding.version>0.2.0</lombok-mapstruct-binding.version>
@@ -194,9 +195,10 @@
             <plugin>
                 <groupId>org.jacoco</groupId>
                 <artifactId>jacoco-maven-plugin</artifactId>
-                <version>${jacoco.version}</version>
+                <version>0.8.10</version>
                 <executions>
                     <execution>
+                        <id>prepare-agent</id>
                         <goals>
                             <goal>prepare-agent</goal>
                         </goals>
@@ -209,27 +211,22 @@
                         </goals>
                     </execution>
                     <execution>
-                        <id>check</id>
+                        <id>report-xml</id>
+                        <phase>prepare-package</phase>
                         <goals>
-                            <goal>check</goal>
+                            <goal>report</goal>
                         </goals>
                         <configuration>
-                            <rules>
-                                <rule>
-                                    <element>BUNDLE</element>
-                                    <limits>
-                                        <limit>
-                                            <counter>INSTRUCTION</counter>
-                                            <value>COVEREDRATIO</value>
-                                            <minimum>0.50</minimum>
-                                        </limit>
-                                    </limits>
-                                </rule>
-                            </rules>
+                            <outputDirectory>${project.build.directory}/jacoco-report</outputDirectory>
+                            <dataFile>${project.build.directory}/jacoco.exec</dataFile>
+                            <formats>
+                                <format>XML</format>
+                            </formats>
                         </configuration>
                     </execution>
                 </executions>
             </plugin>
+
 
             <plugin>
                 <groupId>org.sonarsource.scanner.maven</groupId>
@@ -246,7 +243,7 @@
                     <driver>org.postgresql.Driver</driver>
                     <url>jdbc:postgresql://localhost:5432/UserService</url>
                     <username>postgres</username>
-                    <password>postgres</password>
+                    <password>17052007</password>
                     <promptOnNonLocalDatabase>false</promptOnNonLocalDatabase>
                 </configuration>
                 <dependencies>

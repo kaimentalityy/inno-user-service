@@ -6,72 +6,46 @@ import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
-import com.innowise.userservice.presentation.dto.ErrorDto;
-import com.innowise.userservice.util.exceptions.badrequest.CustomBadRequestException;
-import com.innowise.userservice.util.exceptions.conflict.CustomConflictException;
-import com.innowise.userservice.util.exceptions.notfound.CustomNotFoundException;
+import com.innowise.userservice.model.dto.ErrorDto;
+import com.innowise.userservice.exceptions.badrequest.CustomBadRequestException;
+import com.innowise.userservice.exceptions.conflict.CustomConflictException;
+import com.innowise.userservice.exceptions.notfound.CustomNotFoundException;
 
 /**
- * Global exception handler for the application.
+ * Global exception handler.
  * <p>
- * Handles custom exceptions and validation errors globally
- * and returns structured {@link ErrorDto} responses
- * with appropriate HTTP status codes.
- * </p>
+ * Handles custom business exceptions and validation errors,
+ * returning {@link ErrorDto} with appropriate HTTP status.
  */
 @RestControllerAdvice
 @Slf4j
 public class GlobalExceptionHandler {
 
-    /**
-     * Handles {@link CustomBadRequestException}.
-     *
-     * @param e the custom bad request exception
-     * @return an {@link ErrorDto} with error message and HTTP 400 status
-     */
+    /** Handles bad request exceptions (HTTP 400). */
     @ExceptionHandler(CustomBadRequestException.class)
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     public ErrorDto handleBadRequestException(CustomBadRequestException e) {
-        log.error("Bad request error occurred: {}", e.getMessage(), e);
+        log.warn("Bad request: {}", e.getMessage());
         return buildErrorDto("Bad request: " + e.getMessage());
     }
 
-    /**
-     * Handles {@link CustomConflictException}.
-     *
-     * @param e the custom conflict exception
-     * @return an {@link ErrorDto} with error message and HTTP 409 status
-     */
+    /** Handles conflict exceptions (HTTP 409). */
     @ExceptionHandler(CustomConflictException.class)
     @ResponseStatus(HttpStatus.CONFLICT)
     public ErrorDto handleConflictException(CustomConflictException e) {
-        log.error("Conflict error occurred: {}", e.getMessage(), e);
+        log.warn("Conflict: {}", e.getMessage());
         return buildErrorDto("Conflict: " + e.getMessage());
     }
 
-    /**
-     * Handles {@link CustomNotFoundException}.
-     *
-     * @param e the custom not found exception
-     * @return an {@link ErrorDto} with error message and HTTP 404 status
-     */
+    /** Handles not found exceptions (HTTP 404). */
     @ExceptionHandler(CustomNotFoundException.class)
     @ResponseStatus(HttpStatus.NOT_FOUND)
     public ErrorDto handleNotFoundException(CustomNotFoundException e) {
-        log.error("Not found error occurred: {}", e.getMessage(), e);
+        log.warn("Not found: {}", e.getMessage());
         return buildErrorDto("Not found: " + e.getMessage());
     }
 
-    /**
-     * Handles validation errors from request DTOs annotated with {@link jakarta.validation.Valid}.
-     * <p>
-     * Extracts field error messages from {@link MethodArgumentNotValidException}
-     * and concatenates them into a single error response.
-     * </p>
-     *
-     * @param ex the exception thrown when validation fails
-     * @return an {@link ErrorDto} containing all validation error messages and HTTP 400 status
-     */
+    /** Handles validation errors (HTTP 400). */
     @ExceptionHandler(MethodArgumentNotValidException.class)
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     public ErrorDto handleValidationErrors(MethodArgumentNotValidException ex) {
@@ -80,10 +54,12 @@ public class GlobalExceptionHandler {
                 .reduce((m1, m2) -> m1 + "; " + m2)
                 .orElse("Validation failed");
 
+        log.warn("Validation error: {}", message);
         return new ErrorDto(message);
     }
 
-    public ErrorDto buildErrorDto(String message) {
+    /** Helper to create {@link ErrorDto} with a message. */
+    private ErrorDto buildErrorDto(String message) {
         return new ErrorDto(message);
     }
 }
