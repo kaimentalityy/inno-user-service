@@ -4,7 +4,20 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ad2c5a7c-644f-4864-a037-866b2e4f05c9" name="Changes" comment="ci fix" />
+    <list default="true" id="ad2c5a7c-644f-4864-a037-866b2e4f05c9" name="Changes" comment="ci fix">
+      <change afterPath="$PROJECT_DIR$/src/test/java/com/innowise/userservice/config/RedisConfigTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/com/innowise/userservice/config/ValidationConfigTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/com/innowise/userservice/handler/GlobalExceptionHandlerTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/com/innowise/userservice/mapper/CardInfoMapperTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/com/innowise/userservice/mapper/UserMapperTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/com/innowise/userservice/model/entity/UserAndCardInfoEntityTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/innowise/userservice/config/RedisConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/innowise/userservice/config/RedisConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/innowise/userservice/config/ValidationConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/innowise/userservice/config/ValidationConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/innowise/userservice/exceptions/badrequest/CustomBadRequestException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/innowise/userservice/exceptions/badrequest/CustomBadRequestException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/innowise/userservice/exceptions/conflict/CustomConflictException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/innowise/userservice/exceptions/conflict/CustomConflictException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/innowise/userservice/exceptions/notfound/CustomNotFoundException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/innowise/userservice/exceptions/notfound/CustomNotFoundException.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -183,7 +196,6 @@
       <command value="mvn clean verify sonar:sonar \   -Dsonar.projectKey=InnoUserService \   -Dsonar.host.url=http://localhost:9000 \   -Dsonar.token=squ_f4e5dd6952dbea4f72bbe872638f0631bb22b6d7 \   -Dsonar.branch.name=tasks/USR-0 " />
       <command value="git checkout tasks/USR-0 mvn clean verify sonar:sonar \   -Dsonar.projectKey=InnoUserService \   -Dsonar.host.url=http://localhost:9000 \   -Dsonar.token=squ_f4e5dd6952dbea4f72bbe872638f0631bb22b6d7 " />
       <command value="mvn clean verify sonar:sonar \   -Dsonar.projectKey=InnoUserService \   -Dsonar.host.url=http://localhost:9000 \   -Dsonar.token=squ_f4e5dd6952dbea4f72bbe872638f0631bb22b6d7" />
-      <command value="mvn clean verify " />
       <command value="mvn liquibase:dropAll" />
       <command value="mvn clean install" />
       <command value="mvn spring-boot:run --debug" />
@@ -191,6 +203,7 @@
       <command value="mvn spring-boot:run -Dspring-boot.run.arguments=&quot;--debug&quot; " />
       <command value="mvn spring-boot:run" />
       <command value="mvn spring-boot:run -Dspring-boot.run.profiles=local" />
+      <command value="mvn clean verify " />
     </option>
   </component>
   <component name="RunDashboard">
@@ -360,15 +373,7 @@
       <workItem from="1759494702955" duration="9806000" />
       <workItem from="1759508535098" duration="4243000" />
       <workItem from="1759523107665" duration="1871000" />
-      <workItem from="1759571744229" duration="27663000" />
-    </task>
-    <task id="LOCAL-00029" summary="fixed localhost and ci">
-      <option name="closed" value="true" />
-      <created>1757857765127</created>
-      <option name="number" value="00029" />
-      <option name="presentableId" value="LOCAL-00029" />
-      <option name="project" value="LOCAL" />
-      <updated>1757857765127</updated>
+      <workItem from="1759571744229" duration="32478000" />
     </task>
     <task id="LOCAL-00030" summary="fixed localhost and ci">
       <option name="closed" value="true" />
@@ -754,7 +759,15 @@
       <option name="project" value="LOCAL" />
       <updated>1759612123902</updated>
     </task>
-    <option name="localTasksCounter" value="78" />
+    <task id="LOCAL-00078" summary="ci fix">
+      <option name="closed" value="true" />
+      <created>1759612511568</created>
+      <option name="number" value="00078" />
+      <option name="presentableId" value="LOCAL-00078" />
+      <option name="project" value="LOCAL" />
+      <updated>1759612511568</updated>
+    </task>
+    <option name="localTasksCounter" value="79" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

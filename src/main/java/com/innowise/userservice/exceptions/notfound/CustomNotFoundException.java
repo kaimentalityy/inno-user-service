@@ -6,7 +6,7 @@ import java.io.Serializable;
 /**
  * Base class for custom "not found" exceptions.
  */
-public abstract class CustomNotFoundException extends RuntimeException implements Serializable {
+public class CustomNotFoundException extends RuntimeException implements Serializable {
 
     @Serial
     private static final long serialVersionUID = 1L;
