@@ -8,7 +8,9 @@ on:
 
 jobs:
   build-and-test:
+    name: Build and Test
     runs-on: ubuntu-latest
+
     services:
       postgres:
         image: postgres:16
@@ -16,8 +18,6 @@ jobs:
           POSTGRES_DB: UserService
           POSTGRES_USER: postgres
           POSTGRES_PASSWORD: 17052007
-        ports:
-          - 5432:5432
         options: >-
           --health-cmd "pg_isready -U postgres -d UserService"
           --health-interval 5s
@@ -26,8 +26,6 @@ jobs:
 
       redis:
         image: redis:8
-        ports:
-          - 6379:6379
         options: >-
           --health-cmd "redis-cli ping"
           --health-interval 5s
@@ -57,26 +55,6 @@ jobs:
 
       - name: Install PostgreSQL client
         run: sudo apt-get update && sudo apt-get install -y postgresql-client
-
-      - name: Wait for Postgres
-        run: |
-          echo "Waiting for Postgres..."
-          for i in {1..30}; do
-            if pg_isready -h postgres -p 5432 -U postgres; then
-              echo "Postgres is ready"
-              break
-            fi
-            echo "Postgres not ready yet, sleeping..."
-            sleep 2
-          done
-      
-
-      - name: Wait for Redis
-        run: |
-          echo "Waiting for Redis..."
-          until docker exec $(docker ps -q -f name=redis) redis-cli ping | grep PONG; do
-            sleep 2
-          done
 
       - name: Run Liquibase migrations
         run: mvn liquibase:update -Dspring.profiles.active=ci

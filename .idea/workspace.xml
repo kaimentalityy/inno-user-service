@@ -7,7 +7,6 @@
     <list default="true" id="ad2c5a7c-644f-4864-a037-866b2e4f05c9" name="Changes" comment="ci fix">
       <change beforePath="$PROJECT_DIR$/.github/workflows/ci.yml" beforeDir="false" afterPath="$PROJECT_DIR$/.github/workflows/ci.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -211,7 +210,7 @@
         <entry key="SpringBootApplicationConfigurationType">
           <value>
             <map>
-              <entry key="UserServiceApp" value="STOPPED" />
+              <entry key="UserServiceApp" value="FAILED" />
             </map>
           </value>
         </entry>
@@ -364,15 +363,7 @@
       <workItem from="1759494702955" duration="9806000" />
       <workItem from="1759508535098" duration="4243000" />
       <workItem from="1759523107665" duration="1871000" />
-      <workItem from="1759571744229" duration="22498000" />
-    </task>
-    <task id="LOCAL-00020" summary="fixed localhost and ci">
-      <option name="closed" value="true" />
-      <created>1757847092488</created>
-      <option name="number" value="00020" />
-      <option name="presentableId" value="LOCAL-00020" />
-      <option name="project" value="LOCAL" />
-      <updated>1757847092488</updated>
+      <workItem from="1759571744229" duration="23751000" />
     </task>
     <task id="LOCAL-00021" summary="fixed localhost and ci">
       <option name="closed" value="true" />
@@ -758,7 +749,15 @@
       <option name="project" value="LOCAL" />
       <updated>1759605031080</updated>
     </task>
-    <option name="localTasksCounter" value="69" />
+    <task id="LOCAL-00069" summary="ci fix">
+      <option name="closed" value="true" />
+      <created>1759607179195</created>
+      <option name="number" value="00069" />
+      <option name="presentableId" value="LOCAL-00069" />
+      <option name="project" value="LOCAL" />
+      <updated>1759607179195</updated>
+    </task>
+    <option name="localTasksCounter" value="70" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
