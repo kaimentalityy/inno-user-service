@@ -21,7 +21,7 @@ jobs:
         ports:
           - 5432:5432
         options: >-
-          --health-cmd "pg_isready -h postgres -U postgres -d UserService"
+          --health-cmd "pg_isready -U postgres -d UserService"
           --health-interval 5s
           --health-timeout 5s
           --health-retries 10
@@ -64,11 +64,11 @@ jobs:
               echo "Postgres is ready!"
               exit 0
             fi
+            echo "Postgres not ready yet, sleeping..."
             sleep 2
           done
           echo "Postgres did not become ready in time"
-          exit 1
-      
+          exit 1  
 
       - name: Wait for Redis
         run: |
