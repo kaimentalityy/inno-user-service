@@ -69,10 +69,11 @@ jobs:
       - name: Run Liquibase migrations
         run: |
           echo "Running Liquibase migrations"
-          mvn -B liquibase:update \
+          mvn liquibase:update \
             -Dliquibase.url="jdbc:postgresql://postgres:5432/UserService" \
             -Dliquibase.username=postgres \
-            -Dliquibase.password=17052007
+            -Dliquibase.password=17052007 \
+            -Dliquibase.driver=org.postgresql.Driver
 
       - name: Build and run tests
         run: mvn clean verify -Dspring.profiles.active=ci

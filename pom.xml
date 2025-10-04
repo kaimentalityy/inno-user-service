@@ -240,10 +240,6 @@
                 <version>4.24.0</version>
                 <configuration>
                     <changeLogFile>src/main/resources/db/changelog/changelog-master.xml</changeLogFile>
-                    <driver>org.postgresql.Driver</driver>
-                    <url>jdbc:postgresql://postgres:5432/UserService</url>
-                    <username>postgres</username>
-                    <password>17052007</password>
                     <promptOnNonLocalDatabase>false</promptOnNonLocalDatabase>
                 </configuration>
                 <dependencies>
@@ -254,6 +250,7 @@
                     </dependency>
                 </dependencies>
             </plugin>
+
 
             <plugin>
                 <groupId>com.google.cloud.tools</groupId>
