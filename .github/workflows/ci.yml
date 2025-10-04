@@ -30,13 +30,13 @@ jobs:
           --health-cmd "redis-cli ping || exit 1"
           --health-interval 5s
           --health-timeout 5s
-          --health-retries 5
+          --health-retries 10
 
     env:
-      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/UserService
+      SPRING_DATASOURCE_URL: jdbc:postgresql://localhost:5432/UserService
       SPRING_DATASOURCE_USERNAME: postgres
       SPRING_DATASOURCE_PASSWORD: 17052007
-      SPRING_REDIS_HOST: redis
+      SPRING_REDIS_HOST: localhost
       SPRING_REDIS_PORT: 6379
       SPRING_PROFILES_ACTIVE: ci
       LIQUIBASE_ENABLED: true
@@ -53,13 +53,19 @@ jobs:
           distribution: 'temurin'
           cache: 'maven'
 
-      - name: Install redis-cli
-        run: sudo apt-get update && sudo apt-get install -y redis-tools
-
-      - name: Wait for Redis to be ready
+      # Wait for Postgres to be ready
+      - name: Wait for Postgres
         run: |
-          until redis-cli -h ${{ env.SPRING_REDIS_HOST }} -p ${{ env.SPRING_REDIS_PORT }} ping | grep PONG; do
-            echo "Waiting for Redis..."
+          echo "Waiting for Postgres..."
+          until pg_isready -h localhost -p 5432 -U postgres; do
+            sleep 2
+          done
+
+      # Wait for Redis to be ready
+      - name: Wait for Redis
+        run: |
+          echo "Waiting for Redis..."
+          until docker run --rm --network host redis:8 redis-cli -h localhost ping | grep PONG; do
             sleep 2
           done
 
