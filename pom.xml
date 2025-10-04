@@ -281,7 +281,7 @@
         <profile>
             <id>ci</id>
             <properties>
-                <spring.datasource.url>jdbc:postgresql://postgres:5434/UserService</spring.datasource.url>
+                <spring.datasource.url>jdbc:postgresql://localhost:5432/UserService</spring.datasource.url>
                 <spring.datasource.username>postgres</spring.datasource.username>
                 <spring.datasource.password>17052007</spring.datasource.password>
                 <spring.data.redis.host>redis</spring.data.redis.host>
@@ -291,7 +291,7 @@
         <profile>
             <id>docker</id>
             <properties>
-                <spring.datasource.url>jdbc:postgresql://postgres:5434/UserService</spring.datasource.url>
+                <spring.datasource.url>jdbc:postgresql://localhost:5432/UserService</spring.datasource.url>
                 <spring.datasource.username>postgres</spring.datasource.username>
                 <spring.datasource.password>17052007</spring.datasource.password>
                 <spring.data.redis.host>redis</spring.data.redis.host>
@@ -300,3 +300,4 @@
         </profile>
     </profiles>
 </project>
+
