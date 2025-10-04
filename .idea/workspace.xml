@@ -4,9 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ad2c5a7c-644f-4864-a037-866b2e4f05c9" name="Changes" comment="ci fix">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-    </list>
+    <list default="true" id="ad2c5a7c-644f-4864-a037-866b2e4f05c9" name="Changes" comment="ci fix" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -362,15 +360,7 @@
       <workItem from="1759494702955" duration="9806000" />
       <workItem from="1759508535098" duration="4243000" />
       <workItem from="1759523107665" duration="1871000" />
-      <workItem from="1759571744229" duration="27335000" />
-    </task>
-    <task id="LOCAL-00028" summary="fixed localhost and ci">
-      <option name="closed" value="true" />
-      <created>1757857676173</created>
-      <option name="number" value="00028" />
-      <option name="presentableId" value="LOCAL-00028" />
-      <option name="project" value="LOCAL" />
-      <updated>1757857676173</updated>
+      <workItem from="1759571744229" duration="27663000" />
     </task>
     <task id="LOCAL-00029" summary="fixed localhost and ci">
       <option name="closed" value="true" />
@@ -756,7 +746,15 @@
       <option name="project" value="LOCAL" />
       <updated>1759611518056</updated>
     </task>
-    <option name="localTasksCounter" value="77" />
+    <task id="LOCAL-00077" summary="ci fix">
+      <option name="closed" value="true" />
+      <created>1759612123902</created>
+      <option name="number" value="00077" />
+      <option name="presentableId" value="LOCAL-00077" />
+      <option name="project" value="LOCAL" />
+      <updated>1759612123902</updated>
+    </task>
+    <option name="localTasksCounter" value="78" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

@@ -55,25 +55,16 @@ jobs:
           distribution: 'temurin'
           cache: 'maven'
 
-      - name: Install PostgreSQL client
+      - name: Install PostgreSQL client & netcat
         run: sudo apt-get update && sudo apt-get install -y postgresql-client netcat-openbsd
 
       - name: Wait for Postgres to be ready
         run: |
           for i in {1..10}; do
-            nc -z postgres 5432 && echo "Postgres is up" && break
+            nc -z postgres 5432 && echo "Postgres is up!" && break
             echo "⏳ Waiting for Postgres..."
             sleep 5
           done
-
-      - name: Run Liquibase migrations
-        run: |
-          echo "Running Liquibase migrations"
-          mvn liquibase:update \
-            -Dliquibase.url="jdbc:postgresql://postgres:5432/UserService" \
-            -Dliquibase.username=postgres \
-            -Dliquibase.password=17052007 \
-            -Dliquibase.driver=org.postgresql.Driver
 
       - name: Build and run tests
         run: mvn clean verify -Dspring.profiles.active=ci
