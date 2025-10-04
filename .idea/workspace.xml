@@ -360,31 +360,7 @@
       <workItem from="1759494702955" duration="9806000" />
       <workItem from="1759508535098" duration="4243000" />
       <workItem from="1759523107665" duration="1871000" />
-      <workItem from="1759571744229" duration="16502000" />
-    </task>
-    <task id="LOCAL-00009" summary="fixed localhost and ci">
-      <option name="closed" value="true" />
-      <created>1757793066824</created>
-      <option name="number" value="00009" />
-      <option name="presentableId" value="LOCAL-00009" />
-      <option name="project" value="LOCAL" />
-      <updated>1757793066824</updated>
-    </task>
-    <task id="LOCAL-00010" summary="fixed localhost and ci">
-      <option name="closed" value="true" />
-      <created>1757793319474</created>
-      <option name="number" value="00010" />
-      <option name="presentableId" value="LOCAL-00010" />
-      <option name="project" value="LOCAL" />
-      <updated>1757793319474</updated>
-    </task>
-    <task id="LOCAL-00011" summary="fixed localhost and ci">
-      <option name="closed" value="true" />
-      <created>1757793669205</created>
-      <option name="number" value="00011" />
-      <option name="presentableId" value="LOCAL-00011" />
-      <option name="project" value="LOCAL" />
-      <updated>1757793669205</updated>
+      <workItem from="1759571744229" duration="16820000" />
     </task>
     <task id="LOCAL-00012" summary="fixed localhost and ci">
       <option name="closed" value="true" />
@@ -754,7 +730,31 @@
       <option name="project" value="LOCAL" />
       <updated>1759598610798</updated>
     </task>
-    <option name="localTasksCounter" value="58" />
+    <task id="LOCAL-00058" summary="ci fix">
+      <option name="closed" value="true" />
+      <created>1759598748202</created>
+      <option name="number" value="00058" />
+      <option name="presentableId" value="LOCAL-00058" />
+      <option name="project" value="LOCAL" />
+      <updated>1759598748202</updated>
+    </task>
+    <task id="LOCAL-00059" summary="ci fix">
+      <option name="closed" value="true" />
+      <created>1759598895396</created>
+      <option name="number" value="00059" />
+      <option name="presentableId" value="LOCAL-00059" />
+      <option name="project" value="LOCAL" />
+      <updated>1759598895396</updated>
+    </task>
+    <task id="LOCAL-00060" summary="ci fix">
+      <option name="closed" value="true" />
+      <created>1759598953148</created>
+      <option name="number" value="00060" />
+      <option name="presentableId" value="LOCAL-00060" />
+      <option name="project" value="LOCAL" />
+      <updated>1759598953148</updated>
+    </task>
+    <option name="localTasksCounter" value="61" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
