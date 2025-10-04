@@ -54,11 +54,11 @@ jobs:
           cache: 'maven'
 
       - name: Run Liquibase migrations
-        run: mvn liquibase:update \
+        run: mvn org.liquibase:liquibase-maven-plugin:4.24.0:update \
           -Dspring.profiles.active=ci \
-          -Dliquibase.url=jdbc:postgresql://postgres:5432/UserService \
           -Dliquibase.username=postgres \
-          -Dliquibase.password=17052007
+          -Dliquibase.password=17052007 \
+          -Dliquibase.url=jdbc:postgresql://postgres:5432/UserService
 
       - name: Build and run tests
         run: mvn clean test verify -Dspring.profiles.active=ci
