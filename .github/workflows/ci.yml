@@ -18,8 +18,7 @@ jobs:
           POSTGRES_DB: UserService
           POSTGRES_USER: postgres
           POSTGRES_PASSWORD: 17052007
-        ports:
-          - 5432:5432
+        ports: [ ]
         options: >-
           --health-cmd "pg_isready -U postgres -d UserService"
           --health-interval 5s
@@ -28,9 +27,9 @@ jobs:
 
       redis:
         image: redis:8
-        ports: []
+        ports: [ ]
         options: >-
-          --health-cmd "redis-cli -h redis ping || exit 1"
+          --health-cmd "redis-cli ping"
           --health-interval 5s
           --health-timeout 5s
           --health-retries 5
@@ -59,7 +58,7 @@ jobs:
       - name: Wait for Postgres
         run: |
           echo "Waiting for Postgres to be ready..."
-          for i in {1..30}; do
+          for i in $(seq 1 30); do
             if pg_isready -h postgres -p 5432 -U postgres -d UserService; then
               echo "Postgres is ready!"
               exit 0
@@ -68,7 +67,7 @@ jobs:
             sleep 2
           done
           echo "Postgres did not become ready in time"
-          exit 1  
+          exit 1
 
       - name: Wait for Redis
         run: |
