@@ -18,11 +18,14 @@ jobs:
           POSTGRES_DB: UserService
           POSTGRES_USER: postgres
           POSTGRES_PASSWORD: 17052007
+        ports:
+          - 5432:5432
         options: >-
           --health-cmd "pg_isready -U postgres -d UserService"
           --health-interval 5s
           --health-timeout 5s
           --health-retries 10
+      
 
       redis:
         image: redis:8
@@ -57,7 +60,11 @@ jobs:
         run: sudo apt-get update && sudo apt-get install -y postgresql-client
 
       - name: Run Liquibase migrations
-        run: mvn liquibase:update -Dspring.profiles.active=ci
+        run: mvn liquibase:update \
+          -Dspring.datasource.url=jdbc:postgresql://localhost:5432/UserService \
+          -Dspring.datasource.username=postgres \
+          -Dspring.datasource.password=17052007 \
+          -Dspring.profiles.active=ci
 
       - name: Build and run tests
         run: mvn clean test verify -Dspring.profiles.active=ci
