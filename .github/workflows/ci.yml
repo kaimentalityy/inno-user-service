@@ -57,7 +57,7 @@ jobs:
       - name: Wait for Postgres
         run: |
           echo "Waiting for Postgres..."
-          until pg_isready -h localhost -p 5432 -U postgres; do
+          until pg_isready -h postgres -p 5432 -U postgres; do
             sleep 2
           done
 
@@ -65,9 +65,10 @@ jobs:
       - name: Wait for Redis
         run: |
           echo "Waiting for Redis..."
-          until docker run --rm --network host redis:8 redis-cli -h localhost ping | grep PONG; do
+          until redis-cli -h redis ping | grep PONG; do
             sleep 2
           done
+      
 
       - name: Run Liquibase migrations
         run: mvn liquibase:update -Dspring.profiles.active=ci
