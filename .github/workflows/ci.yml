@@ -18,8 +18,6 @@ jobs:
           POSTGRES_DB: UserService
           POSTGRES_USER: postgres
           POSTGRES_PASSWORD: 17052007
-        ports:
-          - 5432:5432
         options: >-
           --health-cmd "pg_isready -U postgres -d UserService"
           --health-interval 5s
@@ -28,7 +26,6 @@ jobs:
 
       redis:
         image: redis:8
-        ports: []
         options: >-
           --health-cmd "redis-cli ping || exit 1"
           --health-interval 5s
@@ -56,36 +53,12 @@ jobs:
           distribution: 'temurin'
           cache: 'maven'
 
-      - name: Wait for Postgres
-        run: |
-          echo "Waiting for Postgres to be ready..."
-          for i in {1..30}; do
-            if pg_isready -h postgres -p 5432 -U postgres -d UserService; then
-              echo "Postgres is ready!"
-              break
-            fi
-            echo "Postgres not ready yet, sleeping..."
-            sleep 2
-          done
-
-      - name: Wait for Redis
-        run: |
-          echo "Waiting for Redis to be ready..."
-          for i in {1..30}; do
-            if redis-cli -h redis ping | grep PONG; then
-              echo "Redis is ready!"
-              break
-            fi
-            echo "Redis not ready yet, sleeping..."
-            sleep 2
-          done
-
       - name: Run Liquibase migrations
         run: mvn org.liquibase:liquibase-maven-plugin:4.24.0:update \
           -Dspring.profiles.active=ci \
-          -Dliquibase.url=jdbc:postgresql://postgres:5432/UserService \
           -Dliquibase.username=postgres \
-          -Dliquibase.password=17052007
+          -Dliquibase.password=17052007 \
+          -Dliquibase.url=jdbc:postgresql://postgres:5432/UserService
 
       - name: Build and run tests
         run: mvn clean test verify -Dspring.profiles.active=ci
