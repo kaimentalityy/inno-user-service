@@ -61,10 +61,10 @@ jobs:
 
       - name: Run Liquibase migrations
         run: mvn liquibase:update \
-          -Dspring.datasource.url=jdbc:postgresql://localhost:5432/UserService \
-          -Dspring.datasource.username=postgres \
-          -Dspring.datasource.password=17052007 \
-          -Dspring.profiles.active=ci
+            -Dliquibase.url=jdbc:postgresql://localhost:5432/UserService \
+            -Dliquibase.username=postgres \
+            -Dliquibase.password=17052007
+
 
       - name: Build and run tests
         run: mvn clean test verify -Dspring.profiles.active=ci
