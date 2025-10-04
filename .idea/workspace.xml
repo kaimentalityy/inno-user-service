@@ -5,7 +5,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ad2c5a7c-644f-4864-a037-866b2e4f05c9" name="Changes" comment="fixed ci and local run">
+      <change afterPath="$PROJECT_DIR$/src/main/resources/application-docker.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/application-local.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.env" beforeDir="false" afterPath="$PROJECT_DIR$/.env.local" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.github/workflows/ci.yml" beforeDir="false" afterPath="$PROJECT_DIR$/.github/workflows/ci.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docker-compose.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/docker-compose.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.yml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -93,6 +100,9 @@
     "Maven.InnoUserService [liquibase:update].executor": "Run",
     "Maven.InnoUserService [org.sonarsource.scanner.maven:sonar-maven-plugin:4.1.0.2302:help...].executor": "Run",
     "Maven.InnoUserService [sonar:sonar].executor": "Run",
+    "Maven.InnoUserService [spring-boot:run,--debug].executor": "Run",
+    "Maven.InnoUserService [spring-boot:run...].executor": "Run",
+    "Maven.InnoUserService [spring-boot:run].executor": "Run",
     "Maven.InnoUserService [test...].executor": "Run",
     "ModuleVcsDetector.initialDetectionPerformed": "true",
     "RequestMappingsPanelOrder0": "0",
@@ -182,6 +192,11 @@
       <command value="mvn clean verify " />
       <command value="mvn liquibase:dropAll" />
       <command value="mvn clean install" />
+      <command value="mvn spring-boot:run --debug" />
+      <command value="load_env" />
+      <command value="mvn spring-boot:run -Dspring-boot.run.arguments=&quot;--debug&quot; " />
+      <command value="mvn spring-boot:run" />
+      <command value="mvn spring-boot:run -Dspring-boot.run.profiles=local" />
     </option>
   </component>
   <component name="RunDashboard">
@@ -240,8 +255,19 @@
       </method>
     </configuration>
     <configuration name="UserServiceApp" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <option name="ACTIVE_PROFILES" value="local" />
       <module name="InnoUserService" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="com.innowise.userservice.UserServiceApp" />
+      <extension name="net.ashald.envfile">
+        <option name="IS_ENABLED" value="false" />
+        <option name="IS_SUBST" value="false" />
+        <option name="IS_PATH_MACRO_SUPPORTED" value="false" />
+        <option name="IS_IGNORE_MISSING_FILES" value="false" />
+        <option name="IS_ENABLE_EXPERIMENTAL_INTEGRATIONS" value="false" />
+        <ENTRIES>
+          <ENTRY IS_ENABLED="true" PARSER="runconfig" IS_EXECUTABLE="false" />
+        </ENTRIES>
+      </extension>
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -340,14 +366,7 @@
       <workItem from="1759494702955" duration="9806000" />
       <workItem from="1759508535098" duration="4243000" />
       <workItem from="1759523107665" duration="1871000" />
-    </task>
-    <task id="LOCAL-00001" summary="added caching with redis, added repo annotations, added missing methods and tests for them, corrected the EntityNotFoundException">
-      <option name="closed" value="true" />
-      <created>1757604669841</created>
-      <option name="number" value="00001" />
-      <option name="presentableId" value="LOCAL-00001" />
-      <option name="project" value="LOCAL" />
-      <updated>1757604669841</updated>
+      <workItem from="1759571744229" duration="14045000" />
     </task>
     <task id="LOCAL-00002" summary="added integration testing for service layer, added RedisConfig, fix mappers for correct work, added Dockerfile and docker-compose.yaml, removed hardcode for application.yml">
       <option name="closed" value="true" />
@@ -733,7 +752,15 @@
       <option name="project" value="LOCAL" />
       <updated>1759536099333</updated>
     </task>
-    <option name="localTasksCounter" value="50" />
+    <task id="LOCAL-00050" summary="fixed ci and local run">
+      <option name="closed" value="true" />
+      <created>1759536222029</created>
+      <option name="number" value="00050" />
+      <option name="presentableId" value="LOCAL-00050" />
+      <option name="project" value="LOCAL" />
+      <updated>1759536222030</updated>
+    </task>
+    <option name="localTasksCounter" value="51" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

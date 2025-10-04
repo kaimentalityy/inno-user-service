@@ -18,7 +18,8 @@ jobs:
           POSTGRES_DB: UserService
           POSTGRES_USER: postgres
           POSTGRES_PASSWORD: 17052007
-        ports: []
+        ports:
+          - 5434:5432
         options: >-
           --health-cmd "pg_isready -U postgres"
           --health-interval 5s
@@ -34,7 +35,7 @@ jobs:
           --health-retries 5
 
     env:
-      SPRING_DATASOURCE_URL: jdbc:postgresql://localhost:5432/UserService
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/UserService
       SPRING_DATASOURCE_USERNAME: postgres
       SPRING_DATASOURCE_PASSWORD: 17052007
       SPRING_REDIS_HOST: redis
@@ -64,7 +65,7 @@ jobs:
       - name: Run Liquibase migrations
         run: mvn liquibase:update \
           -Dspring.profiles.active=ci \
-          -Dliquibase.url=jdbc:postgresql://localhost:5432/UserService \
+          -Dliquibase.url=jdbc:postgresql://postgres:5432/UserService \
           -Dliquibase.username=postgres \
           -Dliquibase.password=17052007
 
@@ -128,8 +129,8 @@ jobs:
       - name: Build and push Docker
         uses: docker/build-push-action@v5
         with:
-          context: ./user-service
-          file: ./user-service/Dockerfile
+          context: .
+          file: .Dockerfile
           push: true
           tags: |
             ${{ secrets.DOCKERHUB_USERNAME }}/user-service:latest
