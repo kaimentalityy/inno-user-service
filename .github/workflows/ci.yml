@@ -34,7 +34,7 @@ jobs:
           --health-retries 5
 
     env:
-      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/UserService
+      SPRING_DATASOURCE_URL: jdbc:postgresql://localhost:5432/UserService
       SPRING_DATASOURCE_USERNAME: postgres
       SPRING_DATASOURCE_PASSWORD: 17052007
       SPRING_REDIS_HOST: redis
@@ -64,7 +64,7 @@ jobs:
       - name: Run Liquibase migrations
         run: mvn liquibase:update \
           -Dspring.profiles.active=ci \
-          -Dliquibase.url=jdbc:postgresql://postgres:5432/UserService \
+          -Dliquibase.url=jdbc:postgresql://localhost:5432/UserService \
           -Dliquibase.username=postgres \
           -Dliquibase.password=17052007
 
