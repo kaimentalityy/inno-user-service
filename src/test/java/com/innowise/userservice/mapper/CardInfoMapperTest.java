@@ -9,85 +9,80 @@ import org.mapstruct.factory.Mappers;
 
 import java.time.LocalDate;
 
-import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.*;
 
 class CardInfoMapperTest {
 
     private CardInfoMapper mapper;
 
     @BeforeEach
-    void setUp() {
+    void setup() {
         mapper = Mappers.getMapper(CardInfoMapper.class);
     }
 
     @Test
-    void testToEntity() {
+    void toEntity_shouldMapDtoToEntityIgnoringIdAndUser() {
         CardInfoDto dto = new CardInfoDto(
                 1L,
-                10L,
+                5L,
                 "1234567890123",
                 "John Doe",
-                LocalDate.now().plusYears(2)
+                LocalDate.of(2030, 12, 31)
         );
 
         CardInfo entity = mapper.toEntity(dto);
 
-        // Id and user are ignored
-        assertThat(entity.getId()).isNull();
-        assertThat(entity.getUser()).isNull();
-        assertThat(entity.getNumber()).isEqualTo("1234567890123");
-        assertThat(entity.getHolder()).isEqualTo("John Doe");
-        assertThat(entity.getExpirationDate()).isEqualTo(dto.expirationDate());
+        assertNull(entity.getId());
+        assertNull(entity.getUser());
+        assertEquals(dto.number(), entity.getNumber());
+        assertEquals(dto.holder(), entity.getHolder());
+        assertEquals(dto.expirationDate(), entity.getExpirationDate());
     }
 
     @Test
-    void testUpdateEntity() {
+    void toDto_shouldMapEntityToDtoIncludingUserId() {
         User user = new User();
         user.setId(10L);
 
         CardInfo entity = new CardInfo();
-        entity.setId(5L);
+        entity.setId(1L);
+        entity.setNumber("1234567890123");
+        entity.setHolder("John Doe");
+        entity.setExpirationDate(LocalDate.of(2030, 12, 31));
         entity.setUser(user);
-        entity.setNumber("1111222233334444");
-        entity.setHolder("Old Holder");
-        entity.setExpirationDate(LocalDate.now());
+
+        CardInfoDto dto = mapper.toDto(entity);
+
+        assertEquals(entity.getNumber(), dto.number());
+        assertEquals(entity.getHolder(), dto.holder());
+        assertEquals(entity.getExpirationDate(), dto.expirationDate());
+        assertEquals(user.getId(), dto.userId());
+    }
+
+    @Test
+    void updateEntity_shouldUpdateFieldsWithoutChangingUser() {
+        User user = new User();
+        user.setId(10L);
+
+        CardInfo entity = new CardInfo();
+        entity.setNumber("1111111111111");
+        entity.setHolder("Old Name");
+        entity.setExpirationDate(LocalDate.of(2025, 1, 1));
+        entity.setUser(user);
 
         CardInfoDto dto = new CardInfoDto(
+                1L,
                 5L,
-                10L,
-                "1234567890123",
-                "New Holder",
-                LocalDate.now().plusYears(1)
+                "2222222222222",
+                "New Name",
+                LocalDate.of(2030, 12, 31)
         );
 
         mapper.updateEntity(dto, entity);
 
-        // User should not change
-        assertThat(entity.getUser()).isEqualTo(user);
-
-        assertThat(entity.getNumber()).isEqualTo("1234567890123");
-        assertThat(entity.getHolder()).isEqualTo("New Holder");
-        assertThat(entity.getExpirationDate()).isEqualTo(dto.expirationDate());
-    }
-
-    @Test
-    void testToDto() {
-        User user = new User();
-        user.setId(10L);
-
-        CardInfo entity = new CardInfo();
-        entity.setId(5L);
-        entity.setUser(user);
-        entity.setNumber("1234567890123");
-        entity.setHolder("John Doe");
-        entity.setExpirationDate(LocalDate.now().plusYears(2));
-
-        CardInfoDto dto = mapper.toDto(entity);
-
-        assertThat(dto.id()).isEqualTo(5L);
-        assertThat(dto.userId()).isEqualTo(10L);
-        assertThat(dto.number()).isEqualTo("1234567890123");
-        assertThat(dto.holder()).isEqualTo("John Doe");
-        assertThat(dto.expirationDate()).isEqualTo(entity.getExpirationDate());
+        assertEquals(dto.number(), entity.getNumber());
+        assertEquals(dto.holder(), entity.getHolder());
+        assertEquals(dto.expirationDate(), entity.getExpirationDate());
+        assertEquals(user, entity.getUser());
     }
 }

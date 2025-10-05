@@ -15,7 +15,7 @@ import org.springframework.http.ResponseEntity;
 import java.time.LocalDate;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.*;
 
 class UserControllerTest {
@@ -125,5 +125,34 @@ class UserControllerTest {
         assertEquals(1, response.getBody().getTotalElements());
         assertEquals(user, response.getBody().getContent().get(0));
         verify(userService).searchUsers("John", "Doe", null, pageable);
+    }
+
+    @Test
+    void testSearchUsers_emptyIdsAndEmail_returnsStandardSearch() {
+        Pageable pageable = Pageable.unpaged();
+        UserDto user = new UserDto(1L, "Jane", "Smith", LocalDate.now().minusYears(25), "jane@example.com", null);
+        Page<UserDto> page = new PageImpl<>(List.of(user));
+
+        when(userService.searchUsers(null, null, null, pageable)).thenReturn(page);
+
+        ResponseEntity<Page<UserDto>> response = userController.searchUsers(List.of(), null, null, null, pageable);
+
+        assertEquals(200, response.getStatusCodeValue());
+        assertEquals(1, response.getBody().getTotalElements());
+        assertEquals(user, response.getBody().getContent().get(0));
+        verify(userService).searchUsers(null, null, null, pageable);
+    }
+
+    @Test
+    void testSearchUsers_emailNotFound_returnsEmptyPage() {
+        Pageable pageable = Pageable.unpaged();
+
+        when(userService.findByEmail("unknown@example.com")).thenReturn(null);
+
+        ResponseEntity<Page<UserDto>> response = userController.searchUsers(null, null, null, "unknown@example.com", pageable);
+
+        assertEquals(200, response.getStatusCodeValue());
+        assertEquals(0, response.getBody().getTotalElements());
+        verify(userService).findByEmail("unknown@example.com");
     }
 }

@@ -9,11 +9,11 @@ public class CardInfoSpecifications {
         return (root, query, cb) -> cb.equal(root.get("user").get("id"), userId);
     }
 
-    public static Specification<CardInfo> hasCardNumber(String cardNumber) {
-        return (root, query, cb) -> cb.equal(root.get("cardNumber"), cardNumber);
+    public static Specification<CardInfo> hasCardNumber(String number) {
+        return (root, query, cb) -> cb.like(root.get("number"), "%" + number + "%");
     }
 
-    public static Specification<CardInfo> hasCardHolder(String cardHolder) {
-        return (root, query, cb) -> cb.like(cb.lower(root.get("cardHolder")), "%" + cardHolder.toLowerCase() + "%");
+    public static Specification<CardInfo> hasCardHolder(String holder) {
+        return (root, query, cb) -> cb.like(cb.lower(root.get("holder")), "%" + holder.toLowerCase() + "%");
     }
 }

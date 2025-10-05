@@ -10,6 +10,7 @@ import org.mockito.MockitoAnnotations;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
+
 import org.springframework.http.ResponseEntity;
 
 import java.time.LocalDate;
@@ -110,5 +111,21 @@ class CardInfoControllerTest {
         assertEquals(1, response.getBody().getTotalElements());
         assertEquals(card, response.getBody().getContent().get(0));
         verify(cardInfoService).searchCards(1L, "1234567890123", "John Doe", pageable);
+    }
+
+    @Test
+    void testSearchCards_emptyIdsFallsBackToStandardSearch() {
+        Pageable pageable = Pageable.unpaged();
+        CardInfoDto card = new CardInfoDto(2L, 1L, "9876543210987", "Jane Doe", LocalDate.now().plusDays(2));
+        Page<CardInfoDto> page = new PageImpl<>(List.of(card));
+
+        when(cardInfoService.searchCards(1L, null, null, pageable)).thenReturn(page);
+
+        ResponseEntity<Page<CardInfoDto>> response = cardInfoController.searchCards(List.of(), 1L, null, null, pageable);
+
+        assertEquals(200, response.getStatusCodeValue());
+        assertEquals(1, response.getBody().getTotalElements());
+        assertEquals(card, response.getBody().getContent().get(0));
+        verify(cardInfoService).searchCards(1L, null, null, pageable);
     }
 }

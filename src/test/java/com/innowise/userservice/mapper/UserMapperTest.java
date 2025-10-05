@@ -21,28 +21,40 @@ class UserMapperTest {
         user.setSurname("Doe");
         user.setBirthDate(LocalDate.of(1990, 1, 1));
         user.setEmail("john@example.com");
+        user.setCards(Collections.emptyList());
 
         UserDto dto = mapper.toUserDto(user);
 
+        assertNotNull(dto);
+        assertEquals(1L, dto.id());
         assertEquals("John", dto.name());
         assertEquals("Doe", dto.surname());
         assertEquals(LocalDate.of(1990, 1, 1), dto.birthDate());
         assertEquals("john@example.com", dto.email());
-        assertEquals(Collections.emptyList(), dto.cards());
+        assertNotNull(dto.cards());
+        assertTrue(dto.cards().isEmpty());
     }
 
     @Test
     void testToUserEntity() {
-        UserDto dto = new UserDto(null, "Alice", "Smith", LocalDate.of(1995, 5, 5),
-                "alice@example.com", Collections.emptyList());
+        UserDto dto = new UserDto(
+                null,
+                "Alice",
+                "Smith",
+                LocalDate.of(1995, 5, 5),
+                "alice@example.com",
+                Collections.emptyList()
+        );
 
         User user = mapper.toUser(dto);
 
+        assertNotNull(user);
+        assertNull(user.getId());
         assertEquals("Alice", user.getName());
         assertEquals("Smith", user.getSurname());
         assertEquals(LocalDate.of(1995, 5, 5), user.getBirthDate());
         assertEquals("alice@example.com", user.getEmail());
-        assertNull(user.getId());
+        assertNotNull(user.getCards());
         assertTrue(user.getCards().isEmpty());
     }
 }

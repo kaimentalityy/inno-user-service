@@ -6,15 +6,13 @@ import com.innowise.userservice.repository.dao.UserRepository;
 import jakarta.transaction.Transactional;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
 
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.assertj.core.api.Assertions.assertThat;
 
-@SpringBootTest
 @Transactional
 class UserRepositoryTest extends BaseIntegrationTest {
 
@@ -23,75 +21,72 @@ class UserRepositoryTest extends BaseIntegrationTest {
 
     @Test
     void testSaveAndFindById() {
-        User user = new User();
-        user.setName("Kiryl");
-        user.setSurname("Savenka");
-        user.setBirthDate(LocalDate.of(2000, 1, 1));
-        user.setEmail("kiryl.savenka@innowise.com");
+        User saved = userRepository.save(createUser("Kiryl", "Savenka", "kiryl.savenka@innowise.com"));
+        Optional<User> found = userRepository.findById(saved.getId());
 
-        User savedUser = userRepository.save(user);
-        Optional<User> retrieved = userRepository.findById(savedUser.getId());
-
-        assertTrue(retrieved.isPresent());
-        assertEquals("Kiryl", retrieved.get().getName());
+        assertThat(found).isPresent();
+        assertThat(found.get().getName()).isEqualTo("Kiryl");
+        assertThat(found.get().getEmail()).isEqualTo("kiryl.savenka@innowise.com");
     }
 
     @Test
     void testFindByEmail() {
-        User user = new User();
-        user.setName("Alexey");
-        user.setSurname("Krivoy");
-        user.setBirthDate(LocalDate.of(2010, 5, 10));
-        user.setEmail("alexey@krivoy.com");
-
-        userRepository.save(user);
+        userRepository.save(createUser("Alexey", "Krivoy", "alexey@krivoy.com"));
         Optional<User> found = userRepository.findByEmail("alexey@krivoy.com");
 
-        assertTrue(found.isPresent());
-        assertEquals("Alexey", found.get().getName());
+        assertThat(found).isPresent();
+        assertThat(found.get().getSurname()).isEqualTo("Krivoy");
     }
 
     @Test
     void testFindUsersByIds() {
-        User u1 = userRepository.save(createUser("A", "1", "a@a.com"));
-        User u2 = userRepository.save(createUser("B", "2", "b@b.com"));
+        User u1 = userRepository.save(createUser("A", "One", "a@a.com"));
+        User u2 = userRepository.save(createUser("B", "Two", "b@b.com"));
 
         List<User> users = userRepository.findUsersByIds(List.of(u1.getId(), u2.getId()));
 
-        assertEquals(2, users.size());
+        assertThat(users).hasSize(2)
+                .extracting(User::getEmail)
+                .containsExactlyInAnyOrder("a@a.com", "b@b.com");
     }
 
     @Test
     void testDeleteUser() {
-        User user = userRepository.save(createUser("C", "3", "c@c.com"));
+        User user = userRepository.save(createUser("C", "Three", "c@c.com"));
         Long id = user.getId();
+
         userRepository.deleteById(id);
 
-        assertFalse(userRepository.findById(id).isPresent());
+        assertThat(userRepository.findById(id)).isEmpty();
     }
 
     @Test
     void testFindUserByEmailNative() {
-        User user = new User();
-        user.setName("Ivan");
-        user.setSurname("Petrov");
-        user.setBirthDate(LocalDate.of(1995, 3, 15));
-        user.setEmail("ivan@petrov.com");
-
-        userRepository.save(user);
+        userRepository.save(createUser("Ivan", "Petrov", "ivan@petrov.com"));
         Optional<User> found = userRepository.findUserByEmailNative("ivan@petrov.com");
 
-        assertTrue(found.isPresent());
-        assertEquals("Ivan", found.get().getName());
+        assertThat(found).isPresent();
+        assertThat(found.get().getName()).isEqualTo("Ivan");
+    }
+
+    @Test
+    void testFindByEmail_NotFound() {
+        Optional<User> notFound = userRepository.findByEmail("unknown@no.com");
+        assertThat(notFound).isEmpty();
+    }
+
+    @Test
+    void testFindUsersByEmptyIds() {
+        List<User> users = userRepository.findUsersByIds(List.of());
+        assertThat(users).isEmpty();
     }
 
     private User createUser(String name, String surname, String email) {
         User user = new User();
         user.setName(name);
         user.setSurname(surname);
-        user.setBirthDate(LocalDate.of(2000, 2, 2));
+        user.setBirthDate(LocalDate.of(2000, 1, 1));
         user.setEmail(email);
         return user;
     }
 }
-
