@@ -12,10 +12,6 @@ class CardInfoTest {
     void testCardInfoFieldsAndAccessors() {
         User user = new User();
         user.setId(1L);
-        user.setName("John");
-        user.setSurname("Doe");
-        user.setBirthDate(LocalDate.of(1990, 5, 20));
-        user.setEmail("john.doe@example.com");
 
         CardInfo card = new CardInfo();
         card.setId(100L);
@@ -50,7 +46,7 @@ class CardInfoTest {
 
         assertThat(card1).isEqualTo(card2);
         assertThat(card1).isNotEqualTo(card3);
-
+        assertThat(card1).isNotEqualTo(null);
         assertThat(card1.hashCode()).isEqualTo(card2.hashCode());
         assertThat(card1.hashCode()).isNotEqualTo(card3.hashCode());
     }
@@ -69,10 +65,7 @@ class CardInfoTest {
         card.setExpirationDate(LocalDate.of(2030, 12, 31));
 
         String str = card.toString();
-        assertThat(str).contains("100");
-        assertThat(str).contains("1234567890123456");
-        assertThat(str).contains("John Doe");
-        assertThat(str).contains("2030-12-31");
+        assertThat(str).contains("100", "1234567890123456", "John Doe", "2030-12-31");
     }
 
     @Test

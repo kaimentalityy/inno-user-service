@@ -4,15 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ad2c5a7c-644f-4864-a037-866b2e4f05c9" name="Changes" comment="added more tests">
-      <change afterPath="$PROJECT_DIR$/src/test/java/com/innowise/userservice/exceptions/CustomExceptionsTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/innowise/userservice/exceptions/badrequest/CustomConstraintViolationException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/innowise/userservice/exceptions/badrequest/CustomConstraintViolationException.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/innowise/userservice/exceptions/conflict/CustomConflictException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/innowise/userservice/exceptions/conflict/CustomConflictException.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/innowise/userservice/handler/GlobalExceptionHandlerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/innowise/userservice/handler/GlobalExceptionHandlerTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/innowise/userservice/mapper/CardInfoMapperTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/innowise/userservice/mapper/CardInfoMapperTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/innowise/userservice/mapper/UserMapperTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/innowise/userservice/mapper/UserMapperTest.java" afterDir="false" />
-    </list>
+    <list default="true" id="ad2c5a7c-644f-4864-a037-866b2e4f05c9" name="Changes" comment="added more tests" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -372,15 +364,7 @@
       <workItem from="1759523107665" duration="1871000" />
       <workItem from="1759571744229" duration="32478000" />
       <workItem from="1759617342243" duration="1856000" />
-      <workItem from="1759662448322" duration="9168000" />
-    </task>
-    <task id="LOCAL-00031" summary="fixed localhost and ci">
-      <option name="closed" value="true" />
-      <created>1757860224899</created>
-      <option name="number" value="00031" />
-      <option name="presentableId" value="LOCAL-00031" />
-      <option name="project" value="LOCAL" />
-      <updated>1757860224899</updated>
+      <workItem from="1759662448322" duration="10039000" />
     </task>
     <task id="LOCAL-00032" summary="fixed localhost and ci">
       <option name="closed" value="true" />
@@ -766,7 +750,15 @@
       <option name="project" value="LOCAL" />
       <updated>1759669816682</updated>
     </task>
-    <option name="localTasksCounter" value="80" />
+    <task id="LOCAL-00080" summary="added more tests">
+      <option name="closed" value="true" />
+      <created>1759673062397</created>
+      <option name="number" value="00080" />
+      <option name="presentableId" value="LOCAL-00080" />
+      <option name="project" value="LOCAL" />
+      <updated>1759673062397</updated>
+    </task>
+    <option name="localTasksCounter" value="81" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
