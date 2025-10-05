@@ -2,6 +2,7 @@ package com.innowise.userservice.mapper;
 
 import com.innowise.userservice.model.dto.UserDto;
 import com.innowise.userservice.model.entity.User;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.time.LocalDate;
@@ -11,10 +12,15 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class UserMapperTest {
 
-    private final UserMapper mapper = new UserMapperImpl();
+    private UserMapper mapper;
+
+    @BeforeEach
+    void setup() {
+        mapper = new UserMapperImpl();
+    }
 
     @Test
-    void testToUserDto() {
+    void toUserDto_shouldMapAllFields() {
         User user = new User();
         user.setId(1L);
         user.setName("John");
@@ -26,17 +32,17 @@ class UserMapperTest {
         UserDto dto = mapper.toUserDto(user);
 
         assertNotNull(dto);
-        assertEquals(1L, dto.id());
-        assertEquals("John", dto.name());
-        assertEquals("Doe", dto.surname());
-        assertEquals(LocalDate.of(1990, 1, 1), dto.birthDate());
-        assertEquals("john@example.com", dto.email());
+        assertEquals(user.getId(), dto.id());
+        assertEquals(user.getName(), dto.name());
+        assertEquals(user.getSurname(), dto.surname());
+        assertEquals(user.getBirthDate(), dto.birthDate());
+        assertEquals(user.getEmail(), dto.email());
         assertNotNull(dto.cards());
         assertTrue(dto.cards().isEmpty());
     }
 
     @Test
-    void testToUserEntity() {
+    void toUser_shouldMapAllFields_ignoringId() {
         UserDto dto = new UserDto(
                 null,
                 "Alice",
@@ -49,12 +55,56 @@ class UserMapperTest {
         User user = mapper.toUser(dto);
 
         assertNotNull(user);
-        assertNull(user.getId());
-        assertEquals("Alice", user.getName());
-        assertEquals("Smith", user.getSurname());
-        assertEquals(LocalDate.of(1995, 5, 5), user.getBirthDate());
-        assertEquals("alice@example.com", user.getEmail());
+        assertNull(user.getId()); // id is ignored
+        assertEquals(dto.name(), user.getName());
+        assertEquals(dto.surname(), user.getSurname());
+        assertEquals(dto.birthDate(), user.getBirthDate());
+        assertEquals(dto.email(), user.getEmail());
         assertNotNull(user.getCards());
         assertTrue(user.getCards().isEmpty());
     }
+
+    @Test
+    void updateUserFromDto_shouldUpdateAllFields_exceptId() {
+        UserDto dto = new UserDto(
+                99L,
+                "Bob",
+                "Builder",
+                LocalDate.of(2000, 1, 1),
+                "bob@example.com",
+                Collections.emptyList()
+        );
+
+        User user = new User();
+        user.setId(1L);
+        user.setName("Old");
+        user.setSurname("Name");
+        user.setBirthDate(LocalDate.of(1990, 1, 1));
+        user.setEmail("old@example.com");
+
+        mapper.updateUserFromDto(dto, user);
+
+        assertEquals(1L, user.getId());
+        assertEquals("Bob", user.getName());
+        assertEquals("Builder", user.getSurname());
+        assertEquals(LocalDate.of(2000, 1, 1), user.getBirthDate());
+        assertEquals("bob@example.com", user.getEmail());
+    }
+
+    @Test
+    void toUserDto_nullUser_shouldReturnNull() {
+        assertNull(mapper.toUserDto(null));
+    }
+
+    @Test
+    void toUser_nullDto_shouldReturnNull() {
+        assertNull(mapper.toUser(null));
+    }
+
+    @Test
+    void updateUserFromDto_nullDto_shouldNotThrow() {
+        User user = new User();
+        assertDoesNotThrow(() -> mapper.updateUserFromDto(null, user));
+    }
+
 }

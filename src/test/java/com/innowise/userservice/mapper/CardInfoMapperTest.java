@@ -34,6 +34,7 @@ class CardInfoMapperTest {
 
         assertNull(entity.getId());
         assertNull(entity.getUser());
+
         assertEquals(dto.number(), entity.getNumber());
         assertEquals(dto.holder(), entity.getHolder());
         assertEquals(dto.expirationDate(), entity.getExpirationDate());
@@ -83,6 +84,7 @@ class CardInfoMapperTest {
         assertEquals(dto.number(), entity.getNumber());
         assertEquals(dto.holder(), entity.getHolder());
         assertEquals(dto.expirationDate(), entity.getExpirationDate());
+
         assertEquals(user, entity.getUser());
     }
 }
