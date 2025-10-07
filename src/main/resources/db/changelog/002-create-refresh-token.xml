@@ -19,9 +19,6 @@
             <column name="expiry_date" type="TIMESTAMP">
                 <constraints nullable="false"/>
             </column>
-            <column name="revoked" type="BOOLEAN" defaultValueBoolean="false">
-                <constraints nullable="false"/>
-            </column>
             <column name="created_at" type="TIMESTAMP" defaultValueComputed="CURRENT_TIMESTAMP"/>
         </createTable>
 

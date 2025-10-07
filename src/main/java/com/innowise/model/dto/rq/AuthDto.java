@@ -1,8 +1,8 @@
-package com.innowise.util.dto.rq;
+package com.innowise.model.dto.rq;
 
 import jakarta.validation.constraints.NotNull;
 
-public record LoginRequestDTO(
+public record AuthDto(
 
     @NotNull
     String username,

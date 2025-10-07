@@ -7,7 +7,7 @@ spring:
 
   liquibase:
     enabled: true
-    change-log: classpath:/db/changelog/db.changelog-master.xml
+    change-log: classpath:/db/changelog/changelog-master.xml
 
   jpa:
     hibernate:
@@ -19,3 +19,14 @@ spring:
 jwt:
   secret: MySuperSecretKeyForJWTMySuperSecretKeyForJWT
   expiration: 3600000
+  header: Authorization
+  tokenPrefix: Bearer
+  rolePrefix: ROLE_
+
+password:
+  strength: 16
+  hash-algorithm: SHA-256
+  salt-algorithm: SHA1PRNG
+  salt-length: 16
+
+

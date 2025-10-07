@@ -1,4 +1,4 @@
-package com.innowise.util.dto.resp;
+package com.innowise.model.dto.resp;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

@@ -1,4 +1,4 @@
-package com.innowise.data.entity;
+package com.innowise.model.entity;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Table;

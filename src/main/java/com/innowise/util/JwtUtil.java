@@ -1,7 +1,7 @@
 package com.innowise.util;
 
-import com.innowise.data.entity.AuthUser;
-import com.innowise.data.entity.Role;
+import com.innowise.model.entity.AuthUser;
+import com.innowise.model.entity.Role;
 
 import io.jsonwebtoken.JwtException;
 import io.jsonwebtoken.Jwts;

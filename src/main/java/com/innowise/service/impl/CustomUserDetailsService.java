@@ -1,6 +1,6 @@
-package com.innowise.service;
+package com.innowise.service.impl;
 
-import com.innowise.data.repository.UserRepo;
+import com.innowise.repository.UserRepo;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;

@@ -1,6 +1,6 @@
-package com.innowise.data.repository;
+package com.innowise.repository;
 
-import com.innowise.data.entity.AuthUser;
+import com.innowise.model.entity.AuthUser;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 import org.springframework.data.jpa.repository.JpaRepository;

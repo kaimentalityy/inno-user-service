@@ -1,6 +1,6 @@
-package com.innowise.data.repository;
+package com.innowise.repository;
 
-import com.innowise.data.entity.RefreshToken;
+import com.innowise.model.entity.RefreshToken;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
