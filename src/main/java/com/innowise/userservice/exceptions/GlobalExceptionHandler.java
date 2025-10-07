@@ -1,4 +1,4 @@
-package com.innowise.userservice.handler;
+package com.innowise.userservice.exceptions;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;

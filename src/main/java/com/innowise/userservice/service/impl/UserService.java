@@ -6,6 +6,7 @@ import com.innowise.userservice.model.dto.UserDto;
 import com.innowise.userservice.model.entity.User;
 import com.innowise.userservice.repository.dao.UserRepository;
 import com.innowise.userservice.repository.specification.UserSpecifications;
+import com.innowise.userservice.service.UserServiceInterface;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.cache.annotation.CacheConfig;

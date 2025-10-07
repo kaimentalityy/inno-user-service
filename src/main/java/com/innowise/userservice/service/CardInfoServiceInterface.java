@@ -1,7 +1,6 @@
-package com.innowise.userservice.service.impl;
+package com.innowise.userservice.service;
 
 import com.innowise.userservice.model.dto.CardInfoDto;
-import com.innowise.userservice.service.CrudService;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 

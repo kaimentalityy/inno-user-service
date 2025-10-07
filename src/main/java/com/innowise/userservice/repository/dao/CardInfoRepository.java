@@ -19,29 +19,11 @@ import java.util.List;
 @Repository
 public interface CardInfoRepository extends JpaRepository<CardInfo, Long> , JpaSpecificationExecutor<CardInfo> {
 
-    /**
-     * Finds all cards associated with a specific user by their user ID.
-     *
-     * @param userId the ID of the user
-     * @return a list of {@link CardInfo} objects belonging to the user
-     */
     List<CardInfo> findByUserId(Long userId);
 
-    /**
-     * Finds all cards with IDs in the specified list using JPQL.
-     *
-     * @param ids a list of card IDs
-     * @return a list of {@link CardInfo} objects whose IDs match the given list
-     */
     @Query("SELECT c FROM CardInfo c WHERE c.id IN :ids")
     List<CardInfo> findCardsByIds(@Param("ids") List<Long> ids);
 
-    /**
-     * Finds a card by its number using a native SQL query.
-     *
-     * @param cardNumber the card number to search for
-     * @return the {@link CardInfo} object with the given card number, or null if not found
-     */
     @Query(value = "SELECT * FROM card_info WHERE number = :cardNumber", nativeQuery = true)
     CardInfo findByCardNumberNative(@Param("cardNumber") String cardNumber);
 

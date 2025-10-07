@@ -1,5 +1,6 @@
 package com.innowise.userservice.handler;
 
+import com.innowise.userservice.exceptions.GlobalExceptionHandler;
 import com.innowise.userservice.exceptions.badrequest.CustomBadRequestException;
 import com.innowise.userservice.exceptions.conflict.CustomConflictException;
 import com.innowise.userservice.exceptions.notfound.CustomNotFoundException;

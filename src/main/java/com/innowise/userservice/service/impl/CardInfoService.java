@@ -8,6 +8,7 @@ import com.innowise.userservice.model.entity.User;
 import com.innowise.userservice.repository.dao.CardInfoRepository;
 import com.innowise.userservice.repository.dao.UserRepository;
 import com.innowise.userservice.repository.specification.CardInfoSpecifications;
+import com.innowise.userservice.service.CardInfoServiceInterface;
 import lombok.RequiredArgsConstructor;
 import org.springframework.cache.annotation.CacheConfig;
 import org.springframework.cache.annotation.CacheEvict;
