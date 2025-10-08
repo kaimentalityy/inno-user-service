@@ -1,6 +1,6 @@
 package com.innowise.exception;
 
-import com.innowise.util.ExceptionConstant;
+import com.innowise.util.ExceptionMessage;
 
 import java.io.Serial;
 import java.io.Serializable;
@@ -11,7 +11,7 @@ public class UserNotFoundException extends RuntimeException implements Serializa
     private static final long serialVersionUID = 2L;
 
     public UserNotFoundException() {
-        super(ExceptionConstant.USER_NOT_FOUND);
+        super(ExceptionMessage.USER_NOT_FOUND.get());
     }
 
     public UserNotFoundException(String message) {

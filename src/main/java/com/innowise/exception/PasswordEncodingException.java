@@ -1,6 +1,6 @@
 package com.innowise.exception;
 
-import com.innowise.util.ExceptionConstant;
+import com.innowise.util.ExceptionMessage;
 
 import java.io.Serial;
 import java.io.Serializable;
@@ -14,7 +14,7 @@ public class PasswordEncodingException extends RuntimeException implements Seria
     private static final long serialVersionUID = 1L;
 
     public PasswordEncodingException() {
-        super(ExceptionConstant.PASSWORD_ENCODING);
+        super(ExceptionMessage.PASSWORD_ENCODING.get());
     }
 
     public PasswordEncodingException(String message) {

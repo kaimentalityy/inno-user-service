@@ -4,47 +4,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ad2c5a7c-644f-4864-a037-866b2e4f05c9" name="Changes" comment="added custom bcrypt, added service division(impl and interface), added custom exceptions, fixed package naming">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/innowise/exception/AccessDeniedCustomException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/innowise/exception/EntityAlreadyExistsException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/innowise/exception/GlobalExceptionHandler.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/innowise/exception/InvalidTokenException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/innowise/exception/PasswordEncodingException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/innowise/exception/PasswordVerificationException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/innowise/exception/UserNotFoundException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/innowise/model/dto/resp/ErrorDto.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/innowise/security/CustomPasswordEncoder.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/innowise/security/CustomSpringPasswordEncoder.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/innowise/security/PasswordHash.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/innowise/service/AuthService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/innowise/service/impl/AuthServiceImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/innowise/service/impl/RefreshTokenServiceImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/innowise/util/ExceptionConstant.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/db/changelog/005-insert-roles.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+    <list default="true" id="ad2c5a7c-644f-4864-a037-866b2e4f05c9" name="Changes" comment="fixed issues">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/innowise/config/DataInitializer.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/innowise/config/SecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/innowise/config/SecurityConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/innowise/controller/AuthController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/innowise/controller/AuthController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/innowise/controller/TestController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/innowise/data/entity/AuthUser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/innowise/model/entity/AuthUser.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/innowise/data/entity/RefreshToken.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/innowise/model/entity/RefreshToken.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/innowise/data/entity/Role.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/innowise/model/entity/Role.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/innowise/data/repository/RefreshTokenRepo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/innowise/repository/RefreshTokenRepo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/innowise/data/repository/RoleRepo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/innowise/repository/RoleRepo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/innowise/data/repository/UserRepo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/innowise/repository/UserRepo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/innowise/security/JwtAuthFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/innowise/security/JwtAuthFilter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/innowise/service/CustomUserDetailsService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/innowise/service/impl/CustomUserDetailsService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/innowise/service/RefreshTokenService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/innowise/service/RefreshTokenService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/innowise/util/JwtUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/innowise/util/JwtUtil.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/innowise/util/dto/resp/AuthResponseDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/innowise/model/dto/resp/AuthResponseDTO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/innowise/util/dto/rq/LoginRequestDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/innowise/model/dto/rq/AuthDto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/innowise/util/dto/rq/RegisterRequestDTO.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/application.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/db/changelog/002-create-refresh-token.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/db/changelog/002-create-refresh-token.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/db/changelog/db.changelog-master.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/db/changelog/changelog-master.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/liquibase.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/liquibase.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/innowise/exception/AccessDeniedCustomException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/innowise/exception/AccessDeniedCustomException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/innowise/exception/EntityAlreadyExistsException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/innowise/exception/EntityAlreadyExistsException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/innowise/exception/InvalidTokenException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/innowise/exception/InvalidTokenException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/innowise/exception/PasswordEncodingException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/innowise/exception/PasswordEncodingException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/innowise/exception/PasswordVerificationException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/innowise/exception/PasswordVerificationException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/innowise/exception/UserNotFoundException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/innowise/exception/UserNotFoundException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/innowise/util/ExceptionConstant.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/innowise/util/ExceptionConstant.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -341,6 +309,7 @@
       <workItem from="1759745813538" duration="7491000" />
       <workItem from="1759762128293" duration="20437000" />
       <workItem from="1759831634227" duration="2638000" />
+      <workItem from="1759853293659" duration="2911000" />
     </task>
     <task id="LOCAL-00001" summary="added caching with redis, added repo annotations, added missing methods and tests for them, corrected the EntityNotFoundException">
       <option name="closed" value="true" />

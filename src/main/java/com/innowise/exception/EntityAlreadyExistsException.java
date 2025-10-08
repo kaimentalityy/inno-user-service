@@ -1,6 +1,6 @@
 package com.innowise.exception;
 
-import com.innowise.util.ExceptionConstant;
+import com.innowise.util.ExceptionMessage;
 
 import java.io.Serial;
 import java.io.Serializable;
@@ -10,7 +10,7 @@ public class EntityAlreadyExistsException extends RuntimeException implements Se
     private static final long serialVersionUID = 4L;
 
     public EntityAlreadyExistsException() {
-        super(ExceptionConstant.ENTITY_ALREADY_EXISTS);
+        super(ExceptionMessage.ENTITY_ALREADY_EXISTS.get());
     }
 
     public EntityAlreadyExistsException(String message) {

@@ -1,6 +1,8 @@
 package com.innowise.exception;
 
-import com.innowise.util.ExceptionConstant;
+
+
+import com.innowise.util.ExceptionMessage;
 
 import java.io.Serial;
 import java.io.Serializable;
@@ -14,7 +16,7 @@ public class PasswordVerificationException extends RuntimeException implements S
     private static final long serialVersionUID = 2L;
 
     public PasswordVerificationException() {
-        super(ExceptionConstant.PASSWORD_VERIFICATION);
+        super(ExceptionMessage.PASSWORD_VERIFICATION.get());
     }
 
     public PasswordVerificationException(String message) {
