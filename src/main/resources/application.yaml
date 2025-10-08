@@ -1,0 +1,32 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/AuthService
+    username: postgres
+    password: 17052007
+    driver-class-name: org.postgresql.Driver
+
+  liquibase:
+    enabled: true
+    change-log: classpath:/db/changelog/changelog-master.xml
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    properties:
+      hibernate.format_sql: true
+
+jwt:
+  secret: MySuperSecretKeyForJWTMySuperSecretKeyForJWT
+  expiration: 3600000
+  header: Authorization
+  tokenPrefix: Bearer
+  rolePrefix: ROLE_
+
+password:
+  strength: 16
+  hash-algorithm: SHA-256
+  salt-algorithm: SHA1PRNG
+  salt-length: 16
+
+
