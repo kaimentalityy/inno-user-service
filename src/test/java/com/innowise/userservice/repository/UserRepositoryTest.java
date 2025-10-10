@@ -1,4 +1,4 @@
-package com.innowise.userservice.data;
+package com.innowise.userservice.repository;
 
 import com.innowise.userservice.BaseIntegrationTest;
 import com.innowise.userservice.model.entity.User;

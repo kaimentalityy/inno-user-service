@@ -3,7 +3,7 @@ package com.innowise.userservice.repository.specification;
 import com.innowise.userservice.model.entity.CardInfo;
 import org.springframework.data.jpa.domain.Specification;
 
-public class CardInfoSpecifications {
+public class CardInfoSpecification {
 
     public static Specification<CardInfo> hasUserId(Long userId) {
         return (root, query, cb) -> cb.equal(root.get("user").get("id"), userId);

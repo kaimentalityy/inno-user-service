@@ -1,13 +1,13 @@
 package com.innowise.userservice.service.impl;
 
-import com.innowise.userservice.exceptions.notfound.EntityNotFoundException;
+import com.innowise.userservice.exception.EntityNotFoundException;
 import com.innowise.userservice.mapper.UserMapper;
 import com.innowise.userservice.model.dto.UserDto;
 import com.innowise.userservice.model.entity.User;
 import com.innowise.userservice.repository.dao.UserRepository;
-import com.innowise.userservice.repository.specification.UserSpecifications;
+import com.innowise.userservice.repository.specification.UserSpecification;
 import com.innowise.userservice.service.UserServiceInterface;
-import jakarta.transaction.Transactional;
+
 import lombok.RequiredArgsConstructor;
 import org.springframework.cache.annotation.CacheConfig;
 import org.springframework.cache.annotation.CacheEvict;
@@ -17,6 +17,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -59,7 +60,6 @@ public class UserService implements UserServiceInterface {
     }
 
     @Override
-    @Transactional
     @Cacheable(key = "#id")
     public UserDto findById(Long id) {
         User user = userRepository.findById(id)
@@ -67,7 +67,7 @@ public class UserService implements UserServiceInterface {
         return userMapper.toUserDto(user);
     }
 
-    @Transactional
+    @Override
     public List<UserDto> findByIds(List<Long> ids) {
         return userRepository.findAllById(ids)
                 .stream()
@@ -75,19 +75,19 @@ public class UserService implements UserServiceInterface {
                 .toList();
     }
 
-    @Transactional
+    @Override
     public UserDto findByEmail(String email) {
         User user = userRepository.findByEmail(email)
                 .orElseThrow(() -> new EntityNotFoundException("User", "email", email));
         return userMapper.toUserDto(user);
     }
 
-    @Transactional
+    @Override
     public Page<UserDto> searchUsers(String name, String surname, String email, Pageable pageable) {
         Specification<User> spec = Specification.where(null);
-        if (name != null) spec = spec.and(UserSpecifications.hasName(name));
-        if (surname != null) spec = spec.and(UserSpecifications.hasSurname(surname));
-        if (email != null) spec = spec.and(UserSpecifications.hasEmail(email));
+        if (name != null) spec = spec.and(UserSpecification.hasName(name));
+        if (surname != null) spec = spec.and(UserSpecification.hasSurname(surname));
+        if (email != null) spec = spec.and(UserSpecification.hasEmail(email));
         return userRepository.findAll(spec, pageable).map(userMapper::toUserDto);
     }
 }

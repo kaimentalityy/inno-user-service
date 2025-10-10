@@ -1,13 +1,13 @@
 package com.innowise.userservice.service.impl;
 
-import com.innowise.userservice.exceptions.notfound.EntityNotFoundException;
+import com.innowise.userservice.exception.EntityNotFoundException;
 import com.innowise.userservice.mapper.CardInfoMapper;
 import com.innowise.userservice.model.dto.CardInfoDto;
 import com.innowise.userservice.model.entity.CardInfo;
 import com.innowise.userservice.model.entity.User;
 import com.innowise.userservice.repository.dao.CardInfoRepository;
 import com.innowise.userservice.repository.dao.UserRepository;
-import com.innowise.userservice.repository.specification.CardInfoSpecifications;
+import com.innowise.userservice.repository.specification.CardInfoSpecification;
 import com.innowise.userservice.service.CardInfoServiceInterface;
 import lombok.RequiredArgsConstructor;
 import org.springframework.cache.annotation.CacheConfig;
@@ -63,7 +63,6 @@ public class CardInfoService implements CardInfoServiceInterface {
     }
 
     @Override
-    @Transactional
     @Cacheable(key = "#id")
     public CardInfoDto findById(Long id) {
         CardInfo card = cardInfoRepository.findById(id)
@@ -71,7 +70,7 @@ public class CardInfoService implements CardInfoServiceInterface {
         return cardInfoMapper.toDto(card);
     }
 
-    @Transactional
+    @Override
     public List<CardInfoDto> findByIds(List<Long> ids) {
         return cardInfoRepository.findAllById(ids)
                 .stream()
@@ -79,12 +78,12 @@ public class CardInfoService implements CardInfoServiceInterface {
                 .toList();
     }
 
-    @Transactional
+    @Override
     public Page<CardInfoDto> searchCards(Long userId, String cardNumber, String cardHolder, Pageable pageable) {
         Specification<CardInfo> spec = Specification.where(null);
-        if (userId != null) spec = spec.and(CardInfoSpecifications.hasUserId(userId));
-        if (cardNumber != null) spec = spec.and(CardInfoSpecifications.hasCardNumber(cardNumber));
-        if (cardHolder != null) spec = spec.and(CardInfoSpecifications.hasCardHolder(cardHolder));
+        if (userId != null) spec = spec.and(CardInfoSpecification.hasUserId(userId));
+        if (cardNumber != null) spec = spec.and(CardInfoSpecification.hasCardNumber(cardNumber));
+        if (cardHolder != null) spec = spec.and(CardInfoSpecification.hasCardHolder(cardHolder));
         return cardInfoRepository.findAll(spec, pageable).map(cardInfoMapper::toDto);
     }
 

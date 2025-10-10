@@ -1,7 +1,7 @@
 package com.innowise.userservice.service;
 
 import com.innowise.userservice.BaseIntegrationTest;
-import com.innowise.userservice.exceptions.notfound.EntityNotFoundException;
+import com.innowise.userservice.exception.EntityNotFoundException;
 import com.innowise.userservice.model.dto.CardInfoDto;
 import com.innowise.userservice.model.entity.CardInfo;
 import com.innowise.userservice.model.entity.User;
