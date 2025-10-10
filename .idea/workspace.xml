@@ -1,0 +1,839 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="ad2c5a7c-644f-4864-a037-866b2e4f05c9" name="Changes" comment="fixed exceptions issues">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/innowise/userservice/exception/AccessDeniedCustomException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/innowise/userservice/exception/ApplicationException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/innowise/userservice/exception/EntityAlreadyExistsException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/innowise/userservice/exception/EntityNotFoundException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/innowise/userservice/exception/ErrorMessage.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/innowise/userservice/exception/InvalidRequestException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/innowise/userservice/controller/CardInfoController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/innowise/userservice/controller/CardInfoController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/innowise/userservice/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/innowise/userservice/controller/UserController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/innowise/userservice/exceptions/GlobalExceptionHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/innowise/userservice/exception/GlobalExceptionHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/innowise/userservice/exceptions/badrequest/CustomBadRequestException.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/innowise/userservice/exceptions/badrequest/CustomConstraintViolationException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/innowise/userservice/exception/CustomConstraintViolationException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/innowise/userservice/exceptions/conflict/CustomConflictException.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/innowise/userservice/exceptions/conflict/EntityAlreadyExistsException.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/innowise/userservice/exceptions/notfound/CustomNotFoundException.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/innowise/userservice/exceptions/notfound/EntityNotFoundException.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/innowise/userservice/model/dto/ErrorDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/innowise/userservice/model/dto/ErrorDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/innowise/userservice/repository/specification/CardInfoSpecifications.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/innowise/userservice/repository/specification/CardInfoSpecification.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/innowise/userservice/repository/specification/UserSpecifications.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/innowise/userservice/repository/specification/UserSpecification.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/innowise/userservice/service/impl/CardInfoService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/innowise/userservice/service/impl/CardInfoService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/innowise/userservice/service/impl/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/innowise/userservice/service/impl/UserService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/innowise/userservice/data/CardInfoRepositoryTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/innowise/userservice/repository/CardInfoRepositoryTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/innowise/userservice/data/UserRepositoryTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/innowise/userservice/repository/UserRepositoryTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/innowise/userservice/exceptions/CustomExceptionsTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/innowise/userservice/exception/CustomExceptionsTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/innowise/userservice/handler/GlobalExceptionHandlerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/innowise/userservice/handler/GlobalExceptionHandlerTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/innowise/userservice/service/CardInfoServiceIntegrationTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/innowise/userservice/service/CardInfoServiceIntegrationTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/innowise/userservice/service/CardInfoServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/innowise/userservice/service/CardInfoServiceTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/innowise/userservice/service/UserServiceIntegrationTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/innowise/userservice/service/UserServiceIntegrationTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/innowise/userservice/service/UserServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/innowise/userservice/service/UserServiceTest.java" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Interface" />
+        <option value="Class" />
+        <option value="Dockerfile" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="tasks/AUTH-0" />
+      </map>
+    </option>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;kaimentalityy&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/kaimentalityy/inno-user-service.git&quot;,
+    &quot;accountId&quot;: &quot;28ac52c3-b5fd-4011-94ab-73d19a5d6ed2&quot;
+  }
+}</component>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="workOffline" value="true" />
+      </MavenGeneralSettings>
+    </option>
+  </component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="CurrentFile" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 7
+}</component>
+  <component name="ProjectId" id="32PvWSgBg6fq8xvArRrPL3XoElZ" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.UserServiceApp.executor": "Run",
+    "Docker.Unnamed.executor": "Run",
+    "Docker.docker-compose.yaml.redis: Compose Deployment.executor": "Run",
+    "Docker.docker-compose.yaml: Compose Deployment.executor": "Run",
+    "JUnit.CardInfoServiceIntegrationTest.executor": "Coverage",
+    "Maven.InnoUserService [-Dtest=CardInfoControllerTest...].executor": "Run",
+    "Maven.InnoUserService [-Dtest=CardInfoRepositoryTest...].executor": "Run",
+    "Maven.InnoUserService [-Dtest=CardInfoServiceIntegrationTest...].executor": "Run",
+    "Maven.InnoUserService [-Dtest=CardInfoServiceTest...].executor": "Run",
+    "Maven.InnoUserService [-Dtest=UserControllerTest...].executor": "Run",
+    "Maven.InnoUserService [-Dtest=UserServiceIntegrationTest#testCreateUser...].executor": "Run",
+    "Maven.InnoUserService [-Dtest=UserServiceIntegrationTest...].executor": "Run",
+    "Maven.InnoUserService [-Dtest=UserServiceTest...].executor": "Run",
+    "Maven.InnoUserService [clean,install,-U].executor": "Run",
+    "Maven.InnoUserService [clean,install].executor": "Run",
+    "Maven.InnoUserService [clean,package...].executor": "Run",
+    "Maven.InnoUserService [clean,test...].executor": "Run",
+    "Maven.InnoUserService [clean,test].executor": "Run",
+    "Maven.InnoUserService [clean,verify,-U].executor": "Run",
+    "Maven.InnoUserService [clean,verify...].executor": "Run",
+    "Maven.InnoUserService [clean,verify].executor": "Run",
+    "Maven.InnoUserService [clean].executor": "Run",
+    "Maven.InnoUserService [install].executor": "Run",
+    "Maven.InnoUserService [jacoco:report].executor": "Run",
+    "Maven.InnoUserService [liquibase...].executor": "Run",
+    "Maven.InnoUserService [liquibase:clearCheckSums].executor": "Run",
+    "Maven.InnoUserService [liquibase:dropAll...].executor": "Run",
+    "Maven.InnoUserService [liquibase:dropAll].executor": "Run",
+    "Maven.InnoUserService [liquibase:update,-Pci].executor": "Run",
+    "Maven.InnoUserService [liquibase:update...].executor": "Run",
+    "Maven.InnoUserService [liquibase:update].executor": "Run",
+    "Maven.InnoUserService [org.sonarsource.scanner.maven:sonar-maven-plugin:4.1.0.2302:help...].executor": "Run",
+    "Maven.InnoUserService [sonar:sonar].executor": "Run",
+    "Maven.InnoUserService [spring-boot:run,--debug].executor": "Run",
+    "Maven.InnoUserService [spring-boot:run...].executor": "Run",
+    "Maven.InnoUserService [spring-boot:run].executor": "Run",
+    "Maven.InnoUserService [test...].executor": "Run",
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "RequestMappingsPanelOrder0": "0",
+    "RequestMappingsPanelOrder1": "1",
+    "RequestMappingsPanelWidth0": "75",
+    "RequestMappingsPanelWidth1": "75",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "Spring Boot.UserServiceApp (1).executor": "Run",
+    "Spring Boot.UserServiceApp.executor": "Run",
+    "git-widget-placeholder": "tasks/USR-0",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "/home/kai/IdeaProjects/InnoUserService",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "onboarding.tips.debug.path": "/home/kai/IdeaProjects/InnoUserService/src/main/java/org/example/Main.java",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.0",
+    "run.configurations.included.in.services": "true",
+    "settings.editor.selected.configurable": "preferences.pluginManager",
+    "vue.rearranger.settings.migration": "true"
+  },
+  "keyToStringList": {
+    "DatabaseDriversLRU": [
+      "postgresql"
+    ]
+  }
+}]]></component>
+  <component name="ReactorSettings">
+    <option name="notificationShown" value="true" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/.github/workflows" />
+      <recent name="$PROJECT_DIR$" />
+      <recent name="$PROJECT_DIR$/src/main/resources" />
+      <recent name="$PROJECT_DIR$/src/main/resources/db/changelog/changes" />
+      <recent name="$PROJECT_DIR$/src/main/java" />
+    </key>
+    <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="com.innowise.userservice.exception" />
+      <recent name="com.innowise.userservice.service" />
+      <recent name="com.innowise.userservice.data" />
+      <recent name="servertest" />
+      <recent name="servertest.business.service" />
+    </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="server.config" />
+    </key>
+  </component>
+  <component name="RunAnythingCache">
+    <option name="myCommands">
+      <command value="mvn liquibase clearCheckSums" />
+      <command value="mvn liquibase:clearCheckSums" />
+      <command value="mvn liquibase:dropAll -Dliquibase.propertyFile=liquibase.properties " />
+      <command value="mvn liquibase:update -Dliquibase.propertyFile=liquibase.properties " />
+      <command value="mvn test -Dspring.profiles.active=test " />
+      <command value="mvn -Dtest=UserServiceIntegrationTest#testCreateUser test " />
+      <command value="mvn -Dtest=CardInfoServiceIntegrationTest test" />
+      <command value="mvn -Dtest=CardInfoRepositoryTest test" />
+      <command value="mvn clean install -U" />
+      <command value="mvn -Dtest=UserServiceTest test" />
+      <command value="mvn -Dtest=UserControllerTest test" />
+      <command value="mvn -Dtest=CardInfoServiceTest test" />
+      <command value="mvn -Dtest=CardInfoControllerTest test" />
+      <command value="mvn -Dtest=UserServiceIntegrationTest test " />
+      <command value="mvn clean" />
+      <command value="mvn org.sonarsource.scanner.maven:sonar-maven-plugin:4.1.0.2302:help -U " />
+      <command value="mvn clean verify -U " />
+      <command value="mvn liquibase:update -Pci " />
+      <command value="mvn install" />
+      <command value="mvn clean package -DskipTests " />
+      <command value="mvn clean test" />
+      <command value="mvn jacoco:report " />
+      <command value="mvn liquibase:clearCheckSums " />
+      <command value="mvn liquibase:update" />
+      <command value="mvn sonar:sonar " />
+      <command value="mvn clean verify sonar:sonar \     -Dsonar.projectKey=InnoUserService \     -Dsonar.host.url=http://localhost:9000 \     -Dsonar.token=squ_f4e5dd6952dbea4f72bbe872638f0631bb22b6d7" />
+      <command value="mvn clean verify sonar:sonar \   -Dsonar.projectKey=InnoUserService \   -Dsonar.host.url=http://localhost:9000 \   -Dsonar.token=squ_f4e5dd6952dbea4f72bbe872638f0631bb22b6d7 \   -Dsonar.java.coveragePlugin=jacoco \   -Dsonar.coverage.jacoco.xmlReportPaths=target/jacoco-report/jacoco.xml " />
+      <command value="mvn clean verify sonar:sonar \   -Dsonar.projectKey=InnoUserService \   -Dsonar.host.url=http://localhost:9000 \   -Dsonar.token=squ_f4e5dd6952dbea4f72bbe872638f0631bb22b6d7 " />
+      <command value="mvn clean verify sonar:sonar -Dsonar.projectKey=InnoUserService -Dsonar.host.url=http://localhost:9000 -Dsonar.token=squ_f4e5dd6952dbea4f72bbe872638f0631bb22b6d7 " />
+      <command value="mvn clean verify sonar:sonar \   -Dsonar.projectKey=InnoUserService \   -Dsonar.host.url=http://localhost:9000 \   -Dsonar.token=squ_f4e5dd6952dbea4f72bbe872638f0631bb22b6d7 \   -Dsonar.branch.name=tasks/USR-0 " />
+      <command value="git checkout tasks/USR-0 mvn clean verify sonar:sonar \   -Dsonar.projectKey=InnoUserService \   -Dsonar.host.url=http://localhost:9000 \   -Dsonar.token=squ_f4e5dd6952dbea4f72bbe872638f0631bb22b6d7 " />
+      <command value="mvn clean verify sonar:sonar \   -Dsonar.projectKey=InnoUserService \   -Dsonar.host.url=http://localhost:9000 \   -Dsonar.token=squ_f4e5dd6952dbea4f72bbe872638f0631bb22b6d7" />
+      <command value="mvn liquibase:dropAll" />
+      <command value="mvn clean install" />
+      <command value="mvn spring-boot:run --debug" />
+      <command value="load_env" />
+      <command value="mvn spring-boot:run -Dspring-boot.run.arguments=&quot;--debug&quot; " />
+      <command value="mvn spring-boot:run" />
+      <command value="mvn spring-boot:run -Dspring-boot.run.profiles=local" />
+      <command value="mvn clean test jacoco:report " />
+      <command value="mvn clean verify " />
+    </option>
+  </component>
+  <component name="RunDashboard">
+    <option name="configurationTypes">
+      <set>
+        <option value="KtorApplicationConfigurationType" />
+        <option value="MicronautRunConfigurationType" />
+        <option value="QuarkusRunConfigurationType" />
+        <option value="SpringBootApplicationConfigurationType" />
+      </set>
+    </option>
+    <option name="configurationStatuses">
+      <map>
+        <entry key="SpringBootApplicationConfigurationType">
+          <value>
+            <map>
+              <entry key="UserServiceApp" value="FAILED" />
+            </map>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="RunManager" selected="Spring Boot.UserServiceApp">
+    <configuration name="CardInfoServiceIntegrationTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="InnoUserService" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.innowise.userservice.service.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <extension name="net.ashald.envfile">
+        <option name="IS_ENABLED" value="false" />
+        <option name="IS_SUBST" value="false" />
+        <option name="IS_PATH_MACRO_SUPPORTED" value="false" />
+        <option name="IS_IGNORE_MISSING_FILES" value="false" />
+        <option name="IS_ENABLE_EXPERIMENTAL_INTEGRATIONS" value="false" />
+        <ENTRIES>
+          <ENTRY IS_ENABLED="true" PARSER="runconfig" IS_EXECUTABLE="false" />
+        </ENTRIES>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.innowise.userservice.service" />
+      <option name="MAIN_CLASS_NAME" value="com.innowise.userservice.service.CardInfoServiceIntegrationTest" />
+      <option name="METHOD_NAME" value="" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="OrderApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <module name="InnoUserService" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.innowise.orderservice.OrderApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="UserServiceApp" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <option name="ACTIVE_PROFILES" value="local" />
+      <module name="InnoUserService" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.innowise.userservice.UserServiceApp" />
+      <extension name="net.ashald.envfile">
+        <option name="IS_ENABLED" value="false" />
+        <option name="IS_SUBST" value="false" />
+        <option name="IS_PATH_MACRO_SUPPORTED" value="false" />
+        <option name="IS_IGNORE_MISSING_FILES" value="false" />
+        <option name="IS_ENABLE_EXPERIMENTAL_INTEGRATIONS" value="false" />
+        <ENTRIES>
+          <ENTRY IS_ENABLED="true" PARSER="runconfig" IS_EXECUTABLE="false" />
+        </ENTRIES>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Unnamed" type="docker-deploy" factoryName="dockerfile" server-name="Docker">
+      <deployment type="dockerfile">
+        <settings>
+          <option name="containerName" value="user_service_app" />
+          <option name="sourceFilePath" value="Dockerfile" />
+        </settings>
+      </deployment>
+      <method v="2" />
+    </configuration>
+    <configuration name="UserDocker" type="docker-deploy" factoryName="docker-compose.yml" server-name="Docker">
+      <deployment type="docker-compose.yml">
+        <settings>
+          <option name="sourceFilePath" value="docker-compose.yaml" />
+        </settings>
+      </deployment>
+      <method v="2" />
+    </configuration>
+    <configuration default="true" type="docker-deploy" factoryName="docker-compose.yml" temporary="true">
+      <deployment type="docker-compose.yml">
+        <settings />
+      </deployment>
+      <method v="2" />
+    </configuration>
+    <configuration default="true" type="docker-deploy" factoryName="dockerfile" temporary="true">
+      <deployment type="dockerfile">
+        <settings />
+      </deployment>
+      <method v="2" />
+    </configuration>
+    <configuration name="docker-compose.yaml.redis: Compose Deployment" type="docker-deploy" factoryName="docker-compose.yml" temporary="true" server-name="Docker">
+      <deployment type="docker-compose.yml">
+        <settings>
+          <option name="services">
+            <list>
+              <option value="redis" />
+            </list>
+          </option>
+          <option name="sourceFilePath" value="docker-compose.yaml" />
+        </settings>
+      </deployment>
+      <method v="2" />
+    </configuration>
+    <list>
+      <item itemvalue="Docker.UserDocker" />
+      <item itemvalue="Docker.Unnamed" />
+      <item itemvalue="Docker.docker-compose.yaml.redis: Compose Deployment" />
+      <item itemvalue="JUnit.CardInfoServiceIntegrationTest" />
+      <item itemvalue="Spring Boot.OrderApplication" />
+      <item itemvalue="Spring Boot.UserServiceApp" />
+    </list>
+    <recent_temporary>
+      <list>
+        <item itemvalue="JUnit.CardInfoServiceIntegrationTest" />
+        <item itemvalue="Docker.docker-compose.yaml.redis: Compose Deployment" />
+        <item itemvalue="Docker.docker-compose.yaml.redis: Compose Deployment" />
+        <item itemvalue="JUnit.CardInfoServiceIntegrationTest" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-jdk-9823dce3aa75-bf35d07a577b-intellij.indexing.shared.core-IU-252.26830.84" />
+        <option value="bundled-js-predefined-d6986cc7102b-3aa1da707db6-JavaScript-IU-252.26830.84" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="ad2c5a7c-644f-4864-a037-866b2e4f05c9" name="Changes" comment="" />
+      <created>1757335055903</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1757335055903</updated>
+      <workItem from="1757335056991" duration="10541000" />
+      <workItem from="1757356435500" duration="9282000" />
+      <workItem from="1757422157175" duration="13827000" />
+      <workItem from="1757502146864" duration="35000" />
+      <workItem from="1757592001144" duration="19394000" />
+      <workItem from="1757674457399" duration="7111000" />
+      <workItem from="1757703628505" duration="2361000" />
+      <workItem from="1757766045606" duration="24038000" />
+      <workItem from="1757859696546" duration="2619000" />
+      <workItem from="1757878029747" duration="331000" />
+      <workItem from="1758975680958" duration="8986000" />
+      <workItem from="1759004304703" duration="6130000" />
+      <workItem from="1759061469668" duration="6224000" />
+      <workItem from="1759068015578" duration="1534000" />
+      <workItem from="1759083298645" duration="8806000" />
+      <workItem from="1759129404680" duration="273000" />
+      <workItem from="1759394532644" duration="2335000" />
+      <workItem from="1759413946404" duration="3984000" />
+      <workItem from="1759420183071" duration="9575000" />
+      <workItem from="1759494702955" duration="9806000" />
+      <workItem from="1759508535098" duration="4243000" />
+      <workItem from="1759523107665" duration="1871000" />
+      <workItem from="1759571744229" duration="32478000" />
+      <workItem from="1759617342243" duration="1856000" />
+      <workItem from="1759662448322" duration="10039000" />
+      <workItem from="1760001527205" duration="2191000" />
+      <workItem from="1760015708635" duration="10272000" />
+    </task>
+    <task id="LOCAL-00032" summary="fixed localhost and ci">
+      <option name="closed" value="true" />
+      <created>1757860391395</created>
+      <option name="number" value="00032" />
+      <option name="presentableId" value="LOCAL-00032" />
+      <option name="project" value="LOCAL" />
+      <updated>1757860391395</updated>
+    </task>
+    <task id="LOCAL-00033" summary="fixed localhost and ci">
+      <option name="closed" value="true" />
+      <created>1757861787981</created>
+      <option name="number" value="00033" />
+      <option name="presentableId" value="LOCAL-00033" />
+      <option name="project" value="LOCAL" />
+      <updated>1757861787981</updated>
+    </task>
+    <task id="LOCAL-00034" summary="fixed localhost and ci">
+      <option name="closed" value="true" />
+      <created>1757861946081</created>
+      <option name="number" value="00034" />
+      <option name="presentableId" value="LOCAL-00034" />
+      <option name="project" value="LOCAL" />
+      <updated>1757861946081</updated>
+    </task>
+    <task id="LOCAL-00035" summary="fixed localhost and ci">
+      <option name="closed" value="true" />
+      <created>1757862163027</created>
+      <option name="number" value="00035" />
+      <option name="presentableId" value="LOCAL-00035" />
+      <option name="project" value="LOCAL" />
+      <updated>1757862163027</updated>
+    </task>
+    <task id="LOCAL-00036" summary="fixed localhost and ci">
+      <option name="closed" value="true" />
+      <created>1757865527241</created>
+      <option name="number" value="00036" />
+      <option name="presentableId" value="LOCAL-00036" />
+      <option name="project" value="LOCAL" />
+      <updated>1757865527241</updated>
+    </task>
+    <task id="LOCAL-00037" summary="fixed localhost and ci">
+      <option name="closed" value="true" />
+      <created>1757865604129</created>
+      <option name="number" value="00037" />
+      <option name="presentableId" value="LOCAL-00037" />
+      <option name="project" value="LOCAL" />
+      <updated>1757865604129</updated>
+    </task>
+    <task id="LOCAL-00038" summary="fixed localhost and ci">
+      <option name="closed" value="true" />
+      <created>1757865728626</created>
+      <option name="number" value="00038" />
+      <option name="presentableId" value="LOCAL-00038" />
+      <option name="project" value="LOCAL" />
+      <updated>1757865728627</updated>
+    </task>
+    <task id="LOCAL-00039" summary="fixed localhost and ci">
+      <option name="closed" value="true" />
+      <created>1757866031738</created>
+      <option name="number" value="00039" />
+      <option name="presentableId" value="LOCAL-00039" />
+      <option name="project" value="LOCAL" />
+      <updated>1757866031738</updated>
+    </task>
+    <task id="LOCAL-00040" summary="fixed localhost and ci">
+      <option name="closed" value="true" />
+      <created>1757866341196</created>
+      <option name="number" value="00040" />
+      <option name="presentableId" value="LOCAL-00040" />
+      <option name="project" value="LOCAL" />
+      <updated>1757866341196</updated>
+    </task>
+    <task id="LOCAL-00041" summary="fixed localhost and ci">
+      <option name="closed" value="true" />
+      <created>1757866870715</created>
+      <option name="number" value="00041" />
+      <option name="presentableId" value="LOCAL-00041" />
+      <option name="project" value="LOCAL" />
+      <updated>1757866870715</updated>
+    </task>
+    <task id="LOCAL-00042" summary="fixed localhost and ci">
+      <option name="closed" value="true" />
+      <created>1757867342483</created>
+      <option name="number" value="00042" />
+      <option name="presentableId" value="LOCAL-00042" />
+      <option name="project" value="LOCAL" />
+      <updated>1757867342483</updated>
+    </task>
+    <task id="LOCAL-00043" summary="fixed issues">
+      <option name="closed" value="true" />
+      <created>1759506481212</created>
+      <option name="number" value="00043" />
+      <option name="presentableId" value="LOCAL-00043" />
+      <option name="project" value="LOCAL" />
+      <updated>1759506481212</updated>
+    </task>
+    <task id="LOCAL-00044" summary="fixed issues">
+      <option name="closed" value="true" />
+      <created>1759506498409</created>
+      <option name="number" value="00044" />
+      <option name="presentableId" value="LOCAL-00044" />
+      <option name="project" value="LOCAL" />
+      <updated>1759506498409</updated>
+    </task>
+    <task id="LOCAL-00045" summary="fixed ci">
+      <option name="closed" value="true" />
+      <created>1759507392884</created>
+      <option name="number" value="00045" />
+      <option name="presentableId" value="LOCAL-00045" />
+      <option name="project" value="LOCAL" />
+      <updated>1759507392884</updated>
+    </task>
+    <task id="LOCAL-00046" summary="fixed ci and local run">
+      <option name="closed" value="true" />
+      <created>1759531459117</created>
+      <option name="number" value="00046" />
+      <option name="presentableId" value="LOCAL-00046" />
+      <option name="project" value="LOCAL" />
+      <updated>1759531459117</updated>
+    </task>
+    <task id="LOCAL-00047" summary="fixed ci and local run">
+      <option name="closed" value="true" />
+      <created>1759532246285</created>
+      <option name="number" value="00047" />
+      <option name="presentableId" value="LOCAL-00047" />
+      <option name="project" value="LOCAL" />
+      <updated>1759532246285</updated>
+    </task>
+    <task id="LOCAL-00048" summary="fixed ci and local run">
+      <option name="closed" value="true" />
+      <created>1759533827635</created>
+      <option name="number" value="00048" />
+      <option name="presentableId" value="LOCAL-00048" />
+      <option name="project" value="LOCAL" />
+      <updated>1759533827635</updated>
+    </task>
+    <task id="LOCAL-00049" summary="fixed ci and local run">
+      <option name="closed" value="true" />
+      <created>1759536099333</created>
+      <option name="number" value="00049" />
+      <option name="presentableId" value="LOCAL-00049" />
+      <option name="project" value="LOCAL" />
+      <updated>1759536099333</updated>
+    </task>
+    <task id="LOCAL-00050" summary="fixed ci and local run">
+      <option name="closed" value="true" />
+      <created>1759536222029</created>
+      <option name="number" value="00050" />
+      <option name="presentableId" value="LOCAL-00050" />
+      <option name="project" value="LOCAL" />
+      <updated>1759536222030</updated>
+    </task>
+    <task id="LOCAL-00051" summary="ci fix">
+      <option name="closed" value="true" />
+      <created>1759596289412</created>
+      <option name="number" value="00051" />
+      <option name="presentableId" value="LOCAL-00051" />
+      <option name="project" value="LOCAL" />
+      <updated>1759596289412</updated>
+    </task>
+    <task id="LOCAL-00052" summary="ci fix">
+      <option name="closed" value="true" />
+      <created>1759596322328</created>
+      <option name="number" value="00052" />
+      <option name="presentableId" value="LOCAL-00052" />
+      <option name="project" value="LOCAL" />
+      <updated>1759596322328</updated>
+    </task>
+    <task id="LOCAL-00053" summary="ci fix">
+      <option name="closed" value="true" />
+      <created>1759597486442</created>
+      <option name="number" value="00053" />
+      <option name="presentableId" value="LOCAL-00053" />
+      <option name="project" value="LOCAL" />
+      <updated>1759597486443</updated>
+    </task>
+    <task id="LOCAL-00054" summary="ci fix">
+      <option name="closed" value="true" />
+      <created>1759597613703</created>
+      <option name="number" value="00054" />
+      <option name="presentableId" value="LOCAL-00054" />
+      <option name="project" value="LOCAL" />
+      <updated>1759597613703</updated>
+    </task>
+    <task id="LOCAL-00055" summary="ci fix">
+      <option name="closed" value="true" />
+      <created>1759597798603</created>
+      <option name="number" value="00055" />
+      <option name="presentableId" value="LOCAL-00055" />
+      <option name="project" value="LOCAL" />
+      <updated>1759597798604</updated>
+    </task>
+    <task id="LOCAL-00056" summary="ci fix">
+      <option name="closed" value="true" />
+      <created>1759598448520</created>
+      <option name="number" value="00056" />
+      <option name="presentableId" value="LOCAL-00056" />
+      <option name="project" value="LOCAL" />
+      <updated>1759598448520</updated>
+    </task>
+    <task id="LOCAL-00057" summary="ci fix">
+      <option name="closed" value="true" />
+      <created>1759598610798</created>
+      <option name="number" value="00057" />
+      <option name="presentableId" value="LOCAL-00057" />
+      <option name="project" value="LOCAL" />
+      <updated>1759598610798</updated>
+    </task>
+    <task id="LOCAL-00058" summary="ci fix">
+      <option name="closed" value="true" />
+      <created>1759598748202</created>
+      <option name="number" value="00058" />
+      <option name="presentableId" value="LOCAL-00058" />
+      <option name="project" value="LOCAL" />
+      <updated>1759598748202</updated>
+    </task>
+    <task id="LOCAL-00059" summary="ci fix">
+      <option name="closed" value="true" />
+      <created>1759598895396</created>
+      <option name="number" value="00059" />
+      <option name="presentableId" value="LOCAL-00059" />
+      <option name="project" value="LOCAL" />
+      <updated>1759598895396</updated>
+    </task>
+    <task id="LOCAL-00060" summary="ci fix">
+      <option name="closed" value="true" />
+      <created>1759598953148</created>
+      <option name="number" value="00060" />
+      <option name="presentableId" value="LOCAL-00060" />
+      <option name="project" value="LOCAL" />
+      <updated>1759598953148</updated>
+    </task>
+    <task id="LOCAL-00061" summary="ci fix">
+      <option name="closed" value="true" />
+      <created>1759599131439</created>
+      <option name="number" value="00061" />
+      <option name="presentableId" value="LOCAL-00061" />
+      <option name="project" value="LOCAL" />
+      <updated>1759599131439</updated>
+    </task>
+    <task id="LOCAL-00062" summary="ci fix">
+      <option name="closed" value="true" />
+      <created>1759600428889</created>
+      <option name="number" value="00062" />
+      <option name="presentableId" value="LOCAL-00062" />
+      <option name="project" value="LOCAL" />
+      <updated>1759600428889</updated>
+    </task>
+    <task id="LOCAL-00063" summary="ci fix">
+      <option name="closed" value="true" />
+      <created>1759600706726</created>
+      <option name="number" value="00063" />
+      <option name="presentableId" value="LOCAL-00063" />
+      <option name="project" value="LOCAL" />
+      <updated>1759600706726</updated>
+    </task>
+    <task id="LOCAL-00064" summary="ci fix">
+      <option name="closed" value="true" />
+      <created>1759602792986</created>
+      <option name="number" value="00064" />
+      <option name="presentableId" value="LOCAL-00064" />
+      <option name="project" value="LOCAL" />
+      <updated>1759602792986</updated>
+    </task>
+    <task id="LOCAL-00065" summary="ci fix">
+      <option name="closed" value="true" />
+      <created>1759602902819</created>
+      <option name="number" value="00065" />
+      <option name="presentableId" value="LOCAL-00065" />
+      <option name="project" value="LOCAL" />
+      <updated>1759602902819</updated>
+    </task>
+    <task id="LOCAL-00066" summary="ci fix">
+      <option name="closed" value="true" />
+      <created>1759603015193</created>
+      <option name="number" value="00066" />
+      <option name="presentableId" value="LOCAL-00066" />
+      <option name="project" value="LOCAL" />
+      <updated>1759603015193</updated>
+    </task>
+    <task id="LOCAL-00067" summary="ci fix">
+      <option name="closed" value="true" />
+      <created>1759604811864</created>
+      <option name="number" value="00067" />
+      <option name="presentableId" value="LOCAL-00067" />
+      <option name="project" value="LOCAL" />
+      <updated>1759604811864</updated>
+    </task>
+    <task id="LOCAL-00068" summary="ci fix">
+      <option name="closed" value="true" />
+      <created>1759605031080</created>
+      <option name="number" value="00068" />
+      <option name="presentableId" value="LOCAL-00068" />
+      <option name="project" value="LOCAL" />
+      <updated>1759605031080</updated>
+    </task>
+    <task id="LOCAL-00069" summary="ci fix">
+      <option name="closed" value="true" />
+      <created>1759607179195</created>
+      <option name="number" value="00069" />
+      <option name="presentableId" value="LOCAL-00069" />
+      <option name="project" value="LOCAL" />
+      <updated>1759607179195</updated>
+    </task>
+    <task id="LOCAL-00070" summary="ci fix">
+      <option name="closed" value="true" />
+      <created>1759608486373</created>
+      <option name="number" value="00070" />
+      <option name="presentableId" value="LOCAL-00070" />
+      <option name="project" value="LOCAL" />
+      <updated>1759608486373</updated>
+    </task>
+    <task id="LOCAL-00071" summary="ci fix">
+      <option name="closed" value="true" />
+      <created>1759608753313</created>
+      <option name="number" value="00071" />
+      <option name="presentableId" value="LOCAL-00071" />
+      <option name="project" value="LOCAL" />
+      <updated>1759608753313</updated>
+    </task>
+    <task id="LOCAL-00072" summary="ci fix">
+      <option name="closed" value="true" />
+      <created>1759609490574</created>
+      <option name="number" value="00072" />
+      <option name="presentableId" value="LOCAL-00072" />
+      <option name="project" value="LOCAL" />
+      <updated>1759609490574</updated>
+    </task>
+    <task id="LOCAL-00073" summary="ci fix">
+      <option name="closed" value="true" />
+      <created>1759609775292</created>
+      <option name="number" value="00073" />
+      <option name="presentableId" value="LOCAL-00073" />
+      <option name="project" value="LOCAL" />
+      <updated>1759609775292</updated>
+    </task>
+    <task id="LOCAL-00074" summary="ci fix">
+      <option name="closed" value="true" />
+      <created>1759610091921</created>
+      <option name="number" value="00074" />
+      <option name="presentableId" value="LOCAL-00074" />
+      <option name="project" value="LOCAL" />
+      <updated>1759610091921</updated>
+    </task>
+    <task id="LOCAL-00075" summary="ci fix">
+      <option name="closed" value="true" />
+      <created>1759610915079</created>
+      <option name="number" value="00075" />
+      <option name="presentableId" value="LOCAL-00075" />
+      <option name="project" value="LOCAL" />
+      <updated>1759610915079</updated>
+    </task>
+    <task id="LOCAL-00076" summary="ci fix">
+      <option name="closed" value="true" />
+      <created>1759611518056</created>
+      <option name="number" value="00076" />
+      <option name="presentableId" value="LOCAL-00076" />
+      <option name="project" value="LOCAL" />
+      <updated>1759611518056</updated>
+    </task>
+    <task id="LOCAL-00077" summary="ci fix">
+      <option name="closed" value="true" />
+      <created>1759612123902</created>
+      <option name="number" value="00077" />
+      <option name="presentableId" value="LOCAL-00077" />
+      <option name="project" value="LOCAL" />
+      <updated>1759612123902</updated>
+    </task>
+    <task id="LOCAL-00078" summary="ci fix">
+      <option name="closed" value="true" />
+      <created>1759612511568</created>
+      <option name="number" value="00078" />
+      <option name="presentableId" value="LOCAL-00078" />
+      <option name="project" value="LOCAL" />
+      <updated>1759612511568</updated>
+    </task>
+    <task id="LOCAL-00079" summary="added more tests">
+      <option name="closed" value="true" />
+      <created>1759669816682</created>
+      <option name="number" value="00079" />
+      <option name="presentableId" value="LOCAL-00079" />
+      <option name="project" value="LOCAL" />
+      <updated>1759669816682</updated>
+    </task>
+    <task id="LOCAL-00080" summary="added more tests">
+      <option name="closed" value="true" />
+      <created>1759673062397</created>
+      <option name="number" value="00080" />
+      <option name="presentableId" value="LOCAL-00080" />
+      <option name="project" value="LOCAL" />
+      <updated>1759673062397</updated>
+    </task>
+    <option name="localTasksCounter" value="81" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="added db schema with liqubase, added dao layer with use of jpa repos, jpql and native sql, created entities. added unit tests for the repos" />
+    <MESSAGE value="added caching with redis, added repo annotations, added missing methods and tests for them, corrected the EntityNotFoundException" />
+    <MESSAGE value="added integration testing for service layer, added RedisConfig, fix mappers for correct work, added Dockerfile and docker-compose.yaml, removed hardcode for application.yml" />
+    <MESSAGE value="added ci" />
+    <MESSAGE value="fixed localhost and ci" />
+    <MESSAGE value="changed package naming. fixed ci, Dockerfile, docker compose and application.yml" />
+    <MESSAGE value="changed package naming. fixed ci, Dockerfile, docker compose and application.yml, fixed password for postgres" />
+    <MESSAGE value="refactor backend: DTOs, REST, exceptions, logging, pagination, services, specification," />
+    <MESSAGE value="fixed issues" />
+    <MESSAGE value="fixed ci" />
+    <MESSAGE value="fixed ci and local run" />
+    <MESSAGE value="ci fix" />
+    <MESSAGE value="added more tests" />
+    <MESSAGE value="fixed exceptions issues" />
+    <option name="LAST_COMMIT_MESSAGE" value="fixed exceptions issues" />
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/InnoUserService$CardInfoServiceIntegrationTest.ic" NAME="CardInfoServiceIntegrationTest Coverage Results" MODIFIED="1759415863334" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true">
+      <FILTER>com.innowise.userservice.service.*</FILTER>
+    </SUITE>
+  </component>
+</project>
