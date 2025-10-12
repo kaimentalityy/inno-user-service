@@ -1,0 +1,69 @@
+package com.innowise.userservice.model.dto;
+
+import jakarta.validation.Validation;
+import jakarta.validation.Validator;
+import jakarta.validation.ValidatorFactory;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Test;
+
+import java.time.LocalDate;
+import java.util.List;
+import java.util.Set;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
+class UserDtoTest {
+
+    private static Validator validator;
+
+    @BeforeAll
+    static void setupValidator() {
+        ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
+        validator = factory.getValidator();
+    }
+
+    @Test
+    void validUserShouldPassValidation() {
+        UserDto user = new UserDto(
+                1L,
+                "John",
+                "Doe",
+                LocalDate.of(1990, 1, 1),
+                "john.doe@example.com",
+                List.of(new CardInfoDto(1L, 1L, "1234567890123", "John Doe", LocalDate.now().plusDays(1)))
+        );
+
+        Set violations = validator.validate(user);
+        assertEquals(0, violations.size());
+    }
+
+    @Test
+    void invalidEmailShouldFailValidation() {
+        UserDto user = new UserDto(
+                1L,
+                "John",
+                "Doe",
+                LocalDate.of(1990, 1, 1),
+                "invalid-email",
+                List.of()
+        );
+
+        Set violations = validator.validate(user);
+        assertEquals(1, violations.size());
+    }
+
+    @Test
+    void futureBirthDateShouldFailValidation() {
+        UserDto user = new UserDto(
+                1L,
+                "John",
+                "Doe",
+                LocalDate.now().plusDays(1),
+                "john.doe@example.com",
+                List.of()
+        );
+
+        Set violations = validator.validate(user);
+        assertEquals(1, violations.size());
+    }
+}
