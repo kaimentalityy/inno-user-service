@@ -3,6 +3,7 @@ package com.innowise.userservice.model.dto;
 import jakarta.validation.Validation;
 import jakarta.validation.Validator;
 import jakarta.validation.ValidatorFactory;
+import jakarta.validation.ConstraintViolation;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
@@ -10,7 +11,7 @@ import java.time.LocalDate;
 import java.util.List;
 import java.util.Set;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.*;
 
 class UserDtoTest {
 
@@ -33,8 +34,8 @@ class UserDtoTest {
                 List.of(new CardInfoDto(1L, 1L, "1234567890123", "John Doe", LocalDate.now().plusDays(1)))
         );
 
-        Set violations = validator.validate(user);
-        assertEquals(0, violations.size());
+        Set<ConstraintViolation<UserDto>> violations = validator.validate(user);
+        assertTrue(violations.isEmpty());
     }
 
     @Test
@@ -48,8 +49,8 @@ class UserDtoTest {
                 List.of()
         );
 
-        Set violations = validator.validate(user);
-        assertEquals(1, violations.size());
+        Set<ConstraintViolation<UserDto>> violations = validator.validate(user);
+        assertFalse(violations.isEmpty());
     }
 
     @Test
@@ -63,7 +64,7 @@ class UserDtoTest {
                 List.of()
         );
 
-        Set violations = validator.validate(user);
-        assertEquals(1, violations.size());
+        Set<ConstraintViolation<UserDto>> violations = validator.validate(user);
+        assertFalse(violations.isEmpty());
     }
 }

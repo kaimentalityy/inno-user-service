@@ -7,7 +7,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 class ErrorDtoTest {
 
     @Test
-    void lombokGeneratedMethodsWork() {
+    void lombokGeneratedMethodsShouldWork() {
         ErrorDto error = new ErrorDto();
         error.setMessage("Something went wrong");
         error.setStatus(400);

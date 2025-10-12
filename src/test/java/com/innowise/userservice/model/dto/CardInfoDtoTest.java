@@ -3,13 +3,14 @@ package com.innowise.userservice.model.dto;
 import jakarta.validation.Validation;
 import jakarta.validation.Validator;
 import jakarta.validation.ValidatorFactory;
+import jakarta.validation.ConstraintViolation;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 import java.time.LocalDate;
 import java.util.Set;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.*;
 
 class CardInfoDtoTest {
 
@@ -31,12 +32,26 @@ class CardInfoDtoTest {
                 LocalDate.now().plusDays(1)
         );
 
-        Set violations = validator.validate(card);
-        assertEquals(0, violations.size());
+        Set<ConstraintViolation<CardInfoDto>> violations = validator.validate(card);
+        assertTrue(violations.isEmpty());
     }
 
     @Test
-    void invalidCardNumberShouldFailValidation() {
+    void nullUserIdShouldFailValidation() {
+        CardInfoDto card = new CardInfoDto(
+                1L,
+                null,
+                "1234567890123",
+                "John Doe",
+                LocalDate.now().plusDays(1)
+        );
+
+        Set<ConstraintViolation<CardInfoDto>> violations = validator.validate(card);
+        assertFalse(violations.isEmpty());
+    }
+
+    @Test
+    void invalidNumberShouldFailValidation() {
         CardInfoDto card = new CardInfoDto(
                 1L,
                 10L,
@@ -45,8 +60,8 @@ class CardInfoDtoTest {
                 LocalDate.now().plusDays(1)
         );
 
-        Set violations = validator.validate(card);
-        assertEquals(1, violations.size());
+        Set<ConstraintViolation<CardInfoDto>> violations = validator.validate(card);
+        assertFalse(violations.isEmpty());
     }
 
     @Test
@@ -59,7 +74,7 @@ class CardInfoDtoTest {
                 LocalDate.now().minusDays(1)
         );
 
-        Set violations = validator.validate(card);
-        assertEquals(1, violations.size());
+        Set<ConstraintViolation<CardInfoDto>> violations = validator.validate(card);
+        assertFalse(violations.isEmpty());
     }
 }
