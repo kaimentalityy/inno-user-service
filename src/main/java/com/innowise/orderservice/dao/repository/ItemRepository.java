@@ -1,6 +1,6 @@
-package com.innowise.orderservice.data.repository;
+package com.innowise.orderservice.dao.repository;
 
-import com.innowise.orderservice.data.entity.Items;
+import com.innowise.orderservice.model.entity.Items;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.stereotype.Repository;

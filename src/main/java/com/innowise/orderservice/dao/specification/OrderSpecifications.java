@@ -1,6 +1,6 @@
-package com.innowise.orderservice.data.specification;
+package com.innowise.orderservice.dao.specification;
 
-import com.innowise.orderservice.data.entity.Order;
+import com.innowise.orderservice.model.entity.Order;
 import org.springframework.data.jpa.domain.Specification;
 
 import java.time.LocalDateTime;

@@ -1,6 +1,5 @@
-package com.innowise.orderservice.dto;
+package com.innowise.orderservice.model.dto;
 
-import com.innowise.orderservice.data.entity.OrderItem;
 import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 
@@ -12,15 +11,16 @@ public class OrderDto {
 
     private Long id;
 
-    @NotNull
+    @NotNull(message = "Status cannot be null")
     private String status;
 
-    @NotNull
+    @NotNull(message = "User ID cannot be null")
     private String userId;
 
-    @NotNull
+    @NotNull(message = "Creation date cannot be null")
     private LocalDateTime createdDate;
 
-    @NotNull
-    private List<OrderItem> items;
+    private List<OrderItemDto> items;
+
+    private UserInfoDto userInfo;
 }

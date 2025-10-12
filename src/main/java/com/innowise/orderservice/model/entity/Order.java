@@ -1,4 +1,4 @@
-package com.innowise.orderservice.data.entity;
+package com.innowise.orderservice.model.entity;
 
 import jakarta.persistence.*;
 import lombok.Data;

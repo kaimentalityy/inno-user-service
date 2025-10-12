@@ -1,6 +1,6 @@
-package com.innowise.orderservice.data.specification;
+package com.innowise.orderservice.dao.specification;
 
-import com.innowise.orderservice.data.entity.Items;
+import com.innowise.orderservice.model.entity.Items;
 import org.springframework.data.jpa.domain.Specification;
 
 public class ItemsSpecifications {

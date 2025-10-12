@@ -1,9 +1,10 @@
 package com.innowise.orderservice.mapper;
 
-import com.innowise.orderservice.data.entity.OrderItem;
-import com.innowise.orderservice.dto.OrderItemDto;
+import com.innowise.orderservice.model.entity.OrderItem;
+import com.innowise.orderservice.model.dto.OrderItemDto;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
+import org.mapstruct.MappingTarget;
 
 @Mapper(componentModel = "spring")
 public interface OrderItemMapper {
@@ -15,4 +16,7 @@ public interface OrderItemMapper {
     @Mapping(source = "itemId", target = "item.id")
     @Mapping(target = "order.id", source = "orderId")
     OrderItem toEntity(OrderItemDto dto);
+
+    @Mapping(target = "id", ignore = true)
+    void updateEntity(@MappingTarget OrderItem entity, OrderItemDto dto);
 }
