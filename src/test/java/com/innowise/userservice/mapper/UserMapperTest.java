@@ -4,6 +4,7 @@ import com.innowise.userservice.model.dto.UserDto;
 import com.innowise.userservice.model.entity.User;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.mapstruct.factory.Mappers;
 
 import java.time.LocalDate;
 import java.util.Collections;
@@ -16,7 +17,7 @@ class UserMapperTest {
 
     @BeforeEach
     void setup() {
-        mapper = new UserMapperImpl();
+        mapper = Mappers.getMapper(UserMapper.class);
     }
 
     @Test
@@ -55,7 +56,7 @@ class UserMapperTest {
         User user = mapper.toUser(dto);
 
         assertNotNull(user);
-        assertNull(user.getId()); // id is ignored
+        assertNull(user.getId());
         assertEquals(dto.name(), user.getName());
         assertEquals(dto.surname(), user.getSurname());
         assertEquals(dto.birthDate(), user.getBirthDate());
@@ -91,20 +92,13 @@ class UserMapperTest {
         assertEquals("bob@example.com", user.getEmail());
     }
 
+    // EDGE CASES
     @Test
-    void toUserDto_nullUser_shouldReturnNull() {
+    void nullInputs_shouldReturnNull_orNotThrow() {
         assertNull(mapper.toUserDto(null));
-    }
-
-    @Test
-    void toUser_nullDto_shouldReturnNull() {
         assertNull(mapper.toUser(null));
-    }
 
-    @Test
-    void updateUserFromDto_nullDto_shouldNotThrow() {
         User user = new User();
         assertDoesNotThrow(() -> mapper.updateUserFromDto(null, user));
     }
-
 }

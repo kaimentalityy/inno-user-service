@@ -34,7 +34,6 @@ class CardInfoMapperTest {
 
         assertNull(entity.getId());
         assertNull(entity.getUser());
-
         assertEquals(dto.number(), entity.getNumber());
         assertEquals(dto.holder(), entity.getHolder());
         assertEquals(dto.expirationDate(), entity.getExpirationDate());
@@ -84,7 +83,16 @@ class CardInfoMapperTest {
         assertEquals(dto.number(), entity.getNumber());
         assertEquals(dto.holder(), entity.getHolder());
         assertEquals(dto.expirationDate(), entity.getExpirationDate());
-
         assertEquals(user, entity.getUser());
+    }
+
+    // EDGE CASES
+    @Test
+    void nullInputs_shouldReturnNull_orNotThrow() {
+        assertNull(mapper.toDto(null));
+        assertNull(mapper.toEntity(null));
+
+        CardInfo entity = new CardInfo();
+        assertDoesNotThrow(() -> mapper.updateEntity(null, entity));
     }
 }

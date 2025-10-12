@@ -4,7 +4,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ad2c5a7c-644f-4864-a037-866b2e4f05c9" name="Changes" comment="added docker-compose.yaml file and modyfied application.yaml, added env files" />
+    <list default="true" id="ad2c5a7c-644f-4864-a037-866b2e4f05c9" name="Changes" comment="added more tests">
+      <change afterPath="$PROJECT_DIR$/src/test/java/com/innowise/userservice/model/dto/CardInfoDtoValidationTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/com/innowise/userservice/model/dto/DtoEdgeCasesTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/com/innowise/userservice/model/dto/DtoValidationTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/com/innowise/userservice/model/dto/UserDtoValidationTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/innowise/userservice/mapper/CardInfoMapperTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/innowise/userservice/mapper/CardInfoMapperTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/innowise/userservice/mapper/UserMapperTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/innowise/userservice/mapper/UserMapperTest.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -371,14 +379,6 @@
       <workItem from="1759662448322" duration="10039000" />
       <workItem from="1760001527205" duration="2191000" />
       <workItem from="1760015708635" duration="10272000" />
-    </task>
-    <task id="LOCAL-00033" summary="fixed localhost and ci">
-      <option name="closed" value="true" />
-      <created>1757861787981</created>
-      <option name="number" value="00033" />
-      <option name="presentableId" value="LOCAL-00033" />
-      <option name="project" value="LOCAL" />
-      <updated>1757861787981</updated>
     </task>
     <task id="LOCAL-00034" summary="fixed localhost and ci">
       <option name="closed" value="true" />
@@ -764,7 +764,15 @@
       <option name="project" value="LOCAL" />
       <updated>1760309221236</updated>
     </task>
-    <option name="localTasksCounter" value="82" />
+    <task id="LOCAL-00082" summary="added more tests">
+      <option name="closed" value="true" />
+      <created>1760309877840</created>
+      <option name="number" value="00082" />
+      <option name="presentableId" value="LOCAL-00082" />
+      <option name="project" value="LOCAL" />
+      <updated>1760309877840</updated>
+    </task>
+    <option name="localTasksCounter" value="83" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -794,10 +802,10 @@
     <MESSAGE value="fixed ci" />
     <MESSAGE value="fixed ci and local run" />
     <MESSAGE value="ci fix" />
-    <MESSAGE value="added more tests" />
     <MESSAGE value="fixed exceptions issues" />
     <MESSAGE value="added docker-compose.yaml file and modyfied application.yaml, added env files" />
-    <option name="LAST_COMMIT_MESSAGE" value="added docker-compose.yaml file and modyfied application.yaml, added env files" />
+    <MESSAGE value="added more tests" />
+    <option name="LAST_COMMIT_MESSAGE" value="added more tests" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
