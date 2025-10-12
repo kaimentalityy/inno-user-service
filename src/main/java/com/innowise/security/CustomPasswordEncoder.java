@@ -11,13 +11,13 @@ import java.util.Base64;
 @Component
 public class CustomPasswordEncoder {
 
-    @Value("${password.hash-algorithm}")
+    @Value("${password.hash.algorithm}")
     private String hashAlgorithm;
 
-    @Value("${password.salt-algorithm}")
+    @Value("${password.salt.algorithm}")
     private String saltAlgorithm;
 
-    @Value("${password.salt-length}")
+    @Value("${password.salt.length}")
     private int saltLength;
 
     @Value("${password.strength}")

@@ -1,34 +1,36 @@
+server:
+  port: ${SERVER_PORT:8081}
+
 spring:
   datasource:
-    url: jdbc:postgresql://${DB_HOST}:${DB_PORT}/${DB_NAME}
-    username: ${DB_USERNAME}
-    password: ${DB_PASSWORD}
-    driver-class-name: org.postgresql.Driver
+    url: ${SPRING_DATASOURCE_URL:jdbc:postgresql://localhost:5433/auth_db}
+    username: ${SPRING_DATASOURCE_USERNAME:postgres}
+    password: ${SPRING_DATASOURCE_PASSWORD:17052007}
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+    show-sql: true
 
   liquibase:
     enabled: true
     change-log: classpath:/db/changelog/changelog-master.xml
 
-  jpa:
-    hibernate:
-      ddl-auto: update
-    show-sql: true
-    properties:
-      hibernate:
-        format_sql: true
-
 jwt:
   secret: ${JWT_SECRET:MySuperSecretKeyForJWTMySuperSecretKeyForJWT}
   expiration: ${JWT_EXPIRATION:3600000}
   header: ${JWT_HEADER:Authorization}
-  tokenPrefix: ${JWT_TOKEN_PREFIX:Bearer}
-  rolePrefix: ${JWT_ROLE_PREFIX:ROLE_}
+  token:
+    prefix: ${JWT_TOKEN_PREFIX:Bearer}
+  role:
+    prefix: ${JWT_ROLE_PREFIX:ROLE_}
 
 password:
   strength: ${PASSWORD_STRENGTH:16}
-  hash-algorithm: ${PASSWORD_HASH_ALGORITHM:SHA-256}
-  salt-algorithm: ${PASSWORD_SALT_ALGORITHM:SHA1PRNG}
-  salt-length: ${PASSWORD_SALT_LENGTH:16}
-
-server:
-  port: ${SERVER_PORT:8081}
+  hash:
+    algorithm: ${PASSWORD_HASH_ALGORITHM:SHA-256}
+  salt:
+    algorithm: ${PASSWORD_SALT_ALGORITHM:SHA1PRNG}
+    length: ${PASSWORD_SALT_LENGTH:16}

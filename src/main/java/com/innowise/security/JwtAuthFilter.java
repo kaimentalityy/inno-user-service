@@ -34,10 +34,10 @@ public class JwtAuthFilter extends OncePerRequestFilter {
     @Value("${jwt.header}")
     private String jwtHeader;
 
-    @Value("${jwt.rolePrefix}")
+    @Value("${jwt.role.prefix}")
     private String jwtRolePrefix;
 
-    @Value("${jwt.tokenPrefix}")
+    @Value("${jwt.token.prefix}")
     private String jwtTokenPrefix;
 
     @Override
@@ -47,7 +47,7 @@ public class JwtAuthFilter extends OncePerRequestFilter {
         String token = null;
         String username = null;
 
-        String prefix = jwtTokenPrefix + " ";
+        String prefix = String.format("%s ", jwtTokenPrefix);
 
         if (header != null && header.startsWith(prefix)) {
             token = header.substring(prefix.length());
