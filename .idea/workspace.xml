@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ad2c5a7c-644f-4864-a037-866b2e4f05c9" name="Changes" comment="fixed issues">
+    <list default="true" id="ad2c5a7c-644f-4864-a037-866b2e4f05c9" name="Changes" comment="added service impl, dtos, user service client, added spring webflux, fixed mappers, fixed package naming">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/innowise/exception/AccessDeniedCustomException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/innowise/exception/AccessDeniedCustomException.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/innowise/exception/EntityAlreadyExistsException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/innowise/exception/EntityAlreadyExistsException.java" afterDir="false" />
@@ -124,7 +124,6 @@
     &quot;Spring Boot.SpringSecurityApp.executor&quot;: &quot;Run&quot;,
     &quot;Spring Boot.UserServiceApp (1).executor&quot;: &quot;Run&quot;,
     &quot;Spring Boot.UserServiceApp.executor&quot;: &quot;Run&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;tasks/AUTH-0&quot;,
     &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
     &quot;last_opened_file_path&quot;: &quot;/home/kai/IdeaProjects/Test&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
@@ -256,8 +255,8 @@
     </configuration>
     <list>
       <item itemvalue="Spring Boot.SpringSecurityApp" />
-      <item itemvalue="Spring Boot.UserServiceApp" />
       <item itemvalue="Spring Boot.UserServiceApp (1)" />
+      <item itemvalue="Spring Boot.UserServiceApp" />
     </list>
     <recent_temporary>
       <list>
