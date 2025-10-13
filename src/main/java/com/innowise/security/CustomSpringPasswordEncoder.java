@@ -4,6 +4,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.innowise.exception.PasswordEncodingException;
 import com.innowise.exception.PasswordVerificationException;
+import com.innowise.util.ExceptionMessage;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 import java.nio.charset.StandardCharsets;
@@ -27,10 +28,8 @@ public class CustomSpringPasswordEncoder implements PasswordEncoder {
             PasswordHash hash = encoder.encode(rawPassword.toString());
             String json = objectMapper.writeValueAsString(hash);
             return Base64.getEncoder().encodeToString(json.getBytes(StandardCharsets.UTF_8));
-        } catch (JsonProcessingException e) {
-            throw new PasswordEncodingException("Failed to serialize password hash", e);
         } catch (Exception e) {
-            throw new PasswordEncodingException("Password encoding failed", e);
+            throw new PasswordEncodingException(ExceptionMessage.PASSWORD_ENCODING.get());
         }
     }
 
@@ -41,7 +40,7 @@ public class CustomSpringPasswordEncoder implements PasswordEncoder {
             PasswordHash storedHash = objectMapper.readValue(json, PasswordHash.class);
             return encoder.matches(rawPassword.toString(), storedHash);
         } catch (Exception e) {
-            throw new PasswordVerificationException("Password verification failed", e);
+            throw new PasswordVerificationException(ExceptionMessage.PASSWORD_VERIFICATION.get());
         }
     }
 }

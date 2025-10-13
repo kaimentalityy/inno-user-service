@@ -1,7 +1,7 @@
 package com.innowise.service;
 
-import com.innowise.model.dto.resp.AuthResponseDTO;
-import com.innowise.model.dto.rq.AuthDto;
+import com.innowise.model.dto.AuthResponseDTO;
+import com.innowise.model.dto.AuthDto;
 
 import java.util.Map;
 
@@ -33,4 +33,12 @@ public interface AuthService {
      * @return new access and refresh tokens
      */
     Map<String, String> refresh(String refreshToken);
+
+    /**
+     * Validates a JWT access token.
+     *
+     * @param token JWT token string
+     * @return true if token is valid, false otherwise
+     */
+    boolean validateToken(String token);
 }

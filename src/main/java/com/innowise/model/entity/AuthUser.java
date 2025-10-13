@@ -44,13 +44,14 @@ public class AuthUser implements UserDetails {
     private String password;
 
     /** Roles assigned to the user. */
-    @ManyToMany(fetch = FetchType.EAGER)
+    @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(
             name = "user_roles",
             joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "role_id")
     )
     private Set<Role> roles = new HashSet<>();
+
 
     /**
      * Returns the authorities (roles) granted to the user.

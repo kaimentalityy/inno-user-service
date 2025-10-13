@@ -41,17 +41,13 @@ public class JwtUtil {
     /**
      * Generates a JWT token for the given user.
      *
-     * @param authUser User entity containing username and roles
+     * @param username for User username
+     * @param roles for User Roles
      * @return Signed JWT token
      */
-    public String generateToken(AuthUser authUser) {
-
-        Set<String> roles = authUser.getRoles().stream()
-                .map(Role::getRoleName)
-                .collect(Collectors.toSet());
-
+    public String generateToken(String username, Set<String> roles) {
         return Jwts.builder()
-                .setSubject(authUser.getUsername())
+                .setSubject(username)
                 .claim("roles", roles)
                 .setIssuedAt(new Date())
                 .setExpiration(new Date(System.currentTimeMillis() + expirationMs))
