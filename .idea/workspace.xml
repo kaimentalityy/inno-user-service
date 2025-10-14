@@ -5,14 +5,18 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ad2c5a7c-644f-4864-a037-866b2e4f05c9" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.env.docker" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Dockerfile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.env" beforeDir="false" afterPath="$PROJECT_DIR$/.env.local" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docker-compose.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/docker-compose.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/innowise/security/CustomPasswordEncoder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/innowise/security/CustomPasswordEncoder.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/innowise/security/JwtAuthFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/innowise/security/JwtAuthFilter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/application.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/innowise/SpringSecurityApp.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/innowise/SpringSecurityApp.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/innowise/model/dto/resp/AuthResponseDTO.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/innowise/model/dto/resp/ErrorDto.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/innowise/model/dto/rq/AuthDto.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/innowise/repository/RefreshTokenRepo.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/innowise/repository/RefreshTokenRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/innowise/repository/RefreshTokenRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/innowise/repository/RoleRepo.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/innowise/repository/UserRepo.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/innowise/repository/UserRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/innowise/repository/UserRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/innowise/service/impl/RefreshTokenServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/innowise/service/impl/RefreshTokenServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/innowise/util/JwtUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/innowise/util/JwtUtil.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -81,72 +85,73 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Application.UserServiceApp.executor&quot;: &quot;Run&quot;,
-    &quot;Maven.InnoUserService [-Dtest=CardInfoControllerTest...].executor&quot;: &quot;Run&quot;,
-    &quot;Maven.InnoUserService [-Dtest=CardInfoRepositoryTest...].executor&quot;: &quot;Run&quot;,
-    &quot;Maven.InnoUserService [-Dtest=CardInfoServiceIntegrationTest...].executor&quot;: &quot;Run&quot;,
-    &quot;Maven.InnoUserService [-Dtest=CardInfoServiceTest...].executor&quot;: &quot;Run&quot;,
-    &quot;Maven.InnoUserService [-Dtest=UserControllerTest...].executor&quot;: &quot;Run&quot;,
-    &quot;Maven.InnoUserService [-Dtest=UserServiceIntegrationTest#testCreateUser...].executor&quot;: &quot;Run&quot;,
-    &quot;Maven.InnoUserService [-Dtest=UserServiceIntegrationTest...].executor&quot;: &quot;Run&quot;,
-    &quot;Maven.InnoUserService [-Dtest=UserServiceTest...].executor&quot;: &quot;Run&quot;,
-    &quot;Maven.InnoUserService [clean,install,-U].executor&quot;: &quot;Run&quot;,
-    &quot;Maven.InnoUserService [clean,install].executor&quot;: &quot;Run&quot;,
-    &quot;Maven.InnoUserService [clean,package...].executor&quot;: &quot;Run&quot;,
-    &quot;Maven.InnoUserService [clean,test].executor&quot;: &quot;Run&quot;,
-    &quot;Maven.InnoUserService [clean,verify,-U].executor&quot;: &quot;Run&quot;,
-    &quot;Maven.InnoUserService [clean].executor&quot;: &quot;Run&quot;,
-    &quot;Maven.InnoUserService [install].executor&quot;: &quot;Run&quot;,
-    &quot;Maven.InnoUserService [liquibase...].executor&quot;: &quot;Run&quot;,
-    &quot;Maven.InnoUserService [liquibase:clearCheckSums].executor&quot;: &quot;Run&quot;,
-    &quot;Maven.InnoUserService [liquibase:dropAll...].executor&quot;: &quot;Run&quot;,
-    &quot;Maven.InnoUserService [liquibase:dropAll].executor&quot;: &quot;Run&quot;,
-    &quot;Maven.InnoUserService [liquibase:update,-Pci].executor&quot;: &quot;Run&quot;,
-    &quot;Maven.InnoUserService [liquibase:update...].executor&quot;: &quot;Run&quot;,
-    &quot;Maven.InnoUserService [liquibase:update].executor&quot;: &quot;Run&quot;,
-    &quot;Maven.InnoUserService [org.sonarsource.scanner.maven:sonar-maven-plugin:4.1.0.2302:help...].executor&quot;: &quot;Run&quot;,
-    &quot;Maven.InnoUserService [test...].executor&quot;: &quot;Run&quot;,
-    &quot;Maven.inno-user-service [clean,compile].executor&quot;: &quot;Run&quot;,
-    &quot;Maven.inno-user-service [clean,package...].executor&quot;: &quot;Run&quot;,
-    &quot;Maven.inno-user-service [clean].executor&quot;: &quot;Run&quot;,
-    &quot;Maven.inno-user-service [install].executor&quot;: &quot;Run&quot;,
-    &quot;Maven.inno-user-service [liquibase:dropAll].executor&quot;: &quot;Run&quot;,
-    &quot;Maven.inno-user-service [liquibase:update].executor&quot;: &quot;Run&quot;,
-    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
-    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
-    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
-    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
-    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;Spring Boot.SpringSecurityApp.executor&quot;: &quot;Run&quot;,
-    &quot;Spring Boot.UserServiceApp (1).executor&quot;: &quot;Run&quot;,
-    &quot;Spring Boot.UserServiceApp.executor&quot;: &quot;Run&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/home/kai/IdeaProjects/Test&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;onboarding.tips.debug.path&quot;: &quot;/home/kai/IdeaProjects/InnoUserService/src/main/java/org/example/Main.java&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
-    &quot;run.code.analysis.last.selected.profile&quot;: &quot;pProject Default&quot;,
-    &quot;run.configurations.included.in.services&quot;: &quot;true&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;coverage&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.UserServiceApp.executor": "Run",
+    "Maven.InnoUserService [-Dtest=CardInfoControllerTest...].executor": "Run",
+    "Maven.InnoUserService [-Dtest=CardInfoRepositoryTest...].executor": "Run",
+    "Maven.InnoUserService [-Dtest=CardInfoServiceIntegrationTest...].executor": "Run",
+    "Maven.InnoUserService [-Dtest=CardInfoServiceTest...].executor": "Run",
+    "Maven.InnoUserService [-Dtest=UserControllerTest...].executor": "Run",
+    "Maven.InnoUserService [-Dtest=UserServiceIntegrationTest#testCreateUser...].executor": "Run",
+    "Maven.InnoUserService [-Dtest=UserServiceIntegrationTest...].executor": "Run",
+    "Maven.InnoUserService [-Dtest=UserServiceTest...].executor": "Run",
+    "Maven.InnoUserService [clean,install,-U].executor": "Run",
+    "Maven.InnoUserService [clean,install].executor": "Run",
+    "Maven.InnoUserService [clean,package...].executor": "Run",
+    "Maven.InnoUserService [clean,test].executor": "Run",
+    "Maven.InnoUserService [clean,verify,-U].executor": "Run",
+    "Maven.InnoUserService [clean].executor": "Run",
+    "Maven.InnoUserService [install].executor": "Run",
+    "Maven.InnoUserService [liquibase...].executor": "Run",
+    "Maven.InnoUserService [liquibase:clearCheckSums].executor": "Run",
+    "Maven.InnoUserService [liquibase:dropAll...].executor": "Run",
+    "Maven.InnoUserService [liquibase:dropAll].executor": "Run",
+    "Maven.InnoUserService [liquibase:update,-Pci].executor": "Run",
+    "Maven.InnoUserService [liquibase:update...].executor": "Run",
+    "Maven.InnoUserService [liquibase:update].executor": "Run",
+    "Maven.InnoUserService [org.sonarsource.scanner.maven:sonar-maven-plugin:4.1.0.2302:help...].executor": "Run",
+    "Maven.InnoUserService [test...].executor": "Run",
+    "Maven.inno-user-service [clean,compile].executor": "Run",
+    "Maven.inno-user-service [clean,package...].executor": "Run",
+    "Maven.inno-user-service [clean].executor": "Run",
+    "Maven.inno-user-service [install].executor": "Run",
+    "Maven.inno-user-service [liquibase:dropAll].executor": "Run",
+    "Maven.inno-user-service [liquibase:update].executor": "Run",
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "RequestMappingsPanelOrder0": "0",
+    "RequestMappingsPanelOrder1": "1",
+    "RequestMappingsPanelWidth0": "75",
+    "RequestMappingsPanelWidth1": "75",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "Spring Boot.SpringSecurityApp.executor": "Run",
+    "Spring Boot.UserServiceApp (1).executor": "Run",
+    "Spring Boot.UserServiceApp.executor": "Run",
+    "git-widget-placeholder": "tasks/AUTH-0",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "/home/kai/IdeaProjects/Test",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "onboarding.tips.debug.path": "/home/kai/IdeaProjects/InnoUserService/src/main/java/org/example/Main.java",
+    "project.structure.last.edited": "Project",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.2",
+    "run.code.analysis.last.selected.profile": "pProject Default",
+    "run.configurations.included.in.services": "true",
+    "settings.editor.selected.configurable": "coverage",
+    "vue.rearranger.settings.migration": "true"
   },
-  &quot;keyToStringList&quot;: {
-    &quot;DatabaseDriversLRU&quot;: [
-      &quot;postgresql&quot;
+  "keyToStringList": {
+    "DatabaseDriversLRU": [
+      "postgresql"
     ]
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/.github/workflows" />
@@ -208,7 +213,7 @@
         <entry key="SpringBootApplicationConfigurationType">
           <value>
             <map>
-              <entry key="SpringSecurityApp" value="STOPPED" />
+              <entry key="SpringSecurityApp" value="FAILED" />
             </map>
           </value>
         </entry>
@@ -316,6 +321,7 @@
       <workItem from="1759831634227" duration="2638000" />
       <workItem from="1759853293659" duration="2911000" />
       <workItem from="1760277773275" duration="6873000" />
+      <workItem from="1760430259657" duration="3290000" />
     </task>
     <task id="LOCAL-00001" summary="added caching with redis, added repo annotations, added missing methods and tests for them, corrected the EntityNotFoundException">
       <option name="closed" value="true" />

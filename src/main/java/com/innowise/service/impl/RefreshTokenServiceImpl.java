@@ -7,6 +7,7 @@ import com.innowise.repository.RefreshTokenRepository;
 import com.innowise.service.RefreshTokenService;
 import com.innowise.util.ExceptionMessage;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -22,6 +23,7 @@ import java.util.UUID;
  */
 @Service
 @RequiredArgsConstructor
+@Slf4j
 public class RefreshTokenServiceImpl implements RefreshTokenService {
 
     private static final long REFRESH_TOKEN_EXPIRY_DAYS = 7;
@@ -55,7 +57,10 @@ public class RefreshTokenServiceImpl implements RefreshTokenService {
 
     @Scheduled(fixedDelay = 3600000)
     public void cleanupExpiredTokens() {
-        refreshTokenRepository.deleteAllByExpiryDateBefore(Instant.now());
+        int deleted = refreshTokenRepository.deleteAllByExpiryDateBefore(Instant.now());
+        if (deleted > 0) {
+            log.info("Deleted {} expired refresh tokens", deleted);
+        }
     }
 
 

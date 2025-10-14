@@ -1,8 +1,5 @@
 package com.innowise.util;
 
-import com.innowise.model.entity.AuthUser;
-import com.innowise.model.entity.Role;
-
 import io.jsonwebtoken.JwtException;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
@@ -14,7 +11,6 @@ import java.security.Key;
 import java.util.Date;
 import java.util.List;
 import java.util.Set;
-import java.util.stream.Collectors;
 
 /**
  * Utility class for generating and validating JWT tokens.
