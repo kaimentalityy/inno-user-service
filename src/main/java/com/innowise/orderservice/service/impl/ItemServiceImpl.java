@@ -4,8 +4,8 @@ import com.innowise.orderservice.dao.repository.ItemRepository;
 import com.innowise.orderservice.dao.specification.ItemsSpecifications;
 import com.innowise.orderservice.mapper.ItemMapper;
 import com.innowise.orderservice.model.dto.ItemDto;
-import com.innowise.orderservice.model.entity.Items;
-import com.innowise.orderservice.service.CrudService;
+import com.innowise.orderservice.model.entity.Item;
+import com.innowise.orderservice.service.ItemService;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -17,25 +17,25 @@ import org.springframework.transaction.annotation.Transactional;
 @Service
 @RequiredArgsConstructor
 @Transactional
-public class ItemServiceImpl implements CrudService<ItemDto, Long> {
+public class ItemServiceImpl implements ItemService {
 
     private final ItemRepository itemRepository;
     private final ItemMapper itemMapper;
 
     @Override
     public ItemDto create(ItemDto createDto) {
-        Items item = itemMapper.toEntity(createDto);
-        Items saved = itemRepository.save(item);
+        Item item = itemMapper.toEntity(createDto);
+        Item saved = itemRepository.save(item);
         return itemMapper.toDto(saved);
     }
 
     @Override
     public ItemDto update(Long id, ItemDto updateDto) {
-        Items existing = itemRepository.findById(id)
+        Item existing = itemRepository.findById(id)
                 .orElseThrow(() -> new EntityNotFoundException("Item with id " + id + " not found"));
 
         itemMapper.updateEntity(existing, updateDto);
-        Items updated = itemRepository.save(existing);
+        Item updated = itemRepository.save(existing);
         return itemMapper.toDto(updated);
     }
 
@@ -50,13 +50,15 @@ public class ItemServiceImpl implements CrudService<ItemDto, Long> {
     @Override
     @Transactional(readOnly = true)
     public ItemDto findById(Long id) {
-        Items item = itemRepository.findById(id)
+        Item item = itemRepository.findById(id)
                 .orElseThrow(() -> new EntityNotFoundException("Item with id " + id + " not found"));
         return itemMapper.toDto(item);
     }
 
+    @Override
+    @Transactional(readOnly = true)
     public Page<ItemDto> searchItems(String name, String price, String exactName, Pageable pageable) {
-        Specification<Items> spec = Specification.where(null);
+        Specification<Item> spec = Specification.where(null);
 
         if (name != null) spec = spec.and(ItemsSpecifications.hasName(name));
         if (exactName != null) spec = spec.and(ItemsSpecifications.hasExactName(exactName));

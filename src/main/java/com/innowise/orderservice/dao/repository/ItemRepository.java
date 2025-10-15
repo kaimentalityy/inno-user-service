@@ -1,10 +1,10 @@
 package com.innowise.orderservice.dao.repository;
 
-import com.innowise.orderservice.model.entity.Items;
+import com.innowise.orderservice.model.entity.Item;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface ItemRepository extends JpaRepository<Items, Long>, JpaSpecificationExecutor<Items> {
+public interface ItemRepository extends JpaRepository<Item, Long>, JpaSpecificationExecutor<Item> {
 }

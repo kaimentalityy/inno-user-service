@@ -7,6 +7,7 @@ import com.innowise.orderservice.mapper.OrderMapper;
 import com.innowise.orderservice.model.dto.OrderDto;
 import com.innowise.orderservice.model.entity.Order;
 import com.innowise.orderservice.service.CrudService;
+import com.innowise.orderservice.service.OrderService;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -20,7 +21,7 @@ import java.time.LocalDateTime;
 @Service
 @RequiredArgsConstructor
 @Transactional
-public class OrderServiceImpl implements CrudService<OrderDto, Long> {
+public class OrderServiceImpl implements OrderService {
 
     private final OrderRepository orderRepository;
     private final OrderMapper orderMapper;
@@ -68,6 +69,7 @@ public class OrderServiceImpl implements CrudService<OrderDto, Long> {
         return dto;
     }
 
+    @Override
     @Transactional(readOnly = true)
     public Page<OrderDto> searchOrders(String userId, String status, LocalDateTime createdAfter,
                                        LocalDateTime createdBefore, Pageable pageable) {

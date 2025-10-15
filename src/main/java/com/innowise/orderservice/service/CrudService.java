@@ -1,6 +1,9 @@
 package com.innowise.orderservice.service;
 
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+
 /**
  * Generic CRUD service interface.
  *

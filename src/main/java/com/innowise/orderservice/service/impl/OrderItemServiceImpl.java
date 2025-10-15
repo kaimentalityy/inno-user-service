@@ -6,6 +6,7 @@ import com.innowise.orderservice.mapper.OrderItemMapper;
 import com.innowise.orderservice.model.dto.OrderItemDto;
 import com.innowise.orderservice.model.entity.OrderItem;
 import com.innowise.orderservice.service.CrudService;
+import com.innowise.orderservice.service.OrderItemService;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -17,7 +18,7 @@ import org.springframework.transaction.annotation.Transactional;
 @Service
 @RequiredArgsConstructor
 @Transactional
-public class OrderItemServiceImpl implements CrudService<OrderItemDto, Long> {
+public class OrderItemServiceImpl implements OrderItemService {
 
     private final OrderItemRepository orderItemRepository;
     private final OrderItemMapper orderItemMapper;
@@ -55,6 +56,7 @@ public class OrderItemServiceImpl implements CrudService<OrderItemDto, Long> {
         return orderItemMapper.toDto(orderItem);
     }
 
+    @Override
     @Transactional(readOnly = true)
     public Page<OrderItemDto> searchOrderItems(Long orderId, Long itemId, Integer quantity, Integer minQuantity, Integer maxQuantity, Pageable pageable) {
         Specification<OrderItem> spec = Specification.where(null);

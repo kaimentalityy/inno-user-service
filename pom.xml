@@ -232,7 +232,7 @@
                 <configuration>
                     <changeLogFile>src/main/resources/db/changelog/changelog-master.xml</changeLogFile>
                     <driver>org.postgresql.Driver</driver>
-                    <url>jdbc:postgresql://localhost:5432/UserService</url>
+                    <url>jdbc:postgresql://localhost:5432/OrderService</url>
                     <username>postgres</username>
                     <password>postgres</password>
                     <promptOnNonLocalDatabase>false</promptOnNonLocalDatabase>
@@ -272,7 +272,7 @@
         <profile>
             <id>ci</id>
             <properties>
-                <spring.datasource.url>jdbc:postgresql://localhost:5432/UserService</spring.datasource.url>
+                <spring.datasource.url>jdbc:postgresql://localhost:5432/OrderService</spring.datasource.url>
                 <spring.datasource.username>postgres</spring.datasource.username>
                 <spring.datasource.password>postgres</spring.datasource.password>
                 <spring.data.redis.host>localhost</spring.data.redis.host>
@@ -282,7 +282,7 @@
         <profile>
             <id>docker</id>
             <properties>
-                <spring.datasource.url>jdbc:postgresql://postgres:5432/UserService</spring.datasource.url>
+                <spring.datasource.url>jdbc:postgresql://postgres:5432/OrderService</spring.datasource.url>
                 <spring.datasource.username>postgres</spring.datasource.username>
                 <spring.datasource.password>postgres</spring.datasource.password>
                 <spring.data.redis.host>redis</spring.data.redis.host>
