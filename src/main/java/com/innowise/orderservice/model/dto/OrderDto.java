@@ -1,26 +1,26 @@
 package com.innowise.orderservice.model.dto;
 
-import jakarta.validation.constraints.NotNull;
-import lombok.Data;
-
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.*;
 import java.time.LocalDateTime;
 import java.util.List;
 
-@Data
-public class OrderDto {
+public record OrderDto(
+        Long id,
 
-    private Long id;
+        @NotNull(message = "User ID cannot be null")
+        Long userId,
 
-    @NotNull(message = "Status cannot be null")
-    private String status;
+        @NotBlank(message = "Status cannot be blank")
+        String status,
 
-    @NotNull(message = "User ID cannot be null")
-    private String userId;
+        @FutureOrPresent(message = "Creation date must be in the present or future")
+        LocalDateTime createdDate,
 
-    @NotNull(message = "Creation date cannot be null")
-    private LocalDateTime createdDate;
+        @Valid
+        List<OrderItemDto> items,
 
-    private List<OrderItemDto> items;
+        UserInfoDto userInfo
+) {}
 
-    private UserInfoDto userInfo;
-}
+

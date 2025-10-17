@@ -5,7 +5,6 @@ import com.innowise.orderservice.dao.specification.OrderItemSpecifications;
 import com.innowise.orderservice.mapper.OrderItemMapper;
 import com.innowise.orderservice.model.dto.OrderItemDto;
 import com.innowise.orderservice.model.entity.OrderItem;
-import com.innowise.orderservice.service.CrudService;
 import com.innowise.orderservice.service.OrderItemService;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
@@ -24,6 +23,7 @@ public class OrderItemServiceImpl implements OrderItemService {
     private final OrderItemMapper orderItemMapper;
 
     @Override
+    @Transactional
     public OrderItemDto create(OrderItemDto createDto) {
         OrderItem orderItem = orderItemMapper.toEntity(createDto);
         OrderItem saved = orderItemRepository.save(orderItem);
@@ -31,6 +31,7 @@ public class OrderItemServiceImpl implements OrderItemService {
     }
 
     @Override
+    @Transactional
     public OrderItemDto update(Long id, OrderItemDto updateDto) {
         OrderItem existing = orderItemRepository.findById(id)
                 .orElseThrow(() -> new EntityNotFoundException("OrderItem with id " + id + " not found"));
@@ -41,6 +42,7 @@ public class OrderItemServiceImpl implements OrderItemService {
     }
 
     @Override
+    @Transactional
     public void delete(Long id) {
         if (!orderItemRepository.existsById(id)) {
             throw new EntityNotFoundException("OrderItem with id " + id + " not found");

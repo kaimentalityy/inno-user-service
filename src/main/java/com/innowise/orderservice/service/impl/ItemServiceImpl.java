@@ -23,6 +23,7 @@ public class ItemServiceImpl implements ItemService {
     private final ItemMapper itemMapper;
 
     @Override
+    @Transactional
     public ItemDto create(ItemDto createDto) {
         Item item = itemMapper.toEntity(createDto);
         Item saved = itemRepository.save(item);
@@ -30,6 +31,7 @@ public class ItemServiceImpl implements ItemService {
     }
 
     @Override
+    @Transactional
     public ItemDto update(Long id, ItemDto updateDto) {
         Item existing = itemRepository.findById(id)
                 .orElseThrow(() -> new EntityNotFoundException("Item with id " + id + " not found"));
@@ -40,6 +42,7 @@ public class ItemServiceImpl implements ItemService {
     }
 
     @Override
+    @Transactional
     public void delete(Long id) {
         if (!itemRepository.existsById(id)) {
             throw new EntityNotFoundException("Item with id " + id + " not found");

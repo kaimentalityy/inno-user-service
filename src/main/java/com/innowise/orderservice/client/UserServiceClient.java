@@ -23,7 +23,7 @@ public class UserServiceClient {
         return webClient;
     }
 
-    public UserInfoDto getUserById(String userId) {
+    public UserInfoDto getUserById(Long userId) {
         return getClient()
                 .get()
                 .uri("/api/v1/users/{id}", userId)

@@ -5,8 +5,8 @@ import com.innowise.orderservice.dao.repository.OrderRepository;
 import com.innowise.orderservice.dao.specification.OrderSpecifications;
 import com.innowise.orderservice.mapper.OrderMapper;
 import com.innowise.orderservice.model.dto.OrderDto;
+import com.innowise.orderservice.model.dto.UserInfoDto;
 import com.innowise.orderservice.model.entity.Order;
-import com.innowise.orderservice.service.CrudService;
 import com.innowise.orderservice.service.OrderService;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
@@ -28,16 +28,24 @@ public class OrderServiceImpl implements OrderService {
     private final UserServiceClient userServiceClient;
 
     @Override
+    @Transactional
     public OrderDto create(OrderDto createDto) {
         Order order = orderMapper.toEntity(createDto);
         Order saved = orderRepository.save(order);
-        OrderDto dto = orderMapper.toDto(saved);
 
-        dto.setUserInfo(userServiceClient.getUserById(order.getUserId()));
-        return dto;
+        UserInfoDto userInfo = fetchUserInfo(order.getUserId(), null);
+        return new OrderDto(
+                saved.getId(),
+                saved.getUserId(),
+                saved.getStatus(),
+                saved.getCreatedDate(),
+                orderMapper.orderItemsToDtos(saved.getItems()),
+                userInfo
+        );
     }
 
     @Override
+    @Transactional
     public OrderDto update(Long id, OrderDto updateDto) {
         Order existing = orderRepository.findById(id)
                 .orElseThrow(() -> new EntityNotFoundException("Order with id " + id + " not found"));
@@ -45,12 +53,19 @@ public class OrderServiceImpl implements OrderService {
         orderMapper.updateEntity(existing, updateDto);
         Order updated = orderRepository.save(existing);
 
-        OrderDto dto = orderMapper.toDto(updated);
-        dto.setUserInfo(userServiceClient.getUserById(updated.getUserId()));
-        return dto;
+        UserInfoDto userInfo = fetchUserInfo(updated.getUserId(), null);
+        return new OrderDto(
+                updated.getId(),
+                updated.getUserId(),
+                updated.getStatus(),
+                updated.getCreatedDate(),
+                orderMapper.orderItemsToDtos(updated.getItems()),
+                userInfo
+        );
     }
 
     @Override
+    @Transactional
     public void delete(Long id) {
         if (!orderRepository.existsById(id)) {
             throw new EntityNotFoundException("Order with id " + id + " not found");
@@ -64,15 +79,22 @@ public class OrderServiceImpl implements OrderService {
         Order order = orderRepository.findById(id)
                 .orElseThrow(() -> new EntityNotFoundException("Order with id " + id + " not found"));
 
-        OrderDto dto = orderMapper.toDto(order);
-        dto.setUserInfo(userServiceClient.getUserById(order.getUserId()));
-        return dto;
+        UserInfoDto userInfo = fetchUserInfo(order.getUserId(), null);
+        return new OrderDto(
+                order.getId(),
+                order.getUserId(),
+                order.getStatus(),
+                order.getCreatedDate(),
+                orderMapper.orderItemsToDtos(order.getItems()),
+                userInfo
+        );
     }
 
     @Override
     @Transactional(readOnly = true)
-    public Page<OrderDto> searchOrders(String userId, String status, LocalDateTime createdAfter,
-                                       LocalDateTime createdBefore, Pageable pageable) {
+    public Page<OrderDto> searchOrders(Long userId, String email, String status,
+                                       LocalDateTime createdAfter, LocalDateTime createdBefore,
+                                       Pageable pageable) {
 
         Specification<Order> spec = Specification.where(null);
 
@@ -81,11 +103,26 @@ public class OrderServiceImpl implements OrderService {
         if (createdAfter != null) spec = spec.and(OrderSpecifications.createdAfter(createdAfter));
         if (createdBefore != null) spec = spec.and(OrderSpecifications.createdBefore(createdBefore));
 
-        return orderRepository.findAll(spec, pageable)
-                .map(order -> {
-                    OrderDto dto = orderMapper.toDto(order);
-                    dto.setUserInfo(userServiceClient.getUserById(order.getUserId()));
-                    return dto;
-                });
+        Page<Order> orders = orderRepository.findAll(spec, pageable);
+
+        return orders.map(order -> {
+            UserInfoDto userInfo = fetchUserInfo(order.getUserId(), email);
+            return new OrderDto(
+                    order.getId(),
+                    order.getUserId(),
+                    order.getStatus(),
+                    order.getCreatedDate(),
+                    orderMapper.orderItemsToDtos(order.getItems()),
+                    userInfo
+            );
+        });
+    }
+
+    private UserInfoDto fetchUserInfo(Long userId, String email) {
+        if (email != null && !email.isEmpty()) {
+            return userServiceClient.getUserByEmail(email);
+        }
+        return userServiceClient.getUserById(userId);
     }
 }
+

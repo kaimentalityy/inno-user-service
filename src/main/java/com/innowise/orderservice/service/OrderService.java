@@ -1,7 +1,6 @@
 package com.innowise.orderservice.service;
 
 import com.innowise.orderservice.model.dto.OrderDto;
-import com.innowise.orderservice.model.dto.OrderItemDto;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
@@ -23,7 +22,8 @@ public interface OrderService extends CrudService<OrderDto, Long> {
      * @param pageable       pagination info
      * @return page of filtered orders
      */
-    Page<OrderDto> searchOrders(String userId,
+    Page<OrderDto> searchOrders(Long userId,
+                                String email,
                                 String status,
                                 LocalDateTime createdAfter,
                                 LocalDateTime createdBefore,
