@@ -1,0 +1,37 @@
+services:
+  postgres_auth:
+    image: postgres:15
+    container_name: postgres_ord
+    environment:
+      POSTGRES_DB: ord_db
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: 17052007
+    ports:
+      - "5435:5432"
+    networks:
+      - ord_network
+    volumes:
+      - postgres_ord_data:/var/lib/postgresql/data
+
+  auth_service:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: innouserservice-ord_service-1
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres_ord:5432/ord_db
+      SPRING_DATASOURCE_USERNAME: postgres
+      SPRING_DATASOURCE_PASSWORD: 17052007
+      SERVER_PORT: 8086
+    depends_on:
+      - postgres_auth
+    ports:
+      - "8081:8081"
+    networks:
+      - ord_network
+
+networks:
+  ord_network:
+
+volumes:
+  postgres_ord_data:
