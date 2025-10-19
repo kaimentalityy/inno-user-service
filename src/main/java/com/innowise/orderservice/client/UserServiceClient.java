@@ -26,7 +26,7 @@ public class UserServiceClient {
     public UserInfoDto getUserById(Long userId) {
         return getClient()
                 .get()
-                .uri("/api/v1/users/{id}", userId)
+                .uri("/api/users/{id}", userId)
                 .retrieve()
                 .bodyToMono(UserInfoDto.class)
                 .block();
@@ -35,7 +35,7 @@ public class UserServiceClient {
     public UserInfoDto getUserByEmail(String email) {
         return getClient()
                 .get()
-                .uri(uriBuilder -> uriBuilder.path("/api/v1/users/search")
+                .uri(uriBuilder -> uriBuilder.path("/api/users/search")
                         .queryParam("email", email)
                         .build())
                 .retrieve()

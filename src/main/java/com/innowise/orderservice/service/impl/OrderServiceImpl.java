@@ -3,12 +3,12 @@ package com.innowise.orderservice.service.impl;
 import com.innowise.orderservice.client.UserServiceClient;
 import com.innowise.orderservice.dao.repository.OrderRepository;
 import com.innowise.orderservice.dao.specification.OrderSpecifications;
+import com.innowise.orderservice.exception.OrderNotFoundException;
 import com.innowise.orderservice.mapper.OrderMapper;
 import com.innowise.orderservice.model.dto.OrderDto;
 import com.innowise.orderservice.model.dto.UserInfoDto;
 import com.innowise.orderservice.model.entity.Order;
 import com.innowise.orderservice.service.OrderService;
-import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -48,7 +48,7 @@ public class OrderServiceImpl implements OrderService {
     @Transactional
     public OrderDto update(Long id, OrderDto updateDto) {
         Order existing = orderRepository.findById(id)
-                .orElseThrow(() -> new EntityNotFoundException("Order with id " + id + " not found"));
+                .orElseThrow(() -> new OrderNotFoundException());
 
         orderMapper.updateEntity(existing, updateDto);
         Order updated = orderRepository.save(existing);
@@ -68,7 +68,7 @@ public class OrderServiceImpl implements OrderService {
     @Transactional
     public void delete(Long id) {
         if (!orderRepository.existsById(id)) {
-            throw new EntityNotFoundException("Order with id " + id + " not found");
+            throw new OrderNotFoundException();
         }
         orderRepository.deleteById(id);
     }
@@ -77,7 +77,7 @@ public class OrderServiceImpl implements OrderService {
     @Transactional(readOnly = true)
     public OrderDto findById(Long id) {
         Order order = orderRepository.findById(id)
-                .orElseThrow(() -> new EntityNotFoundException("Order with id " + id + " not found"));
+                .orElseThrow(() -> new OrderNotFoundException());
 
         UserInfoDto userInfo = fetchUserInfo(order.getUserId(), null);
         return new OrderDto(

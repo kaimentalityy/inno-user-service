@@ -1,11 +1,11 @@
 package com.innowise.orderservice.service;
 
 import com.innowise.orderservice.dao.repository.OrderItemRepository;
+import com.innowise.orderservice.exception.OrderItemNotFoundException;
 import com.innowise.orderservice.mapper.OrderItemMapper;
 import com.innowise.orderservice.model.dto.OrderItemDto;
 import com.innowise.orderservice.model.entity.OrderItem;
 import com.innowise.orderservice.service.impl.OrderItemServiceImpl;
-import jakarta.persistence.EntityNotFoundException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
@@ -20,14 +20,8 @@ import org.springframework.data.jpa.domain.Specification;
 import java.util.List;
 import java.util.Optional;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.junit.jupiter.api.Assertions.assertThrows;
-import static org.mockito.Mockito.any;
-import static org.mockito.Mockito.eq;
-import static org.mockito.Mockito.never;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
+import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.Mockito.*;
 
 class OrderItemServiceImplTest {
 
@@ -90,7 +84,7 @@ class OrderItemServiceImplTest {
     void update_ShouldThrow_WhenNotFound() {
         when(orderItemRepository.findById(1L)).thenReturn(Optional.empty());
 
-        assertThrows(EntityNotFoundException.class,
+        assertThrows(OrderItemNotFoundException.class,
                 () -> orderItemService.update(1L, dto));
 
         verify(orderItemRepository, never()).save(any());
@@ -109,7 +103,7 @@ class OrderItemServiceImplTest {
     void delete_ShouldThrow_WhenNotExists() {
         when(orderItemRepository.existsById(1L)).thenReturn(false);
 
-        assertThrows(EntityNotFoundException.class,
+        assertThrows(OrderItemNotFoundException.class,
                 () -> orderItemService.delete(1L));
 
         verify(orderItemRepository, never()).deleteById(any());
@@ -130,7 +124,7 @@ class OrderItemServiceImplTest {
     void findById_ShouldThrow_WhenNotFound() {
         when(orderItemRepository.findById(1L)).thenReturn(Optional.empty());
 
-        assertThrows(EntityNotFoundException.class,
+        assertThrows(OrderItemNotFoundException.class,
                 () -> orderItemService.findById(1L));
     }
 

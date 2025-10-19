@@ -1,6 +1,5 @@
-package com.innowise.orderservice.repository;
+package com.innowise.orderservice.dao.repository;
 
-import com.innowise.orderservice.dao.repository.ItemRepository;
 import com.innowise.orderservice.integration.BaseIntegrationTest;
 import com.innowise.orderservice.model.entity.Item;
 import org.junit.jupiter.api.BeforeEach;

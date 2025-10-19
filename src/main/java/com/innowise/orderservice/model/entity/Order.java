@@ -2,6 +2,8 @@ package com.innowise.orderservice.model.entity;
 
 import jakarta.persistence.*;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.ToString;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -26,5 +28,7 @@ public class Order {
     private LocalDateTime createdDate;
 
     @OneToMany(mappedBy = "order", cascade = CascadeType.ALL, orphanRemoval = true)
+    @ToString.Exclude
+    @EqualsAndHashCode.Exclude
     private List<OrderItem> items = new ArrayList<>();
 }

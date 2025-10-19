@@ -14,10 +14,11 @@ public enum ErrorMessage {
     INTERNAL_ERROR("An unexpected internal error occurred"),
     INVALID_REQUEST("Invalid request parameters"),
     ORDER_NOT_FOUND("Order not found"),
-    ORDER_ALREADY_EXISTS("Order already exists"),
+    ENTITY_ALREADY_EXISTS("Entity already exists"),
     ORDER_CONFLICT("Order conflict detected"),
     ORDER_ITEM_NOT_FOUND("Order item not found"),
-    PAYMENT_FAILED("Payment processing failed");
+    PAYMENT_FAILED("Payment processing failed"),
+    ITEM_NOT_FOUND("Item not found");
 
     private final String message;
 }

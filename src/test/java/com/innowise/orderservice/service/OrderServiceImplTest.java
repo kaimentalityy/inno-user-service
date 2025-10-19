@@ -2,12 +2,12 @@ package com.innowise.orderservice.service;
 
 import com.innowise.orderservice.client.UserServiceClient;
 import com.innowise.orderservice.dao.repository.OrderRepository;
+import com.innowise.orderservice.exception.OrderNotFoundException;
 import com.innowise.orderservice.mapper.OrderMapper;
 import com.innowise.orderservice.model.dto.OrderDto;
 import com.innowise.orderservice.model.dto.UserInfoDto;
 import com.innowise.orderservice.model.entity.Order;
 import com.innowise.orderservice.service.impl.OrderServiceImpl;
-import jakarta.persistence.EntityNotFoundException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
@@ -53,7 +53,6 @@ class OrderServiceImplTest {
 
         userInfo = new UserInfoDto(1L, "John", "Doe", "john@example.com");
 
-        // Include userInfo in the DTO
         dto = new OrderDto(
                 1L,
                 123L,
@@ -99,7 +98,7 @@ class OrderServiceImplTest {
     @Test
     void update_ShouldThrowIfNotFound() {
         when(orderRepository.findById(1L)).thenReturn(Optional.empty());
-        assertThrows(EntityNotFoundException.class, () -> orderService.update(1L, dto));
+        assertThrows(OrderNotFoundException.class, () -> orderService.update(1L, dto));
     }
 
     @Test
@@ -112,7 +111,7 @@ class OrderServiceImplTest {
     @Test
     void delete_ShouldThrowIfNotFound() {
         when(orderRepository.existsById(1L)).thenReturn(false);
-        assertThrows(EntityNotFoundException.class, () -> orderService.delete(1L));
+        assertThrows(OrderNotFoundException.class, () -> orderService.delete(1L));
     }
 
     @Test
@@ -130,7 +129,7 @@ class OrderServiceImplTest {
     @Test
     void findById_ShouldThrowIfNotFound() {
         when(orderRepository.findById(1L)).thenReturn(Optional.empty());
-        assertThrows(EntityNotFoundException.class, () -> orderService.findById(1L));
+        assertThrows(OrderNotFoundException.class, () -> orderService.findById(1L));
     }
 
     @Test

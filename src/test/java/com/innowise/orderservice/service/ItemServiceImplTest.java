@@ -1,25 +1,31 @@
 package com.innowise.orderservice.service;
 
 import com.innowise.orderservice.dao.repository.ItemRepository;
+import com.innowise.orderservice.exception.ItemNotFoundException;
 import com.innowise.orderservice.mapper.ItemMapper;
 import com.innowise.orderservice.model.dto.ItemDto;
 import com.innowise.orderservice.model.entity.Item;
 import com.innowise.orderservice.service.impl.ItemServiceImpl;
-import jakarta.persistence.EntityNotFoundException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
-import org.springframework.data.domain.*;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 
 import java.math.BigDecimal;
 import java.util.List;
 import java.util.Optional;
 
-import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.ArgumentMatchers.*;
-import static org.mockito.Mockito.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.eq;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 
 class ItemServiceImplTest {
 
@@ -80,7 +86,7 @@ class ItemServiceImplTest {
     @Test
     void update_ShouldThrowIfNotFound() {
         when(itemRepository.findById(1L)).thenReturn(Optional.empty());
-        assertThrows(EntityNotFoundException.class, () -> itemService.update(1L, dto));
+        assertThrows(ItemNotFoundException.class, () -> itemService.update(1L, dto));
     }
 
     @Test
@@ -93,7 +99,7 @@ class ItemServiceImplTest {
     @Test
     void delete_ShouldThrowIfNotFound() {
         when(itemRepository.existsById(1L)).thenReturn(false);
-        assertThrows(EntityNotFoundException.class, () -> itemService.delete(1L));
+        assertThrows(ItemNotFoundException.class, () -> itemService.delete(1L));
     }
 
     @Test
@@ -110,7 +116,7 @@ class ItemServiceImplTest {
     @Test
     void findById_ShouldThrowIfNotFound() {
         when(itemRepository.findById(1L)).thenReturn(Optional.empty());
-        assertThrows(EntityNotFoundException.class, () -> itemService.findById(1L));
+        assertThrows(ItemNotFoundException.class, () -> itemService.findById(1L));
     }
 
     @Test

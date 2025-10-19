@@ -1,8 +1,5 @@
-package com.innowise.orderservice.repository;
+package com.innowise.orderservice.dao.repository;
 
-import com.innowise.orderservice.dao.repository.ItemRepository;
-import com.innowise.orderservice.dao.repository.OrderItemRepository;
-import com.innowise.orderservice.dao.repository.OrderRepository;
 import com.innowise.orderservice.integration.BaseIntegrationTest;
 import com.innowise.orderservice.model.entity.Item;
 import com.innowise.orderservice.model.entity.Order;
@@ -16,7 +13,8 @@ import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class OrderItemRepositoryTest extends BaseIntegrationTest {
 

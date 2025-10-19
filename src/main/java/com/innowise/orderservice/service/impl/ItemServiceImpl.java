@@ -2,11 +2,11 @@ package com.innowise.orderservice.service.impl;
 
 import com.innowise.orderservice.dao.repository.ItemRepository;
 import com.innowise.orderservice.dao.specification.ItemsSpecifications;
+import com.innowise.orderservice.exception.ItemNotFoundException;
 import com.innowise.orderservice.mapper.ItemMapper;
 import com.innowise.orderservice.model.dto.ItemDto;
 import com.innowise.orderservice.model.entity.Item;
 import com.innowise.orderservice.service.ItemService;
-import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -34,7 +34,7 @@ public class ItemServiceImpl implements ItemService {
     @Transactional
     public ItemDto update(Long id, ItemDto updateDto) {
         Item existing = itemRepository.findById(id)
-                .orElseThrow(() -> new EntityNotFoundException("Item with id " + id + " not found"));
+                .orElseThrow(() -> new ItemNotFoundException());
 
         itemMapper.updateEntity(existing, updateDto);
         Item updated = itemRepository.save(existing);
@@ -45,7 +45,7 @@ public class ItemServiceImpl implements ItemService {
     @Transactional
     public void delete(Long id) {
         if (!itemRepository.existsById(id)) {
-            throw new EntityNotFoundException("Item with id " + id + " not found");
+            throw new ItemNotFoundException();
         }
         itemRepository.deleteById(id);
     }
@@ -54,7 +54,7 @@ public class ItemServiceImpl implements ItemService {
     @Transactional(readOnly = true)
     public ItemDto findById(Long id) {
         Item item = itemRepository.findById(id)
-                .orElseThrow(() -> new EntityNotFoundException("Item with id " + id + " not found"));
+                .orElseThrow(() -> new ItemNotFoundException());
         return itemMapper.toDto(item);
     }
 

@@ -2,11 +2,11 @@ package com.innowise.orderservice.service.impl;
 
 import com.innowise.orderservice.dao.repository.OrderItemRepository;
 import com.innowise.orderservice.dao.specification.OrderItemSpecifications;
+import com.innowise.orderservice.exception.OrderItemNotFoundException;
 import com.innowise.orderservice.mapper.OrderItemMapper;
 import com.innowise.orderservice.model.dto.OrderItemDto;
 import com.innowise.orderservice.model.entity.OrderItem;
 import com.innowise.orderservice.service.OrderItemService;
-import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -34,7 +34,7 @@ public class OrderItemServiceImpl implements OrderItemService {
     @Transactional
     public OrderItemDto update(Long id, OrderItemDto updateDto) {
         OrderItem existing = orderItemRepository.findById(id)
-                .orElseThrow(() -> new EntityNotFoundException("OrderItem with id " + id + " not found"));
+                .orElseThrow(() -> new OrderItemNotFoundException());
 
         orderItemMapper.updateEntity(existing, updateDto);
         OrderItem updated = orderItemRepository.save(existing);
@@ -45,7 +45,7 @@ public class OrderItemServiceImpl implements OrderItemService {
     @Transactional
     public void delete(Long id) {
         if (!orderItemRepository.existsById(id)) {
-            throw new EntityNotFoundException("OrderItem with id " + id + " not found");
+            throw new OrderItemNotFoundException();
         }
         orderItemRepository.deleteById(id);
     }
@@ -54,7 +54,7 @@ public class OrderItemServiceImpl implements OrderItemService {
     @Transactional(readOnly = true)
     public OrderItemDto findById(Long id) {
         OrderItem orderItem = orderItemRepository.findById(id)
-                .orElseThrow(() -> new EntityNotFoundException("OrderItem with id " + id + " not found"));
+                .orElseThrow(() -> new OrderItemNotFoundException());
         return orderItemMapper.toDto(orderItem);
     }
 

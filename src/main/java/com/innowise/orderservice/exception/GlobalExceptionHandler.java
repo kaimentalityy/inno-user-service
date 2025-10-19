@@ -39,8 +39,8 @@ public class GlobalExceptionHandler {
         return buildResponse(HttpStatus.NOT_FOUND, ex.getErrorMessage(), ex);
     }
 
-    @ExceptionHandler(OrderAlreadyExistsException.class)
-    public ResponseEntity<ErrorDto> handleOrderAlreadyExists(OrderAlreadyExistsException ex) {
+    @ExceptionHandler(EntityAlreadyExistsException.class)
+    public ResponseEntity<ErrorDto> handleEntityAlreadyExists(EntityAlreadyExistsException ex) {
         return buildResponse(HttpStatus.CONFLICT, ex.getErrorMessage(), ex);
     }
 
