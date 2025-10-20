@@ -51,7 +51,6 @@ public class OrderItemServiceImpl implements OrderItemService {
     }
 
     @Override
-    @Transactional(readOnly = true)
     public OrderItemDto findById(Long id) {
         OrderItem orderItem = orderItemRepository.findById(id)
                 .orElseThrow(() -> new OrderItemNotFoundException());
@@ -59,7 +58,6 @@ public class OrderItemServiceImpl implements OrderItemService {
     }
 
     @Override
-    @Transactional(readOnly = true)
     public Page<OrderItemDto> searchOrderItems(Long orderId, Long itemId, Integer quantity, Integer minQuantity, Integer maxQuantity, Pageable pageable) {
         Specification<OrderItem> spec = Specification.where(null);
 

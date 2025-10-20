@@ -74,7 +74,6 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
-    @Transactional(readOnly = true)
     public OrderDto findById(Long id) {
         Order order = orderRepository.findById(id)
                 .orElseThrow(() -> new OrderNotFoundException());
@@ -91,7 +90,6 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
-    @Transactional(readOnly = true)
     public Page<OrderDto> searchOrders(Long userId, String email, String status,
                                        LocalDateTime createdAfter, LocalDateTime createdBefore,
                                        Pageable pageable) {

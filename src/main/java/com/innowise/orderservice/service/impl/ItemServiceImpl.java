@@ -51,7 +51,6 @@ public class ItemServiceImpl implements ItemService {
     }
 
     @Override
-    @Transactional(readOnly = true)
     public ItemDto findById(Long id) {
         Item item = itemRepository.findById(id)
                 .orElseThrow(() -> new ItemNotFoundException());
@@ -59,7 +58,6 @@ public class ItemServiceImpl implements ItemService {
     }
 
     @Override
-    @Transactional(readOnly = true)
     public Page<ItemDto> searchItems(String name, String price, String exactName, Pageable pageable) {
         Specification<Item> spec = Specification.where(null);
 
