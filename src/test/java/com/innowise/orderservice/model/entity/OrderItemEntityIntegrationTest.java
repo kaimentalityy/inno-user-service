@@ -37,29 +37,24 @@ class OrderItemEntityIntegrationTest extends BaseIntegrationTest {
         orderRepository.deleteAll();
         itemRepository.deleteAll();
 
-        // Create and persist Item
         item = new Item();
         item.setName("Phone");
         item.setPrice(BigDecimal.valueOf(499.99));
         item = itemRepository.saveAndFlush(item);
 
-        // Create and persist Order
         order = new Order();
         order.setStatus("PENDING");
         order.setUserId(321L);
         order.setCreatedDate(LocalDateTime.now());
         order = orderRepository.saveAndFlush(order);
 
-        // Create OrderItem
         orderItem = new OrderItem();
         orderItem.setOrder(order);
         orderItem.setItem(item);
         orderItem.setQuantity(3);
 
-        // Maintain bidirectional relationship
         order.getItems().add(orderItem);
 
-        // Persist cascade
         order = orderRepository.saveAndFlush(order);
     }
 
@@ -126,12 +121,10 @@ class OrderItemEntityIntegrationTest extends BaseIntegrationTest {
         different.setItem(item);
         different.setQuantity(10);
 
-        // equals and hashCode
         assertThat(orderItem).isEqualTo(same);
         assertThat(orderItem.hashCode()).isEqualTo(same.hashCode());
         assertNotEquals(orderItem, different);
 
-        // toString (Lombok generated)
         String toString = orderItem.toString();
         assertThat(toString).contains("quantity=3");
         assertThat(toString).contains("Phone");
@@ -151,7 +144,6 @@ class OrderItemEntityIntegrationTest extends BaseIntegrationTest {
         assertThat(oi.getItem()).isEqualTo(item);
         assertThat(oi.getQuantity()).isEqualTo(42);
 
-        // ensures equals/hashCode contract still works
         OrderItem oi2 = new OrderItem();
         oi2.setId(111L);
         assertThat(oi).isEqualTo(oi2);

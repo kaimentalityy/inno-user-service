@@ -90,7 +90,6 @@ class OrderEntityIntegrationTest extends BaseIntegrationTest {
         Order managedOrder = orderRepository.findById(order.getId()).orElseThrow();
         assertThat(orderItemRepository.count()).isEqualTo(1);
 
-        // Remove all items
         managedOrder.getItems().clear();
         orderRepository.saveAndFlush(managedOrder);
 
@@ -119,12 +118,10 @@ class OrderEntityIntegrationTest extends BaseIntegrationTest {
         order3.setUserId(999L);
         order3.setCreatedDate(LocalDateTime.now());
 
-        // equals and hashCode
         assertThat(order1).isEqualTo(order2);
         assertThat(order1.hashCode()).isEqualTo(order2.hashCode());
         assertNotEquals(order1, order3);
 
-        // toString
         String toString = order1.toString();
         assertThat(toString).contains("NEW");
         assertThat(toString).contains("123");
@@ -145,7 +142,6 @@ class OrderEntityIntegrationTest extends BaseIntegrationTest {
         assertThat(o.getUserId()).isEqualTo(987L);
         assertThat(o.getCreatedDate()).isEqualTo(now);
 
-        // Test items list manipulation
         OrderItem orderItem = new OrderItem();
         orderItem.setItem(item);
         orderItem.setOrder(o);

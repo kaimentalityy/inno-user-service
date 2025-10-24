@@ -20,8 +20,8 @@ public class Item {
     private Long id;
 
     @Column(length = 50, nullable = false)
-    String name;
+    private String name;
 
     @Column(nullable = false)
-    BigDecimal price;
+    private BigDecimal price;
 }

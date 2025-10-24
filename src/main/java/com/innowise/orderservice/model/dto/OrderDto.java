@@ -14,7 +14,7 @@ public record OrderDto(
         @NotBlank(message = "Status cannot be blank")
         String status,
 
-        @FutureOrPresent(message = "Creation date must be in the present or future")
+        @PastOrPresent(message = "Creation date must be in the present or past")
         LocalDateTime createdDate,
 
         @Valid

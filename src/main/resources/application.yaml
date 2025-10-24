@@ -14,3 +14,14 @@ server:
 user:
   service:
     url: http://localhost:8081
+
+resilience4j:
+  circuitbreaker:
+    instances:
+      userService:
+        failure-rate-threshold: 50           # 50% of calls can fail before opening
+        wait-duration-in-open-state: 10s     # wait 10 seconds before retrying
+        permitted-number-of-calls-in-half-open-state: 3
+        sliding-window-size: 10              # check last 10 calls
+        automatic-transition-from-open-to-half-open-enabled: true
+

@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.net.URI;
 import java.time.LocalDateTime;
 
 @RestController
@@ -27,7 +28,10 @@ public class OrderController {
 
     @PostMapping
     public ResponseEntity<OrderDto> create(@RequestBody OrderDto orderDto) {
-        return ResponseEntity.ok(orderService.create(orderDto));
+        OrderDto created = orderService.create(orderDto);
+        return ResponseEntity
+                .created(URI.create("/api/orders/" + created.id()))
+                .body(created);
     }
 
     @PutMapping("/{id}")
@@ -38,7 +42,7 @@ public class OrderController {
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> delete(@PathVariable Long id) {
         orderService.delete(id);
-        return ResponseEntity.ok().build();
+        return ResponseEntity.noContent().build();
     }
 
     @GetMapping("/{id}")

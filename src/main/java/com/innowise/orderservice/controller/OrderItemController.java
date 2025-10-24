@@ -17,6 +17,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.net.URI;
+
 @RestController
 @RequestMapping("/api/order-items")
 @RequiredArgsConstructor
@@ -27,7 +29,9 @@ public class OrderItemController {
     @PostMapping
     public ResponseEntity<OrderItemDto> create(@Valid @RequestBody OrderItemDto dto) {
         OrderItemDto created = orderItemService.create(dto);
-        return ResponseEntity.ok(created);
+        return ResponseEntity
+                .created(URI.create("/api/order-items/" + created.id()))
+                .body(created);
     }
 
     @PutMapping("/{id}")

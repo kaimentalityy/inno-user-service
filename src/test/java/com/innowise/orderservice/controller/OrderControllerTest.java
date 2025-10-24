@@ -58,7 +58,7 @@ class OrderControllerTest {
         mockMvc.perform(post("/api/orders")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(objectMapper.writeValueAsString(orderDto)))
-                .andExpect(status().isOk())
+                .andExpect(status().isCreated())
                 .andExpect(jsonPath("$.id").value(1))
                 .andExpect(jsonPath("$.status").value("PENDING"))
                 .andExpect(jsonPath("$.userId").value("123"));
@@ -83,7 +83,7 @@ class OrderControllerTest {
     @Test
     void testDelete() throws Exception {
         mockMvc.perform(delete("/api/orders/{id}", 1L))
-                .andExpect(status().isOk());
+                .andExpect(status().isNoContent());
 
         verify(orderService).delete(1L);
     }

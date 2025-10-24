@@ -58,7 +58,7 @@ class OrderDtoTest {
         );
 
         Set<ConstraintViolation<OrderDto>> violations = validator.validate(dto);
-        assertEquals(2, violations.size());
+        assertEquals(3, violations.size());
     }
 
 }

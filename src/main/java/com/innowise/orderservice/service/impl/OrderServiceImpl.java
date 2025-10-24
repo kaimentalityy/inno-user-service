@@ -20,7 +20,6 @@ import java.time.LocalDateTime;
 
 @Service
 @RequiredArgsConstructor
-@Transactional
 public class OrderServiceImpl implements OrderService {
 
     private final OrderRepository orderRepository;
@@ -32,36 +31,18 @@ public class OrderServiceImpl implements OrderService {
     public OrderDto create(OrderDto createDto) {
         Order order = orderMapper.toEntity(createDto);
         Order saved = orderRepository.save(order);
-
-        UserInfoDto userInfo = fetchUserInfo(order.getUserId(), null);
-        return new OrderDto(
-                saved.getId(),
-                saved.getUserId(),
-                saved.getStatus(),
-                saved.getCreatedDate(),
-                orderMapper.orderItemsToDtos(saved.getItems()),
-                userInfo
-        );
+        return mapToOrderDto(saved, null);
     }
 
     @Override
     @Transactional
     public OrderDto update(Long id, OrderDto updateDto) {
         Order existing = orderRepository.findById(id)
-                .orElseThrow(() -> new OrderNotFoundException());
+                .orElseThrow(OrderNotFoundException::new);
 
         orderMapper.updateEntity(existing, updateDto);
         Order updated = orderRepository.save(existing);
-
-        UserInfoDto userInfo = fetchUserInfo(updated.getUserId(), null);
-        return new OrderDto(
-                updated.getId(),
-                updated.getUserId(),
-                updated.getStatus(),
-                updated.getCreatedDate(),
-                orderMapper.orderItemsToDtos(updated.getItems()),
-                userInfo
-        );
+        return mapToOrderDto(updated, null);
     }
 
     @Override
@@ -74,22 +55,15 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
+    @Transactional(readOnly = true)
     public OrderDto findById(Long id) {
         Order order = orderRepository.findById(id)
-                .orElseThrow(() -> new OrderNotFoundException());
-
-        UserInfoDto userInfo = fetchUserInfo(order.getUserId(), null);
-        return new OrderDto(
-                order.getId(),
-                order.getUserId(),
-                order.getStatus(),
-                order.getCreatedDate(),
-                orderMapper.orderItemsToDtos(order.getItems()),
-                userInfo
-        );
+                .orElseThrow(OrderNotFoundException::new);
+        return mapToOrderDto(order, null);
     }
 
     @Override
+    @Transactional(readOnly = true)
     public Page<OrderDto> searchOrders(Long userId, String email, String status,
                                        LocalDateTime createdAfter, LocalDateTime createdBefore,
                                        Pageable pageable) {
@@ -103,17 +77,19 @@ public class OrderServiceImpl implements OrderService {
 
         Page<Order> orders = orderRepository.findAll(spec, pageable);
 
-        return orders.map(order -> {
-            UserInfoDto userInfo = fetchUserInfo(order.getUserId(), email);
-            return new OrderDto(
-                    order.getId(),
-                    order.getUserId(),
-                    order.getStatus(),
-                    order.getCreatedDate(),
-                    orderMapper.orderItemsToDtos(order.getItems()),
-                    userInfo
-            );
-        });
+        return orders.map(order -> mapToOrderDto(order, email));
+    }
+
+    private OrderDto mapToOrderDto(Order order, String email) {
+        UserInfoDto userInfo = fetchUserInfo(order.getUserId(), email);
+        return new OrderDto(
+                order.getId(),
+                order.getUserId(),
+                order.getStatus(),
+                order.getCreatedDate(),
+                orderMapper.orderItemsToDtos(order.getItems()),
+                userInfo
+        );
     }
 
     private UserInfoDto fetchUserInfo(Long userId, String email) {
@@ -123,4 +99,5 @@ public class OrderServiceImpl implements OrderService {
         return userServiceClient.getUserById(userId);
     }
 }
+
 

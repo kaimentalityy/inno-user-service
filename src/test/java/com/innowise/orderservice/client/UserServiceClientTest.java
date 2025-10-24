@@ -5,10 +5,10 @@ import okhttp3.mockwebserver.MockResponse;
 import okhttp3.mockwebserver.MockWebServer;
 import okhttp3.mockwebserver.RecordedRequest;
 import org.junit.jupiter.api.*;
-import org.springframework.test.util.ReflectionTestUtils;
 import org.springframework.web.reactive.function.client.WebClient;
 
 import java.io.IOException;
+import java.lang.reflect.Method;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -31,14 +31,14 @@ class UserServiceClientTest {
     @BeforeEach
     void setup() {
         WebClient.Builder builder = WebClient.builder();
-        userServiceClient = new UserServiceClient(builder);
-        ReflectionTestUtils.setField(userServiceClient, "userServiceUrl", mockWebServer.url("/").toString());
+        String baseUrl = mockWebServer.url("/").toString();
+        userServiceClient = new UserServiceClient(baseUrl, builder);
     }
 
     @Test
-    void getUserById_ShouldReturnUserInfo() throws InterruptedException {
+    void getUserById_ShouldReturnUserInfo() throws Exception {
         String body = """
-                {"id":1,"email":"test@example.com","name":"John Doe"}
+                {"id":1,"email":"test@example.com","name":"John","surname":"Doe"}
                 """;
         mockWebServer.enqueue(new MockResponse()
                 .setBody(body)
@@ -49,7 +49,8 @@ class UserServiceClientTest {
         assertNotNull(dto);
         assertEquals(1L, dto.id());
         assertEquals("test@example.com", dto.email());
-        assertEquals("John Doe", dto.name());
+        assertEquals("John", dto.name());
+        assertEquals("Doe", dto.surname());
 
         RecordedRequest recordedRequest = mockWebServer.takeRequest();
         assertEquals("/api/users/1", recordedRequest.getPath());
@@ -57,9 +58,9 @@ class UserServiceClientTest {
     }
 
     @Test
-    void getUserByEmail_ShouldReturnUserInfo() throws InterruptedException {
+    void getUserByEmail_ShouldReturnUserInfo() throws Exception {
         String body = """
-                {"id":2,"email":"another@example.com","name":"Alice"}
+                {"id":2,"email":"another@example.com","name":"Alice","surname":"Smith"}
                 """;
         mockWebServer.enqueue(new MockResponse()
                 .setBody(body)
@@ -71,6 +72,7 @@ class UserServiceClientTest {
         assertEquals(2L, dto.id());
         assertEquals("another@example.com", dto.email());
         assertEquals("Alice", dto.name());
+        assertEquals("Smith", dto.surname());
 
         RecordedRequest recordedRequest = mockWebServer.takeRequest();
         assertTrue(recordedRequest.getPath().contains("/api/users/search?email=another@example.com"));
@@ -78,25 +80,46 @@ class UserServiceClientTest {
     }
 
     @Test
-    void getUserById_ShouldReuseWebClientInstance() throws Exception {
-        // Prepare dummy responses for both calls
-        mockWebServer.enqueue(new MockResponse().setBody("{}").addHeader("Content-Type", "application/json"));
-        mockWebServer.enqueue(new MockResponse().setBody("{}").addHeader("Content-Type", "application/json"));
+    void userFallback_ShouldHandleLongKey() throws Exception {
+        Method method = UserServiceClient.class.getDeclaredMethod("userFallback", Object.class, Throwable.class);
+        method.setAccessible(true);
 
-        // Before first call: webClient should be null
-        Object before = ReflectionTestUtils.getField(userServiceClient, "webClient");
-        assertNull(before, "WebClient should be null before first use");
+        UserInfoDto dto = (UserInfoDto) method.invoke(userServiceClient, 123L, new RuntimeException("Simulated"));
+        assertEquals(123L, dto.id());
+        assertEquals("unknown@example.com", dto.email());
+        assertEquals("Unknown", dto.name());
+        assertEquals("User", dto.surname());
+    }
 
-        userServiceClient.getUserById(1L);
+    @Test
+    void userFallback_ShouldHandleStringKey() throws Exception {
+        Method method = UserServiceClient.class.getDeclaredMethod("userFallback", Object.class, Throwable.class);
+        method.setAccessible(true);
 
-        // After first call: webClient should be initialized
-        WebClient firstClient = (WebClient) ReflectionTestUtils.getField(userServiceClient, "webClient");
-        assertNotNull(firstClient, "WebClient should be initialized after first call");
+        UserInfoDto dto = (UserInfoDto) method.invoke(userServiceClient, "test@example.com", new RuntimeException("Simulated"));
+        assertEquals(-1L, dto.id());
+        assertEquals("test@example.com", dto.email());
+    }
 
-        userServiceClient.getUserById(2L);
+    @Test
+    void userFallback_ShouldHandleUnknownType() throws Exception {
+        Method method = UserServiceClient.class.getDeclaredMethod("userFallback", Object.class, Throwable.class);
+        method.setAccessible(true);
 
-        // After second call: should still be the same instance
-        WebClient secondClient = (WebClient) ReflectionTestUtils.getField(userServiceClient, "webClient");
-        assertSame(firstClient, secondClient, "WebClient should be reused after initialization");
+        UserInfoDto dto = (UserInfoDto) method.invoke(userServiceClient, new Object(), new RuntimeException("Simulated"));
+        assertEquals(-1L, dto.id());
+        assertEquals("unknown@example.com", dto.email());
+    }
+
+    @Test
+    void createFallbackDto_ShouldReturnCorrectUser() throws Exception {
+        Method method = UserServiceClient.class.getDeclaredMethod("createFallbackDto", Long.class, String.class);
+        method.setAccessible(true);
+
+        UserInfoDto dto = (UserInfoDto) method.invoke(userServiceClient, 999L, "fail@example.com");
+        assertEquals(999L, dto.id());
+        assertEquals("fail@example.com", dto.email());
+        assertEquals("Unknown", dto.name());
+        assertEquals("User", dto.surname());
     }
 }
