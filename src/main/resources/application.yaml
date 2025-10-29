@@ -1,27 +1,36 @@
+server:
+  port: ${SERVER_PORT:8081}
+
 spring:
   datasource:
-    url: jdbc:postgresql://${DB_HOST:localhost}:${DB_PORT:5432}/${DB_NAME:ord_db}
-    username: ${DB_USERNAME:postgres}
-    password: ${DB_PASSWORD:17052007}
+    url: ${SPRING_DATASOURCE_URL:jdbc:postgresql://localhost:5433/auth_db}
+    username: ${SPRING_DATASOURCE_USERNAME:postgres}
+    password: ${SPRING_DATASOURCE_PASSWORD:17052007}
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+    show-sql: true
 
   liquibase:
     enabled: true
     change-log: classpath:/db/changelog/changelog-master.xml
 
-server:
-  port: ${SERVER_PORT:8083}
+jwt:
+  secret: ${JWT_SECRET:MySuperSecretKeyForJWTMySuperSecretKeyForJWT}
+  expiration: ${JWT_EXPIRATION:3600000}
+  header: ${JWT_HEADER:Authorization}
+  token:
+    prefix: ${JWT_TOKEN_PREFIX:Bearer}
+  role:
+    prefix: ${JWT_ROLE_PREFIX:ROLE_}
 
-user:
-  service:
-    url: http://localhost:8081
-
-resilience4j:
-  circuitbreaker:
-    instances:
-      userService:
-        failure-rate-threshold: 50           # 50% of calls can fail before opening
-        wait-duration-in-open-state: 10s     # wait 10 seconds before retrying
-        permitted-number-of-calls-in-half-open-state: 3
-        sliding-window-size: 10              # check last 10 calls
-        automatic-transition-from-open-to-half-open-enabled: true
-
+password:
+  strength: ${PASSWORD_STRENGTH:16}
+  hash:
+    algorithm: ${PASSWORD_HASH_ALGORITHM:SHA-256}
+  salt:
+    algorithm: ${PASSWORD_SALT_ALGORITHM:SHA1PRNG}
+    length: ${PASSWORD_SALT_LENGTH:16}
